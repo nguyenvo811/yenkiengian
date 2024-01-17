@@ -1,0 +1,10 @@
+﻿@*@model string
+@Html.TextArea(string.Empty,Model, 
+    new {@class="form-control desc"}
+)*@
+@Html.TextArea(string.Empty, /* Name suffix */
+    ViewData.TemplateInfo.FormattedModelValue /* Initial value */
+)
+<script>
+        window.onload = configTinymce(0,'#@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)');
+</script>

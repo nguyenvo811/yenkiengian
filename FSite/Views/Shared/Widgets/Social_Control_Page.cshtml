@@ -1,0 +1,52 @@
+﻿@{ 
+    FSite.Models.SocialViewModels m = (FSite.Models.SocialViewModels)ViewData["m"];
+}
+    <div class="socials-box">
+        <div class="container">
+            <div class="row">
+                <a href="#" class="btn btn-facebook js-social-share" data-provider="facebook"><i class="fa fa-facebook"></i></a>
+                <a href="#" class="btn btn-pinterest js-social-share" data-provider="pinterest" data-img="@m.img" data-desc="@m.title"><i class="fa fa-pinterest"></i></a>
+                <a href="#" class="btn btn-twitter js-social-share" data-provider="twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="btn btn-google js-social-share" data-provider="google"><i class="fa fa-google-plus"></i></a>
+                <a href="#" class="btn btn-envelope js-social-share" data-provider="envelope" data-title="@m.title" data-bcc="@System.Configuration.ConfigurationManager.AppSettings.Get("SystemsMailBCC")" data-desc="@m.desc"><i class="fa fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+
+@*<div class="widget same-template">
+    <div class="share-box">
+        <h4>Chia sẻ:</h4>
+        <ul class="share-box-list">
+            <li>
+                <a href="#" class="js-social-share facebook" data-provider="facebook">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="js-social-share twitter" data-provider="twitter">
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="js-social-share pinterest" data-provider="pinterest" data-img="@(domain+Model.ImageUrl)" data-desc="@Model.Title">
+                    <i class="fa fa-pinterest"></i>
+                    <i class="fa fa-pinterest"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="js-social-share google" data-provider="google">
+                    <i class="fa fa-google"></i>
+                    <i class="fa fa-google"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="js-social-share envelope" data-provider="envelope" data-title="@Model.Title" data-bcc="@System.Configuration.ConfigurationManager.AppSettings.Get("SystemsMailBCC")" data-desc="@Model.Title">
+                    <i class="fa fa-envelope"></i>
+                    <i class="fa fa-envelope"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>*@

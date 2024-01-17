@@ -1,0 +1,15 @@
+﻿@{ 
+    string _delete = ViewBag.DeleteUrl;
+     string _detail = ViewBag.DetailUrl;
+     string _edit = ViewBag.EditUrl;
+}
+<div class='btn-group row-control-setting' data-id="{0}">
+    <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+        <i class='fa fa-cog' aria-hidden='true'></i> <span class='caret'></span>
+    </button>
+    <ul class='row-control-setting dropdown-menu' role='menu' >
+        <li><a class='item-edit' data-id="{1}"  title='Sửa' href='@_edit/{1}' data-href='@_edit/{1}' ><i class='fa fa-edit' aria-hidden='true'></i>Sửa</a></li>
+        <li class='divider'></li>
+        <li><a class='item-delete' data-id="{1}" title='Xóa' href='@_delete'  data-href='@_delete' ><i class='fa fa-trash' aria-hidden='true'></i>Xóa</a></li>
+    </ul>
+</div>

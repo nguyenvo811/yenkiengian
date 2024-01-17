@@ -1,0 +1,9 @@
+﻿@model decimal?
+@{
+    double Price = 0;
+    if (Model.HasValue)
+    {
+        Price = (double)Model.Value;
+    }
+}
+<span>@Price</span> 

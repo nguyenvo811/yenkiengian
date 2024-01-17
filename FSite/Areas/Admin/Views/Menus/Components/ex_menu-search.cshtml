@@ -1,0 +1,91 @@
+﻿@{ 
+    Layout = null;
+}
+
+
+<nav class="navbar navbar-olive-dark" id="main_navbar" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_id">
+                <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><i class="fa fa-search"></i> Search demo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar_id">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="hidden-sm">
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-width="130px">
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning" type="button"><i class="fa fa-search"></i> Search</button>
+                            </span>
+                        </div>
+                    </form>
+                </li>
+                <li>
+                    <form class="navbar-form-expanded navbar-form" role="search">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i>&nbsp;</button>
+                            </span>
+                            <input type="text" class="form-control" data-width="70px" data-width-expanded="150px" placeholder="Search...">
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown-grid">
+                    <a data-toggle="dropdown" href="javascript:;" class="dropdown-toggle"><i class="fa fa-search"></i>&nbsp;<span class="caret"></span></a>
+                    <div class="dropdown-grid-wrapper" role="menu">
+                        <div class="dropdown-menu col-sm-5 col-lg-4">
+                            <form class="no-margin">
+                                <div class="input-group">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i>&nbsp;Search!</button></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown-grid">
+                    <a data-toggle="dropdown" href="javascript:;" class="dropdown-toggle"><i class="fa fa-search"></i>&nbsp;Advanced search<span class="caret"></span></a>
+                    <div class="dropdown-grid-wrapper" role="menu">
+                        <div class="dropdown-menu col-sm-6 col-lg-5">
+                            <h4 class="text-right">Advanced search</h4>
+                            <form role="form">
+                                <input type="text" class="form-control">
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-5 col-sm-5">
+                                        <p>Sort results by...</p>
+                                        <div class="radio">
+                                            <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Title</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Price</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-sm-7">
+                                        <p>Order results by...</p>
+                                        <div class="radio">
+                                            <label><input type="radio" name="optionsRadios1" id="optionsRadios1" value="option1" checked>From highest to lowest</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="optionsRadios1" id="optionsRadios2" value="option2">From lowest to highest</label>
+                                        </div>
+                                        <button type="button" class="btn btn-default navbar-btn pull-right no-margin">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

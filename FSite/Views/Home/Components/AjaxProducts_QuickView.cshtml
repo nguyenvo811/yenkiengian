@@ -1,0 +1,105 @@
+﻿@model FSite.Models.Data.Product
+ @{ var link = $"/{Model.Key}/san-pham";
+ }
+<div class="container-fluid">
+    <div class="row">
+        <form method="post" action="/cart/add">
+            <div class="col-lg-5 col-md-6">
+                <div class="image-zoom row">
+                    @if (Model.DiscountShow)
+                    {
+                        <div class="pdLabel sale">
+                            <span>@FSite.Resources.Resource.Sale_Title</span>
+                        </div>
+                    }
+                    <img class="p-product-image-feature" src="@Model.ImageUrl" alt="@Model.Title">
+                  
+                    @{
+                        var files = Model.ProductItems.ToList();
+                    }
+                    @if (files.Count != 0)
+                    {
+                       
+                            <div id="p-sliderproduct" class="owl_pages ">
+                                <ul class="slides">
+                                    @for (int i = 0; i < files.Count; i++)
+                                    {
+                                        var mfile = files[i];
+                                        <li class="product-thumb ">
+                                    <a href="#" data-image="@mfile.ImageUrl" data-zoom-image="@mfile.ImageUrl">
+                                                                       <img  data-zoom-image="@mfile.ImageUrl" data-image="@mfile.ImageUrl" alt="@Model.Title" src="@mfile.ImageUrl">
+                                             </a></li>
+                                    }
+
+                                </ul>
+                            </div>
+                    }
+                   
+                   
+
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6 pull-right" style="padding: 0px 10px;">
+
+                <div class="form-input">
+                    <div class="product-title p-title"><h1>@Model.Title</h1></div>
+                    <div class="product-price">
+                        @if (Model.DiscountShow)
+                        {
+                            <div class="countdown-wrapper po-unset bg-unset">
+                                <div class="defaultCountdown clearfix" data-time-end="@Model.DiscountToDate"></div>
+                                @*<div class="defaultCountdown clearfix" data-time-end="@(DateTime.Now.AddMonths(12))"></div>*@
+                            </div>
+                        }
+                        <span class="p-price ">@Html.DisplayFor(p=>Model.Price, "DecimalCurrency")</span>
+                        @if (Model.DiscountShow)
+                        {
+                            <del>@Html.DisplayFor(f => Model.PriceDiscount, "DecimalCurrency")</del>
+                        }
+                    </div>
+
+                </div>
+                <div class="form-des">@Model.Description</div>
+                <div class="clearfix"></div>
+                <div class="form-input vid ">
+                    @if (!string.IsNullOrEmpty(Model.Sku))
+                    {
+                        <div class="m-sku"><span>Mã sản phẩm: </span>@Model.Sku</div>
+                     
+                    }
+                    @if (Model.Category != null)
+                    {
+
+                        <div class="m-tt">
+                            <span>Danh mục: </span>@Model.Category.Title
+                        </div>
+                    }
+                    @if (Model.Brand != null)
+                    { 
+                        <div class="m-vendor"><span>Thương hiệu: </span>@Model.Brand.Title</div>
+                      
+                    }
+                     
+                   
+                    
+                </div>
+                @*<div class="p-option-wrapper">
+                    <select name="id" class="" id="p-select"></select>
+                </div>
+
+                <div class="form-input ">
+                    <label>Số lượng</label>
+                    <input name="quantity" type="number" min="1" value="1" />
+                </div>*@
+
+                <div class="form-input" style="width: 100%">
+                    @*<button type="button" class="btn-addcart">Thêm vào giỏ</button>
+                    <button disabled class="btn-detail addtocart btn-color-add btn-min-width btn-mgt btn-soldout">Hết hàng</button>*@
+                    <div class="qv-readmore">
+                        @*<span> hoặc </span>*@<a class="read-more p-url" href="@link" role="button">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

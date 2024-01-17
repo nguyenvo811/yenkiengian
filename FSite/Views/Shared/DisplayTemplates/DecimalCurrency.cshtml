@@ -1,0 +1,21 @@
+﻿@model decimal?
+@using System.Globalization
+@{ 
+    CultureInfo cul = CultureInfo.GetCultureInfo("vi-VN");   // try with "en-US"
+    string a = string.Empty;
+    decimal? v =(decimal?)null;
+    if (Model.HasValue)
+    {
+        a = Model.Value.ToString("#,###", cul.NumberFormat);
+        //  v = Decimal.Parse(string.Format("{0}", string.Format("{0:0,0}", Model)));
+    }
+}
+
+@if (string.IsNullOrEmpty(a))
+{
+    <span>Liên hệ</span>
+}
+else
+{
+<span>@a </span><ins>đ</ins>
+}       

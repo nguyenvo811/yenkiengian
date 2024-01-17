@@ -1,0 +1,28 @@
+﻿<script>
+    jQuery(document).ready(function () {
+        jQuery('.contact-group .icon').on('click', function ()
+        {
+            var _bt = this;
+            jQuery(_bt).toggleClass('active');
+            jQuery(_bt).next('.button-action-group').toggleClass('active');
+            if (jQuery(_bt).hasClass('active')) {
+                Cookies.set('hotline', 'active', { expires: 1 })//1 day
+                _hideContact();
+            } else { Cookies.remove('hotline') }
+        })
+        function _hideContact() {
+            setTimeout(function () {
+                jQuery('.contact-group .icon').trigger("click");
+
+            }, 10000)
+        }
+        if (Cookies.get('hotline'))
+        {
+            $('.contact-group .icon,.contact-group .button-action-group').addClass('active');
+            _hideContact();
+
+        } else {
+            $('.contact-group .icon,.contact-group .button-action-group').removeClass('active');
+        }
+    });
+</script>

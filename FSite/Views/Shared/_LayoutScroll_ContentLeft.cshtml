@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @{
+        var isMobile = Request.Browser.IsMobileDevice;
+        ViewBag.isMobile = isMobile;
+        int version = 26;
+    }
+    <title>@ViewBag.Title - Bệnh Viện Buôn Mê Thuột</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="author" content="tuandungcmg@gmail.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @if (IsSectionDefined("headers"))
+    {
+        @RenderSection("headers")
+    }
+    else
+    {
+        <meta name="description" content="@Html.Raw(System.Configuration.ConfigurationManager.AppSettings.Get("SiteDesc"))" />
+        <meta name="keywords" content="@Html.Raw(System.Configuration.ConfigurationManager.AppSettings.Get("SiteKeyWord"))" />
+        <meta property="og:title" content="@Html.Raw(ViewBag.Title)" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="@string.Format("{0}",System.Configuration.ConfigurationManager.AppSettings.Get("domain"))" />
+        <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
+        <meta property="og:description" content="@Html.Raw(System.Configuration.ConfigurationManager.AppSettings.Get("SiteDesc"))" />
+    }
+    <!-- Bootstrap core CSS -->
+    <link href="~/templates/front/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/reset.css" rel="stylesheet" />
+    <!-- WebFonts core CSS -->
+    <link href="~/templates/front/css/fonts.css" rel="stylesheet">
+    <link href="~/templates/front/css/animsition.css" rel="stylesheet">
+    <!-- Simple Line Icons -->
+    <link href="~/templates/front/MegaNavbar/assets/plugins/simple-line-icons/simple-line-icons.css" rel="stylesheet" />
+    <!-- OWL -->
+    <link href="~/templates/front/css/owl.carousel.css" rel="stylesheet">
+    <!-- REVOLUTION BANNER CSS SETTINGS -->
+
+    <link rel="stylesheet" type="text/css" href="~/templates/front/rs-plugin/css/settings.css" media="screen" />
+    <!-- MegaNavbar-->
+
+    <link rel="stylesheet" type="text/css" href="~/templates/front/MegaNavbar/assets/css/MegaNavbar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/templates/front/MegaNavbar/assets/css/skins/navbar-default.css">
+    <link rel="stylesheet" type="text/css" href="~/templates/front/MegaNavbar/assets/css/animation/animation.css">
+    <!-- Custom styles for this template -->
+
+    <link href="~/templates/front/css/style.css?v=@version" rel="stylesheet" />
+    <link href="~/Content/daterangepicker.css" rel="stylesheet" />
+    <!-- Goole fonts -->
+    @*<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,700,800" rel="stylesheet" type="text/css">*@
+
+    <link href="https://fonts.googleapis.com/css?family=Kodchasan:300,400,600,700" rel="stylesheet">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,800,700,600' rel='stylesheet' type='text/css'>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    @*---general---*@
+    <link href="~/Scripts/pace/pace.css" rel="stylesheet" />
+    <link href="~/Content/alerttify/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alerttify/alertify.cus.css" rel="stylesheet" />
+    <link href="~/Content/paging.css" rel="stylesheet" />
+    <link href="~/Content/hotline.css?v=@version" rel="stylesheet" />
+   
+    <link href="~/Content/Site.css?v=@version" rel="stylesheet" />
+    <script data-pace-options='{ "ajax": true }' src='/Scripts/pace/pace.min.js'></script>
+    <script>
+        var imageDefault = { 1: "/Uploads/images/no-avartar.png", 2: "/img/site/no-agent.png" }
+        function imgError(o, imgDefault) {
+            if (imgDefault) {
+                o.src = imageDefault[imgDefault];
+            } else {
+                o.src = imageDefault[2];
+            }
+            o.removeAttribute('onerror');
+        }
+        paceOptions = {
+            // Disable the 'elements' source
+            elements: false,
+            // Only show the progress on regular and ajax-y page navigation,
+            // not every request
+            restartOnRequestAfter: false
+        }
+    </script>
+
+</head>
+<body id="services-page"  class="scroll-page1 @ViewBag.BodyClass @(ViewBag.isMobile?"mobile-":"")" data-page="@ViewBag.MenuKey">
+    <div class="animsition">
+        <div class="wrapper">
+            <header id="header">
+                <!-- Top Header Section Start -->
+                <div class="top-bar bg-green-dark hidden-xs">
+                    <div class="container">
+                        <div class="row">
+                            @*<div class="col-sm-4 list-inline list-unstyled no-margin">
+                                    <p class="no-margin"><span class="icon-i-volume-control cus-color-red" aria-hidden="true"></span> @FSite.Resources.Resource._Hotline <strong>+080 124 880</strong></p>
+                                </div>*@
+
+                            <div class="col-sm-12">
+                                <ul class="list-inline list-unstyled no-margin">
+                                    <li class="list-inline-item float-right ">
+                                        <i class="icon-i-volume-control cus-color-red" aria-hidden="true"></i>
+                                        <a href="tel:09232323"> @FSite.Resources.Resource._Hotline : +0973507507</a>
+                                    </li>
+                                    @if (User.IsInRole(FSite.Models.Enum.EnumUserRole.Admin.ToString()) || User.IsInRole(FSite.Models.Enum.EnumUserRole.Operator.ToString()))
+                                    {
+                                        @*<li class="list-inline-item float-right   pull-right">
+                                                <i class="glyphicon glyphicon-globe"></i>
+                                                <a href="http://bmt.edu.vn:8000/">@User.Identity.Name</a>
+                                            </li>*@
+                                        <li class="list-inline-item float-right  pull-right ac-manage cus-color-blue">
+                                            <div class="btn-group pull-right ">
+                                                <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                    @User.Identity.Name <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu no-border-radius no-shadow">
+                                                    @*<li>
+                                                            <a href="@Url.Action("Profile", "Manage")"><i class="ion ion-person"></i> Thông tin cá nhân</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="@Url.Action("ChangePass", "Manage")"><i class="fa fa-unlock-alt"></i> Đổi mật khẩu</a>
+                                                        </li>*@
+                                                    <li><a href="/Admin"><i class="fa fa-unlock-alt"></i> Quản trị</a></li>
+                                                    <li>
+                                                        @using (Html.BeginForm("LogOff", "Account", null, FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                                                        {@Html.AntiForgeryToken()
+                                                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-power-off"></i>Thoát</a>
+                                                    }
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    }
+                                    <li class="list-inline-item float-right pull-right">
+                                        <i class="glyphicon glyphicon-home"></i>
+                                        <a href="/lien-he.html">Liên Hệ </a>
+                                    </li>
+                                    <li class="list-inline-item float-right pull-right">
+                                        <i class="glyphicon glyphicon-book " aria-hidden="true"></i>
+                                        <a href="http://bmt.edu.vn:82/">Thư Viện</a>
+                                    </li>
+                                    <li class="list-inline-item float-right   pull-right">
+                                        <i class="glyphicon glyphicon-globe"></i>
+                                        <a href="http://bmt.edu.vn:8000/">Bệnh Án Điện tử</a>
+                                    </li>
+
+                                    @*<li class="list-inline-item float-right  cus-color-blue">
+                                                                        <div class="btn-group pull-right ">
+                                            <button class="dropdown-toggle language" type="button" data-toggle="dropdown" aria-expanded="false">
+                                                <img src="/images/us.png" width="16" height="11" alt="EN Language">English <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu no-border-radius no-shadow">
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="/images/us.png" width="16" height="11" alt="EN Language">[US] English
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="/images/de.png" width="16" height="11" alt="DE Language">[DE] German
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="/images/fr.png" width="16" height="11" alt="FR Language">[FR] French
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="/images/ru.png" width="16" height="11" alt="RU Language">[RU] Russian
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                                                    </li>*@
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.top bar -->
+                <!-- begin Logo and info -->
+                @*<div class="container middle-bar hidden-xs">
+                        <div class="row">
+                            <a href="index.html" class="logo col-sm-3">
+                                <img src="/images/logo-md.png" class="img-responsive" alt="" />
+                            </a>
+                            <div class="col-sm-8 col-sm-offset-1 contact-info">
+                                <p>
+                                    @FSite.Resources.Resource._Emergency <span>+114 554 888</span>
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>*@
+                <!-- /.middle -->
+                <!-- begin MegaNavbar-->
+                <div class="nav-wrap-holder">
+                    <div class="container" id="nav_wrapper">
+                        <nav class="navbar navbar-static-top navbar-default no-border-radius xs-height100" id="main_navbar" role="navigation">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#MegaNavbarID">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                                    </button>
+                                    <a href="/" class="navbar-brand logo">
+                                        <img src="/images/logo-md.png" class="img-responsive" alt="" />
+                                    </a>
+                                    @*<a href="/" class="navbar-brand logo hidden-xs">
+                                        <img src="/images/logo-md.png" class="img-responsive" alt="" />
+                                    </a>
+                                    <a href="/" class="navbar-brand logo col-sm-3 visible-xs-block">
+                                        <img src="/images/logo-sm.png" class="img-responsive" alt="" />
+                                    </a>*@
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="MegaNavbarID">
+                                    <!-- regular link -->
+                                    @Html.Action("MenuTop", "Home",new {isfirst=true})
+                                    @*<ul class="nav navbar-nav navbar-left">
+                                        <li>
+                                            <a href="index.html"><span class="hidden-sm">Trang chủ</span></a>
+                                        </li>
+                                        <li class="divider"></li>
+
+
+                                        <li class="dropdown-short">
+                                            <a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle"><span class="hidden-sm hidden-md reverse">Giới thiệu</span><span class="caret"></span></a>
+                                            <ul class="dropdown-menu no-border-radius no-shadow">
+                                                <li class="divider no-margin"></li>
+
+
+                                                <li> <a href="service-details.html"></a></li>
+
+                                                <li class="active">
+                                                    <a href="service-details.html">Lịch sử hình thành</a>
+                                                </li>
+                                                <li>
+                                                    <a href="service.html">Về chúng tôi</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                            </ul>
+                                        </li>
+                                    </ul>*@
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="box-search">
+                                            <!-- search form -->
+                                            <form class="navbar-form-expanded form-search navbar-form navbar-left visible-lg-block visible-md-block visible-xs-block" role="search">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" data-width="60px" data-width-expanded="170px" placeholder="Tìm" name="query">
+                                                    <span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i>&nbsp;</button></span>
+                                                </div>
+                                            </form>
+                                        </li>
+                                        <li class="dropdown-grid visible-sm-block">
+                                            <a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle"><i class="fa fa-search"></i>&nbsp;</a>
+                                            <div class="dropdown-grid-wrapper" role="menu">
+                                                <ul class="dropdown-menu col-sm-6">
+                                                    <li>
+                                                        <form class="no-margin">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control">
+                                                                <span class="input-group-btn"><button class="btn btn-default" type="submit">&nbsp;<i class="fa fa-search"></i></button></span>
+                                                            </div>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="divider hidden-sm1"></li>
+
+                                        <!-- dropdown grid -->
+                                        <li class="dropdown-full hidden-sm1">
+                                            <a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle"><i class="fa fa-calendar cus-color-green"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg reverse">Đặt lich khám</span><span class="caret"></span></a>
+                                            <ul class="dropdown-menu no-shadow no-border-radius space-xs">
+                                                <li class="col-sm-4">
+                                                    <address>
+                                                       
+                                                        <strong>Địa điểm.</strong><br>
+                                                        298 Hà Huy Tập P. Tân An TP. <br>
+                                                        Buôn Ma Thuột Tỉnh Đắk Lắk<br>
+                                                        <abbr title="Điện thoại">Điện thoại:</abbr> 0262 3 98 66 88<br>
+                                                        <abbr title="Di động">Di động:</abbr> (098) 765-4321
+                                                    </address>
+
+                                                   
+                                                </li>
+                                                <li class="col-sm-4">
+                                                   
+                                                    <address>
+                                                        <strong>Hộp thư</strong><br>
+                                                        <a href="mailto:daihocbmt@bmtu.edu.vn">daihocbmt@bmtu.edu.vn</a>
+                                                    </address>
+                                                    <div class="open-hours">
+                                                        <p>
+                                                            Khám bệnh ngoại trú <span> từ 7h00-17h00</span>
+															(Tất cả các ngày kể cả ngày lễ, T7 và CN)
+                                                        </p>
+                                                        <p>
+                                                            Tiếp nhận cấp cứu: 24/24h <span>Tiếp nhận cấp cứu: 24/24h</span>
+                                                        </p>
+                                                        <p>
+                                                            Điều trị nội trú: 24/24h <span>(Tất cả các ngày kể cả ngày lễ, T7 và CN)</span>
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                @*<li class="col-sm-7 col-sm-offset-1" id="boxGeneral_Contact">
+            @Html.Action("CustomerRequest", new { Content = "", TypeRequest = FSite.Models.Enum.EnumTypeRequest.General_Contact })
+        </li>*@
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /.div nav wrap holder -->
+            </header>
+            <!-- end MegaNavbar-->
+            @RenderBody()
+        </div>
+        <!-- end: animatsion -->
+    </div>
+
+   
+    @Html.Partial("_BottomContact")
+
+    @Scripts.Render("~/bundles/jquery")
+    @*<script src="~/templates/front/js/jquery.min.js"></script>*@
+    <script src="~/templates/front/js/bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/templates/front/js/owl.carousel.min.js"></script>
+    <script src="~/templates/front/js/plugins.js"></script>
+    <!-- jQuery REVOLUTION Slider  -->
+    @*<script src="~/templates/front/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/templates/front/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>*@
+    <script src="~/templates/front/js/custom.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="~/templates/front/js/ie10-viewport-bug-workaround.js"></script>
+
+    <script src="~/Scripts/select2.min.js"></script>
+    <script src="~/Scripts/alertify.min.js"></script>
+    <script src="~/Scripts/alertifycus.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/Scripts/moment.min.js"></script>
+    <script src="/Scripts/daterangepicker.js"></script>
+    <script src="~/Scripts/js.cookie.min.js"></script>
+    <script src="~/Scripts/Site.js?v=@version"></script>
+    <script src="~/Scripts/SiteFrontEnd.js?v=@version"></script>
+ 
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function ()
+        {
+
+
+
+
+        })
+    </script>
+    <!-- Load Facebook SDK for JavaScript -->
+    
+</body>
+</html>

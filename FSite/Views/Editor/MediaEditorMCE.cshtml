@@ -1,0 +1,229 @@
+﻿@{ 
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Media Browser</title>
+    @*<link href="~/Scripts/Mediabrowser/css/mediamanager_single.css" rel="stylesheet" />*@
+    <link href="~/Content/alerttify/alertify.min.css" rel="stylesheet" />
+    <link href="~/Scripts/Mediabrowser/css/media_dialog.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/paging.css" rel="stylesheet" />
+</head>
+<body class="flex-column" >
+    <input type="hidden" value="@ViewBag.syntax" name="syntax" id="syntax"/>
+    <input type="hidden" value="@ViewBag.type" name="type" id="type" />
+    <div class="control-area">
+        <div style="display: flex;">
+            <form id="frmUpload"  action="/api/media/upload" method="post">
+                <input id="mmFlup" type="file" name="files" multiple onchange="media_handle_upload();"
+                       accept="image/gif, image/jpeg, image/bmp, image/png, image/jpg" />
+            </form>
+            <button onclick="$('#mmFlup').trigger('click');" class="btn btn-danger">Upload</button>
+        </div>
+        <div class="flex-full"></div>
+        <div>
+            <input class="form-control" type="text" id="inp_search" />
+        </div>
+        <button class="btn btn-primary" onclick='onClickMediaSearch();'>Search</button>
+    </div>
+    <div class="flex-full">
+        <div id="media_view" style="overflow: auto;"></div>
+    </div>
+    <div class="text-center pagination metro-theme">
+        <ul id="tblContent1" class="pagination"></ul>
+    </div>
+ 
+    <script src="~/templates/admin/custom/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/alertify.min.js"></script>
+    <script type="text/javascript">
+        var cpage = 1;
+        var pagesize = 20;
+        var searchStr = "";
+        var type = document.getElementById('type').value;//image, video ...
+        var syntax = document.getElementById('syntax').value;//project, product, posts ...
+        const PAGING_MAX_ITEM = 5; /* how many page will visible together, odd number only please */
+
+        function buildPaging(page, totalPage) {
+            /* paging procedure */
+            var pagecount = totalPage || 0;
+
+            var prevHtml = "<li" + (page <= 1 ? " class='disabled'" : "") + "><a " + (page > 1 ? "href='#' onclick=\"paging(" + (page - 1) + ',' + pagesize + ")\"" : "") + " class='previous'>&lt;&lt;</a></li>";
+            var nextHtml = "<li" + (page >= pagecount ? " class='disabled'" : "") + "><a " + (page < pagecount ? "href='#' onclick=\"paging(" + (page + 1) + ',' + pagesize + ")\"" : "") + " class='next'>&gt;&gt;</a></li>"
+
+            var powder = PAGING_MAX_ITEM - 1;
+            var start = page, end = page;
+            while (powder > 0 && (start > 1 || end < pagecount)) {
+                if (start > 1) {
+                    start--;
+                    powder--;
+                }
+                if (end < pagecount) {
+                    end++;
+                    powder--;
+                }
+            }
+
+            var innerPage = "";
+            for (var i = start; i <= end; i++) {
+                innerPage += "<li " + (i == cpage ? "class='active'" : "") + "><a href='#' onclick=\"paging(" + i + "," + pagesize + ")\" class='npage'>" + i + "</a></li>";
+            }
+            /* set paging */
+            $('#tblContent1').html(prevHtml + innerPage + nextHtml);
+        }
+
+        function paging(page, psize) {
+            cpage = page;
+            media_fetch(page, psize).then(function (total) {
+                buildPaging(cpage, total);
+            })
+        }
+
+        function onClickMediaSearch() {
+            searchStr = $('#inp_search').val();
+            paging(cpage, pagesize)
+        }
+
+        function media_build_item(data)
+        {
+            //check syntax because upload from gallery
+            var isSyntax = false;
+            if (data.name.substring(0, syntax.length).toLowerCase() === syntax.toLowerCase()) {
+                isSyntax = true;
+            }
+            var html = '<div class="image-item" data-name="' + data.name + '" data-path="' + data.path + '">';
+            html += '<img class="js-file-select" src="' + data.thumb + '" alt="' + data.name + '"/>';
+            html += '<div class="file-name js-file-select" title="' + data.name + '">' + data.name + '</div>';
+            html += '<div class="item-control"><ul><li><a title="Tải về" href="#" class="js-file-download"><i class="fa fa-download"></i></a></li><li><a title="Xem" href="#" class="js-file-preview"><i class="fa fa-eye"></i></a></li><li style="display:none"><a title="Sửa" href="#" class="js-file-edit"><i class="fa fa-pencil"></i></a></li><li><a title="Xóa" href="#" class="js-file-delete ' + (isSyntax?"no-access":"") + '"><i class="fa fa-trash"></i></a></li></ul></div>';
+            html += '</div>';
+
+            return html;
+        }
+
+        function media_remove_item(name) {
+            $.ajax({
+                url: '/api/editor/remove?name=' + name+'&syntax=' + syntax + '&type=' + type,
+                type: 'POST'
+            })
+                .then(function (resp) {
+                    if (!resp.status) alert(resp.msg);
+                    else paging(cpage, pagesize);
+                });
+        }
+        $('body').on("click", '.js-file-delete', function () {
+            var name = $(this).parents('.image-item').data('name');
+            if (confirm("Bạn muốn xóa tập tin này?")) {
+                media_remove_item(name);
+            }
+            return false;
+        })
+        $('body').on("click", '.js-file-download', function () {
+            var name = $(this).parents('.image-item').data('name');
+            var path = $(this).parents('.image-item').data('path');
+            var a = document.createElement('a');
+            a.href = path;
+            a.download = name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            return false;
+        })
+        function media_fetch(page, pagesize) {
+            var query = searchStr || "";
+
+            return $.get('/api/editor/list?page=' + page + '&pagesize=' + pagesize + '&key=' + query + '&syntax=' + syntax + '&type=' + type)
+                .then(function (data) {
+                    if (data.status ) {
+                        var largeHtml = '';
+                        data.media.forEach(item => {
+                            largeHtml += media_build_item(item);
+                        })
+
+                        $('#media_view').html(largeHtml);
+                        return data.total;
+                    }
+                    return 0;
+                });
+        }
+        paging(cpage, pagesize);
+
+        function media_handle_upload() {
+            $("#frmUpload").submit();
+        }
+
+        $("#frmUpload").submit(function (e) {
+
+            e.preventDefault();
+            var formData = new FormData(this);
+            formData.append("syntax", syntax);
+            formData.append("type", type);
+            $.ajax({
+                url: '/api/editor/upload',
+                type: 'POST',
+                data: formData,
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false
+            })
+                .then(function (resp) {
+                    if (!resp.status) alert(resp.msg);
+                    else media_fetch(cpage, pagesize);
+                })
+                .always(function () {
+                    // clear out current input values to allow new guys
+                    $('#mmFlup').val(null);
+                });
+
+            return false;
+        });
+
+        $('body').on("click", '.js-file-select', function () {
+            var path = $(this).parents('.image-item').data('path');
+            SetValueThenReturn(path);
+            return false;
+        })
+        $('body').on("click", '.js-file-preview', function () {
+            var path = $(this).parents('.image-item').data('path');
+            alertify.alert('Xem thử', '<img class="img-preview" src="' + path + '"/>', function () { })
+                .set({
+                    padding: false,
+                    basic: true,
+                    maximizable:true
+                });
+            return false;
+        })
+        
+       
+    </script>
+    @if (ViewBag.field_id!=null)
+    {
+        <script>
+            function SetValueThenReturn(url) {
+                parent.document.getElementById('@ViewBag.field_id').value = url;//set value for parent el id
+                parent.window["@ViewBag.field_id"](url); // call event same el id in parent ex: id = ImageUrl => ImageUrl() 
+            }
+        </script>
+    }
+    else
+    {
+        <script>
+            /* CRITICAL method for tinyMCE */
+            function SetValueThenReturn(url) {
+
+                var args = top.tinymce.activeEditor.windowManager.getParams();
+                var setUrl = (args.setUrl);
+                if (setUrl) setUrl(url);
+                // win.document.getElementById(input).value = url;
+                top.tinymce.activeEditor.windowManager.close();
+            }
+        </script>
+    }
+</body>
+</html>

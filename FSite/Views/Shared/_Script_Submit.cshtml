@@ -1,0 +1,20 @@
+﻿@{ 
+   string _list = ViewBag.ListUrl;
+}
+<script>
+function SubmitOnBegin()
+                {
+                  removeTinymce('#Detail');
+                }
+            function SubmitOnSuccess(res) {
+                if (res.result)//has id is sccuess
+                {
+                    window.location = '@_list';
+                    } else {
+                    _ajaxLoadControl();
+                    }
+                    }
+                    function SubmitOnFailure() {
+                    _ajaxLoadControl();
+    }
+</script> 

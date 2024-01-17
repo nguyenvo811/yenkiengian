@@ -1,0 +1,197 @@
+﻿@model FSite.Models.Data.Faq
+@{
+    ViewBag.MenuKey = "Static-3";
+    ViewBag.Title = "Hỏi đáp";
+    ViewBag.Desc = "Tin nổi bật trong ngày";
+    ViewBag.BodyClass = "page-Faq-detail";
+    ViewBag.MenuKey = $"{FSite.Models.Enum.EnumTypeMenu.Static}-4";//
+    FSite.Models.Data.FaqCategory category = new FSite.Models.Data.FaqCategory();
+    if (Model.Category != null)
+    {
+        category = Model.Category;
+        ViewBag.Title = category.Title;
+        ViewBag.MenuKey = string.Format("{0}-{1}", FSite.Models.Enum.EnumTypeMenu.CategoryNews, category.Id);//
+    }
+    //else
+    //{
+    //    category.CategoryName = Resources.Resource.NFaqDesc;
+    //}
+    ViewBag.Title = Model.Title;
+    string domain = System.Configuration.ConfigurationManager.AppSettings.Get("domain");
+
+}
+
+@section headers{
+    <meta name="description" content="@Html.Raw(Model.MetaDescription)" />
+    @*<meta name="keywords" content="@Html.Raw(Model.Keyword)" />*@
+    <meta property="og:title" content="@Html.Raw(Model.MetaTitle)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@string.Format("{0}/{1}.htm",System.Configuration.ConfigurationManager.AppSettings.Get("domain"),Model.Key)" />
+   <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
+    <meta property="og:description" content="@Html.Raw(Model.MetaDescription)" />
+}
+
+<div id="masthead" class="bg-image" data-image-src="http://placehold.it/1680x600">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li><a href="/">@FSite.Resources.Resource.Breadcrumb_Home</a></li>
+                    @if (!string.IsNullOrEmpty(category.Key))
+                    {
+                        <li><a href="/dich-vu">Hỏi đáp</a></li>
+                        <li><a href="/dich-vu/@category.Key">@category.Title</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/dich-vu">Hỏi đáp</a></li>
+                    }
+                    <li class="active">@Model.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!--/container-->
+</div>
+<section id="Faq" class="container space-sm">
+    <div class="Faq">
+        <div class="row">
+            <div class="col-md-8 Faq-main">
+                <div class="Faq-item">
+                    <div class="post-content">
+                        
+                        <!--END POST-MEDIA-->
+                        <div class="post-date">
+                            <ul>
+                                <li class="date">
+                                    @*@Html.DisplayFor(m => Model.CreatedDate)*@
+                                    @if (Model.CreatedDate.HasValue)
+                                    {
+                                        <span class="day">@Model.CreatedDate.Value.Day</span>
+                                        <span class="month">@Model.CreatedDate.Value.Month</span>
+                                        <span class="year">@Model.CreatedDate.Value.Year</span>
+                                    }
+
+                                </li>
+                                @*<li class="comments">
+                    <a href="#"><span>4</span> comments</a>
+                </li>*@
+                                @if (Model.CategoryId.HasValue)
+                                {
+                                    <li class="comments">
+                                        <a href="/dich-vu/@Model.Category.Key">@Model.Category.Title</a>
+                                    </li>
+
+                                }
+
+                            </ul>
+                        </div>
+                        <!--END POST-DATE-->
+                        <div class="post-title">
+                            <h2 class="title"><a href="#">@Model.Title</a></h2>
+                        </div>
+                        <!--END POST-TITLE-->
+                        @*<div class="post-meta">
+                            <ul>
+                                <li>
+                                    <span>Posted by <a href="#">codenpixel</a></span>
+                                </li>
+                                <li>
+                                    <span>in <a href="#">template</a>, <a href="#">css</a>, <a href="#">html</a></span>
+                                </li>
+                            </ul>
+                        </div>*@
+                        <!--END POST-META-->
+                        <blockquote class="light">
+                            @Html.Raw(Model.Description)
+                        </blockquote>
+                     
+                        <hr />
+                        <div class="js-detail">@Html.Raw(Model.Detail)</div>
+                    </div>
+                    <!--END POST-CONTENT -->
+                    <hr>
+                </div>
+             
+                <hr>
+
+            </div>
+            <!--/.col-md-8-->
+            <aside class="col-md-4">
+                <div class="widget search">
+
+                    <form class="search-form" method="get" action="/dich-vu">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group date">
+                                    <input class="form-control" value="" id="Key" name="Key" type="text" placeholder="@FSite.Resources.Resource.InputAnyKey" />
+                                    <span class="input-group-addon"> <button class="btn-search" id="btnsearch" type="submit"><span class="glyphicon glyphicon-search"></span></button></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" value="@Model.Category" id="Category" name="Category">
+
+                    </form>
+                </div>
+                <!--/.search-->
+
+                 @Html.Action("SServiceCategory")
+                @Html.Action("SNewsLastest")
+
+            </aside>
+        </div>
+        <!--/.row-->
+    </div>
+</section>
+@section scripts
+    {
+    <script>
+
+        $('#Service-simmilar-slider').owlCarousel({
+            items: 3,
+            loop: true,
+            margin: 30,
+            responsiveClass: true,
+            mouseDrag: true,
+            dots: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false,
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: true,
+                    responsiveClass: true,
+                    autoHeight: true
+                },
+                600: {
+                    items: 2,
+                    nav: false,
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: true,
+                    responsiveClass: true,
+                    autoHeight: true
+                },
+                1000: {
+                    items: 3,
+                    nav: false,
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 3000,
+                    autoplayHoverPause: true,
+                    responsiveClass: true,
+                    mouseDrag: true,
+                    autoHeight: true
+                }
+            }
+        });
+    </script>
+}
+
+

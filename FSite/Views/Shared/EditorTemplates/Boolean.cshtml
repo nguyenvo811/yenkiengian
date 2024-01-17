@@ -1,0 +1,9 @@
+﻿@model bool?
+@{
+    bool v = false;
+    if (Model.HasValue)
+    {
+        v = Model.Value;
+    }
+}
+@Html.CheckBox("", v, new { @class = "tickbox-single-line" })

@@ -1,0 +1,171 @@
+﻿@model FSite.Models.Data.ProductCategory
+@using FSite.Resources
+@{
+    var syntax = this.ViewContext.RouteData.Values["controller"].ToString();
+    //var action = this.ViewContext.RouteData.Values["action"].ToString();
+    var ParentIds = (IEnumerable<FSite.Areas.Admin.Models.MenuItemModels>)ViewBag.ParentIds;
+}
+@helper BuildOption(IEnumerable<FSite.Areas.Admin.Models.MenuItemModels> data, int? parentId = null)
+{
+var items = data.Where(d => d._pId == parentId).OrderBy(i => i._index);
+if (items.Any())
+{
+    bool _isselected = false;
+
+    foreach (var item in items)
+    {
+        if (Model != null)
+        {
+            _isselected = (Model.Id == item.id ? true : false);
+        }
+        <option value="@item.id" data-parent="@item._pId" @(_isselected == true ? "selected" : "")>@item.title</option>
+            @BuildOption(data, item.id)
+    }
+}
+}
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.AntiForgeryToken()
+@if (Model != null)//Edit
+{
+    @Html.HiddenFor(model => model.Id)
+}
+
+<div class="col-lg-9 col-md-9">
+    <!-- Example Tabs In The Panel -->
+    <div class="panel nav-tabs-horizontal">
+        <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
+            <li role="presentation">
+                <a class="active" data-toggle="tab" href="#infotab" aria-controls="infotab"
+                   role="tab"><i class="fa fa-info" aria-hidden="true"></i>@R_Admin.Tab_Info</a>
+            </li>
+            <li role="presentation">
+                <a data-toggle="tab" href="#galleytab" aria-controls="galleytab"
+                   role="tab"><i class="fa fa-image" aria-hidden="true"></i>@R_Admin.Tab_Galley</a>
+            </li>
+            <li role="presentation">
+                <a data-toggle="tab" href="#orthertab" aria-controls="orthertab"
+                   role="tab"><i class="fa fa-gear" aria-hidden="true"></i>@R_Admin.Tab_Seo</a>
+            </li>
+        </ul>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="tab-pane active" id="infotab" role="tabpanel">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control js-seo-title", @data_val = "true", @data_val_length = "không quá 250 ký tự", @data_val_length_max = "250", @data_val_required = "không được để trống" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Key, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Key, new { htmlAttributes = new { @class = "form-control", @data_val = "true", @data_val_length = "không quá 250 ký tự", @data_val_length_max = "250", @data_val_required = "không được để trống" } })
+                            @Html.ValidationMessageFor(model => model.Key, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.ParentId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select id="ParentId" name="ParentId" data-allow-clear="true" class="js-select2-tree " style="width:100%" data-placeholder="-- Chọn cấp cha --">
+                                <option value="">-- Chọn cấp cha --</option>
+                                @BuildOption(ParentIds, null)
+                                @*@foreach (var item in ParentIds)
+                    {
+                        <option value="@item.id" data-parent="@item._pId" @((Model.Id==item.id?true:false)? "selected" : "")>@item.title</option>
+                    }*@
+                            </select>
+                            @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Title2, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title2, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control js-seo-description" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Index, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Index, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Index, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="galleytab" role="tabpanel">
+                    <div class="col-xl-12 col-lg-12 text-center">
+                        <div class="form-group ">
+                            @Html.Partial("_Upload_Files", new ViewDataDictionary() { { "Files", ViewData["Files"] } })
+                        </div>
+                    </div>
+                    @if (Model != null)//Edit
+                    {
+                        @Html.Partial("_Images", new FSite.Areas.Admin.Models.FileViewModel() { DeleteUrl = Url.Action("RemoveFile"), ActiveUrl = Url.Action("ActiveFile"), Items = Model.Items.Select(f => new FSite.Areas.Admin.Models.FileModel() { Id = f.Id.Value.ToString(), Title = f.Title, IsActive = f.IsActive, Index = f.Index, _Path = f.ImageUrl }) })
+                    }
+                </div>
+                <!-- End Example Tabs In The Panel -->
+                <div class="tab-pane" id="orthertab" role="tabpanel">
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.MetaTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MetaTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.MetaKeyword, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MetaKeyword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MetaKeyword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.MetaDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MetaDescription, new { htmlAttributes = new { @class = "form-control js-meta-desc" } })
+                            @Html.ValidationMessageFor(model => model.MetaDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-3">
+    <!-- Example Panel With List Group Inner -->
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">@R_Admin.BoxSetting</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group col-md-12">
+                @Html.LabelFor(m => m.IsFeature, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.IsFeature)
+                @Html.ValidationMessageFor(m => m.IsFeature, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-12">
+                @Html.LabelFor(m => m.IsActive, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.IsActive)
+                @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700');
+
+/*
+	TIBI COLORS
+
+    TIBI_RED: '#b40f23',
+    TIBI_BLUE: '#4c5ea7',
+    TIBI_YELLOW: '#ed9d04',
+    TIBI_TEAL: '#22a484',
+    TIBI_DEFAULT: '#00578a',
+*/
+
+* {
+	padding: 0; margin: 0; box-sizing: border-box;
+}
+
+body, button {
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+/* generic button style */
+
+.adn.btn {
+	padding: 6px 18px;
+	color: #313131;
+	background-color: #eee;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: background 0.2s ease-in-out;
+	border-radius: 3px;
+	border: none;
+}
+
+.adn.btn:hover {
+	background-color: #ccc;
+}
+
+.adn.btn:active {
+	background-color: #aaa;
+}
+
+.adn.btn span.fa {
+	margin-right: 10px;
+}
+
+/* button primary style */
+
+.adn.btn.primary {
+	color: #b40f23;
+}
+
+.adn.btn.primary:hover {
+	background-color: #b40f23;
+	color: white;
+}
+
+.adn.btn.primary:active {
+	background-color: #8c0919;
+	color: white;
+}
+
+/* special style for button */
+.adn.btn.minimal {
+	padding: 5px 12px;
+	text-transform: initial;
+}
+
+.container-padding {
+	padding: 10px;
+}
+
+.container-padding-extra {
+	padding: 20px;
+}
+
+
+.flex {
+	flex: 1;
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-row-center {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+/********** PADDING AND MARGIN AREA ***********/
+
+.padder {
+	padding: 10px;
+}
+
+.padder-extra {
+	padding: 20px;
+}
+
+
+.padder-vertical {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.padder-horizontal-extra {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.padder-right {
+	padding-right: 10px;
+}
+
+.margin-right {
+	margin-right: 10px;
+}
+
+.margin-left {
+	margin-left: 10px;
+}
+
+.full-size {
+	height: 100%;
+	width: 100%;
+}
+
+.content-center {
+	text-align: center;
+}

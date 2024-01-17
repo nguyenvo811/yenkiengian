@@ -1,0 +1,183 @@
+﻿@{ Layout = null; }
+
+<!-- this file is served as a modal -->
+
+<!-- Modal -->
+
+
+<link href="~/Scripts/Mediabrowser/css/media_dialog.css" rel="stylesheet" />
+<div id="media_manager_modal" class="modal fade" role="dialog">
+	<div class="modal-dialog" style="min-width: 80%; height: 90%">
+		<div class="modal-content flex" style="height: 100%;">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Media browser</h4>
+			</div>
+			<div class="modal-body flex" style="flex: 1">
+				<div class="flex-row-center" style="margin-bottom: 10px;">
+					<div style="flex: 1">
+						<ul id="tblContent1" class="pagination" style="margin: 0;"></ul>
+						<form id="frmUpload" action="/api/media/upload" method="post" class="hidden">
+							<input id="media_manager_upload_inp" type="file" name="files" multiple onchange="media_handle_upload();" />
+						</form>
+					</div>
+					<div style="flex: 1" class="input-group flex-row-center">
+						<input type="text" id="media_manager_search" style="flex: 1"/>
+						<button onclick='media_manager_modal_search();' class="btn btn-primary">Search</button>
+						<button onclick="$('#media_manager_upload_inp').trigger('click');" class="btn btn-danger">Upload</button>
+					</div>
+				</div>
+				<div id="media_view"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// trick to make things wrapped
+			
+			var media_manager_cpage = 1;
+			var media_manager_pagesize = 20;
+			var media_manager_str_search = "";
+
+			const PAGING_MAX_ITEM = 9; /* how many page will visible together, odd number only please */
+
+			function media_manager_build_paging(page, totalPage) {
+				/* paging procedure */
+				var pagecount = totalPage || 0;
+
+				var prevHtml = "<li" + (page <= 1 ? " class='disabled'" : "") + "><a " + (page > 1 ? "href='#' onclick=\"paging(" + (page - 1) + ',' + media_manager_pagesize + ")\"" : "") + " class='previous'>&lt;&lt;</a></li>";
+				var nextHtml = "<li" + (page >= pagecount ? " class='disabled'" : "") + "><a " + (page < pagecount ? "href='#' onclick=\"paging(" + (page + 1) + ',' + media_manager_pagesize + ")\"" : "") + " class='next'>&gt;&gt;</a></li>"
+
+				var powder = PAGING_MAX_ITEM - 1;
+				var start = page, end = page;
+				while (powder > 0 && (start > 1 || end < pagecount)) {
+					if (start > 1) {
+						start--;
+						powder--;
+					}
+					if (end < pagecount) {
+						end++;
+						powder--;
+					}
+				}
+
+				var innerPage = "";
+				for (var i = start; i <= end; i++) {
+					innerPage += "<li " + (i == media_manager_cpage ? "class='active'" : "") + "><a href='#' onclick=\"paging(" + i + "," + media_manager_pagesize + ")\" class='npage'>" + i + "</a></li>";
+				}
+
+				/* set paging */
+				$('#tblContent1').html(prevHtml + innerPage + nextHtml);
+			}
+
+			function paging(page, psize) {
+				media_manager_cpage = page;
+				media_manager_fetch(page, psize).then(function (total) {
+					media_manager_build_paging(media_manager_cpage, total);
+				})
+			}
+
+			function media_manager_modal_search() {
+				media_manager_str_search = $('#media_manager_search').val();
+				paging(media_manager_cpage, media_manager_pagesize)
+			}
+
+
+			function media_manager_build_item(data) {
+			    var html = '<div class="image-item" data-name="' + data.name + '">';
+				html += '<img src="' + data.thumb + '" alt="' + data.name + '"/>';
+				html += '<div><button class="btn btn-danger file-delete" >Xoá</button></div>';
+				html += '<button class="btn btn-success" onclick="media_manager_modal_call_return(\'' + data.path + '\')"><i class="fa fa-check"></i></button>';
+				html += '</div>';
+
+				return html;
+			}
+		
+
+			function media_manager_modal_remove_item(name) {
+				$.ajax({
+					url: '/api/media/remove?name=' + name,
+					type: 'POST',
+				})
+					.then(function (resp) {
+						if (resp.status !== "success") alert(resp.msg);
+						else paging(media_manager_cpage, media_manager_pagesize);
+					});
+			}
+			$('body').on("click", '.file-delete', function () {
+			    var name = $(this).parents('.image-item').data('name');
+			    if (confirm("Bạn muốn xóa tập tin này?")) {
+			        media_manager_modal_remove_item(name);
+			    }
+			    return false;
+			})
+
+			function media_manager_fetch(page, media_manager_pagesize) {
+				var query = media_manager_str_search || "";
+
+				return $.get('/api/media/list?page=' + page + '&pagesize=' + media_manager_pagesize + '&query=' + query)
+					.then(function (data) {
+						if (data.status == "success") {
+							var largeHtml = '';
+							data.media.forEach(item => {
+								largeHtml += media_manager_build_item(item);
+							})
+
+							$('#media_view').html(largeHtml);
+							return data.total;
+						}
+						return 0;
+					});
+			}
+
+			function media_handle_upload() {
+				$("#frmUpload").submit();
+			}
+
+			$("#frmUpload").submit(function (e) {
+
+				e.preventDefault();
+
+				var formData = new FormData(this);
+
+				$.ajax({
+					url: '/api/media/upload',
+					type: 'POST',
+					data: formData,
+					async: false,
+					cache: false,
+					contentType: false,
+					processData: false
+				})
+					.then(function (resp) {
+						if (resp.status !== "success") alert(resp.msg);
+						else media_manager_fetch(media_manager_cpage, media_manager_pagesize);
+					})
+					.always(function () {
+						// clear out current input values to allow new guys
+						$('#media_manager_upload_inp').val(null);
+					})
+
+				return false;
+			});
+
+			var media_manager_callback_fnc = null;
+			function media_manager_set_callback(callback) {
+				media_manager_callback_fnc = callback;
+			}
+
+			(function () {
+				paging(media_manager_cpage, media_manager_pagesize);
+			})();
+
+			/* CRITICAL */
+			function media_manager_modal_call_return(url) {
+				if (media_manager_callback_fnc) {
+					media_manager_callback_fnc(url);
+					media_manager_callback_fnc = null;
+				}
+
+				$('#media_manager_modal').modal('hide');
+			}
+			
+		</script>
+	</div>
+</div>

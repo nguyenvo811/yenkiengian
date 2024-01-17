@@ -1,0 +1,178 @@
+﻿@model dynamic
+<script src="~/Scripts/jquery-2.2.4.js"></script>
+<script src="~/Scripts/json2html/jquery.json2html.js"></script>
+<script src="~/Scripts/json2html/json2html.js"></script>
+<style>
+    [name=_Json],  [name=_Script] {
+        width: 100%;
+        height: 100PX;
+    }
+</style>
+
+<div id="_Config">
+    @*<textarea id="_Json"></textarea>*@
+    @Html.TextBox("_Json", (string)Model._Json,new {@id="_Json" })
+    <table id="_Script_Config" class="js-change-config">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Element Display</th>
+                <th>Attributes</th>
+                <th>Display Type</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>
+                    <select class="s-ele">
+
+                        <optgroup label="General">
+                            <option value="div">div</option>
+                            @*<option value="div">div</option>*@
+                            <option value="p">p</option>
+                            <option value="span">span</option>
+                            <option value="label">label</option>
+
+                          
+                        </optgroup>
+                        <optgroup label="List">
+                            <option value="table">table</option>
+                            <option value="ul">ul</option>
+                            <option value="ol">ol</option>
+                            <option value="dl">dl</option>
+                          
+                        </optgroup>
+                        <optgroup label="H">
+                            <option value="h1">h1</option>
+                            <option value="h2">h2</option>
+                            <option value="h3">h3</option>
+                            <option value="h4">h4</option>
+                            <option value="h5">h5</option>
+                            <option value="h6">h6</option>
+                      
+                        </optgroup>
+                        <optgroup label="Button">
+                            <option value="a">a link</option>
+                            <option value="button">button</option>
+              
+                        </optgroup>
+                        @*<optgroup label="Orther">
+                                <option value="img">img</option>
+                                <option value="swf">swf</option>
+                                <option value="iframe">iframe</option>
+                            </optgroup>
+                            *@
+                    </select>
+                </td>
+                <td>
+                    <select class="s-attr">
+                        <optgroup label="General">
+                            <option value=""></option>
+                            <option value="id">id</option>
+                            <option value="name">name</option>
+                            <option value="class">class</option>
+                            @*<option value="onclick">onclick</option>*@
+                        </optgroup>
+                    </select>
+                </td>
+                <td>
+                    <select class="s-displaytype">
+                        <optgroup label="General">
+                            <option value="text">text</option>
+                            <option value="html">html</option>
+                            @*<option value="script">script</option>
+                               <option value="">-- Add More</option>*@
+                        </optgroup>
+                    </select>
+                </td>
+                <td>
+                    <input class="s-content-auto" disabled="disabled" type="text" />
+                    <input class="s-content" type="text" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@Html.TextBox("_Script", (string)Model._Script,new {@id="_Script"})
+@*<textarea id="_Script">
+</textarea>*@
+<div id="_result"></div>
+<script>
+    @*var _data = @Html.Raw(Model._Json);
+     @Html.Raw(Model._Script);
+    _JsonLoad(_data);*@
+  //  $('ul').json2html(data,transforms.parent);
+</script>
+<script>
+    function _Transform(data, transform)
+    {
+        if (!$.isArray(data))
+        {
+            data = [data];
+        }
+        return json2html.transform(data, transform);
+    }
+   //var data=Html.Raw(Model._Json);
+   //var transform =Html.Raw(Model._Script);
+     var data = { 'name': 'this' };
+     var transform=@Html.Raw(Model._Script);
+    $('#_result').html(_Transform(data, transform));
+    $('body').on('change', '.js-change-config select,.js-change-config input', function () {
+       // var _tr = $(this).parent();
+        var _trans = [],_tran = {},_key,_val;
+       // alert($('#_Script_Config tbody tr').size())
+        var _trs = $('#_Script_Config tbody tr');
+        var o = new Object();
+        for (var i = 0; i < _trs.length; i++)
+        {
+            _tr = _trs[i];
+            _key = $(_tr).find('.s-ele').val();
+            _val = $(_tr).find('.s-ele option:selected').text();
+            _tran["<>"] = _val;
+
+              _key = $(_tr).find('.s-attr').val();
+            if (_key!=="") {
+                
+                 _val = $(_tr).find('.s-attr option:selected').text();
+                 _tran[_key] = _val;
+            }
+             if ($(_tr).find('.s-displaytype')) {
+                 _key = $(_tr).find('.s-displaytype').val();
+                 //content default
+             _auto_content(_tr);
+                 _tran[_key] = $(_tr).find('.s-content').val();
+             }
+           //if ($(_tr).find('.s-attr')) {
+           // _tran["tag"] = $(_tr).find('.s-attr').val();
+           // }
+           // _tran["tag"] = $(_tr).find('.s-displaytype').val();
+           // _tran["tag"] = $(_tr).find('.s-content').val();
+          //  _trans.push(_tran);
+            console.log(_tran);
+          //  transform = JSON.stringify(_tran);
+            transform = _tran;
+        }
+
+        $('#_Script').val(JSON.stringify(transform));
+        data = JSON.parse( $('#_Json').val());
+            // console.log(data)
+        $('#_result').html(_Transform(data, transform));
+    })
+    function _auto_content() {
+        var _re = "";
+        var _pros = Object.keys(JSON.parse($('#_Json').val())[0]);
+        for(var key in _pros) {
+         _re +="${"+_pros[key]+"} - ";
+        }
+        $(_tr).find('.s-content-auto').val(_re);
+        if ($(_tr).find('.s-content').val()==="") {
+$(_tr).find('.s-content').val(_re)
+        }
+        
+       // return _re;
+    }
+    
+
+</script>

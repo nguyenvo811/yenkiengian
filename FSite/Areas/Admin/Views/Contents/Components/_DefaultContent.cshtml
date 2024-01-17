@@ -1,0 +1,95 @@
+﻿@model FSite.Models.Data.Content
+     <!-- widget section Message -->
+<div class="widget">
+    <div class="panel-box">
+        <!-- Panel Header / Title -->
+        <div class="panel-header">
+            <h3 class="panel-title">Nội dung chi tiết</h3>
+
+        </div>
+        <!-- Panel Body -->
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                   Tình trạng
+                </dt>
+
+                <dd>
+                    @{ 
+                        var Status = (List< SelectListItem>)ViewBag.Status;
+                    }
+                    @using (Ajax.BeginForm("AjaxUpdateStatus", "Content",
+                                     new AjaxOptions
+                                     {
+                                         HttpMethod = "POST",
+                                      
+                                         OnSuccess = "fn_ContentOnSuccess",
+                                         OnFailure = "fn_ContentOnFailure"
+                                     },
+                                     new { @class = "content-status form space-xs", @id = $"_FormContent", @name = $"_FormContent" }))
+                    {
+                      @Html.Hidden("Id",Model.Id)
+                        <select name="Status" id="Status" class="form-control">
+                            @foreach (var item in Status)
+                            {
+                                <option value="@item.Value" @(item.Selected == true ? "selected" : "")>@item.Text</option>
+                            }
+                        </select>
+                        <button type="submit" name="btSubmit" class="btn btn-success">Cập nhật</button>
+                        @*<select id="oMenuType" class="hidden">
+                                @foreach (string value in Enum.GetNames(typeof(FSite.Models.Enum.EnumTypeMenu)))
+                                {
+
+                                    FSite.Models.Enum.EnumTypeMenu t =
+                                        (FSite.Models.Enum.EnumTypeMenu)Enum.Parse(typeof(FSite.Models.Enum.EnumTypeMenu), value);
+                                    var des = FSite.Helpers.EnumHelper<FSite.Models.Enum.EnumTypeMenu>.GetDescriptionValue(t);
+
+                                    <option value="@((int)t)" data-name="@t.ToString()" data-des="@des">@value</option>
+                                }
+                            </select>*@
+
+                    }
+
+                   
+                </dd>
+
+                <dt>
+                   Tiêu đề email
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                  Nội dung Email
+                </dt>
+
+                <dd>
+                   <div style="border:1px solid silver">@Html.Raw(Model.Note)</div>
+                </dd>
+
+              
+             
+
+                @*<dt>
+        @Html.DisplayNameFor(model => model.CreatedDate)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.CreatedDate)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Status)
+    </dt>  <dd>
+        @Html.DisplayFor(model => model.Status)
+    </dd>*@
+
+              
+
+            </dl>
+            
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,61 @@
+﻿@model FSite.Models.RequestViewModel
+@{
+    var TypeRequest = (FSite.Models.Enum.EnumTypeRequest)ViewBag.TypeRequest;
+
+}
+
+
+@using (Ajax.BeginForm("CustomerRequest", "Home",
+                                             new AjaxOptions
+                                             {
+                                                 HttpMethod = "POST",
+                                                 UpdateTargetId = $"box{TypeRequest}",
+                                                 OnSuccess = $"fn_{TypeRequest}OnSuccess",
+                                                 OnFailure = $"fn_{TypeRequest}OnFailure"
+                                             },
+                                             new { @class = "request-to-item-form form space-xs", @id = $"_Form{TypeRequest}", @name = $"_Form{TypeRequest}" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.Hidden("TypeRequest", TypeRequest)
+    @Html.Hidden("DefaultContent", Model.Content)
+    <fieldset>
+        @Html.EditorFor(c => c.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = @FSite.Resources.Resource.FCustomerName } })
+        @Html.ValidationMessageFor(c => c.FullName, "", new { @class = "text-danger" })
+        <br />
+        @Html.EditorFor(c => c.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = @FSite.Resources.Resource.FCustomerPhone } })
+        @Html.ValidationMessageFor(c => c.Phone, "", new { @class = "text-danger" })
+        <br />
+        @Html.EditorFor(c => c.Email, new { htmlAttributes = new { @class = "form-control sm-margin-bottom-10", @placeholder = @FSite.Resources.Resource.FEmail } })
+        @Html.ValidationMessageFor(c => c.Email, "", new { @class = "text-danger" })
+        @*
+            <select class="form-control" name="subject" id="subject">
+                <option value="0" selected="selected">@FSite.Resources.Resource._ServiceSelect</option>
+                <option value="1216">Các gói khám sức khỏe</option>
+                <option value="101">Chẩn đoán hình ảnh</option>
+                <option value="100">Gói tư vấn và tiêm chủng Vắc xin</option>
+                <option value="99">Gói tầm soát ung thư</option>
+                <option value="90">Thai sản trọn gói</option>
+            </select>*@
+        <br />
+        @Html.EditorFor(c => c.RequestDate, new { htmlAttributes = new { @class = "form-control cdate", @placeholder = @FSite.Resources.Resource.RequesterDate } })
+        @*<div class="input-group date sm-margin-bottom-10">
+                <input class="form-control" value="02-16-2020" id="dp" type="text"> <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>*@
+        @Html.ValidationMessageFor(c => c.RequestDate, "", new { @class = "text-danger" })
+        <br />
+        @*<textarea class="form-control" name="comments" cols="40" rows="3" id="comments" style="width: 100%;" placeholder="@FSite.Resources.Resource._Note"></textarea>*@
+        @Html.TextAreaFor(c => c.Content, new { @class = "form-control customer-content", @placeholder = @FSite.Resources.Resource._Note })
+        @Html.ValidationMessageFor(c => c.Content, "", new { @class = "text-danger" })
+        @*<p><span class="required">*</span> Are you human?</p>
+            <label for="verify" accesskey="V">&nbsp;&nbsp;&nbsp;3 + 1 =</label>
+            <input name="verify" type="text" id="verify" size="4" value="" style="width: 30px; border:1px solid #eee;" />
+            <br />*@
+        <br />
+        <input type="submit" class="btn btn-primary btn-fill" id="submit" value="@FSite.Resources.Resource.btContactSend" />
+        @*<button type="reset" class="btn btn-warning" name="reset" id="reset">reset</button>*@
+
+    </fieldset>
+}
+
+

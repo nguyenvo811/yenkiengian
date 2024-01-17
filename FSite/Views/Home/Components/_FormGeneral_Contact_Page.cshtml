@@ -1,0 +1,54 @@
+﻿@model FSite.Models.RequestViewModel
+@{
+    var TypeRequest = (FSite.Models.Enum.EnumTypeRequest)ViewBag.TypeRequest;
+}
+@using (Ajax.BeginForm("CustomerRequest", "Home",
+                                             new AjaxOptions
+                                             {
+                                                 HttpMethod = "POST",
+                                                 UpdateTargetId = $"box{TypeRequest}",
+                                                 OnSuccess = $"fn_{TypeRequest}OnSuccess",
+                                                 OnFailure = $"fn_{TypeRequest}OnFailure"
+                                             },
+                                             new { @class = "request-to-item-form form contact-form", @id = $"_Form{TypeRequest}", @name = $"_Form{TypeRequest}" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.Hidden("TypeRequest", TypeRequest)
+    @Html.Hidden("DefaultContent", Model.Content)
+    <div class="row">
+        <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+                <span class="ico"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+                @Html.EditorFor(c => c.FullName, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = FSite.Resources.Resource.FCustomerName, @autocapitalize = "words" } })
+                @Html.ValidationMessageFor(c => c.FullName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <span class="ico"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                @Html.EditorFor(c => c.Phone, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = FSite.Resources.Resource.FCustomerPhone, @autocapitalize = "words" } })
+                @Html.ValidationMessageFor(c => c.Phone, "", new { @class = "text-danger" })
+              </div>
+            <div class="form-group">
+                <span class="ico"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                @Html.EditorFor(c => c.Email, new { htmlAttributes = new { @class = "form-control input-lg", @placeholder = FSite.Resources.Resource.FEmail, @autocorrect = "off", @autocapitalize = "off" } })
+                @Html.ValidationMessageFor(c => c.Email, "", new { @class = "text-danger" })
+             </div>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+            <div class="form-group">
+                <label for="contactFormMessage" class="sr-only">Nội dung</label>
+              
+                @Html.TextAreaFor(c => c.Content, new { @class = "form-control margin-bottom-15 customer-content", @rows = 7, @placeholder = FSite.Resources.Resource._Note })
+                @Html.ValidationMessageFor(c => c.Content, "", new { @class = "text-danger" })
+              </div>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            <button type="submit" class="btn btn-outline">@FSite.Resources.Resource.btContactSend</button>
+        </div>
+    </div>
+    
+   
+
+}
+
+

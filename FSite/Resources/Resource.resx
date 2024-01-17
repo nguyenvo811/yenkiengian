@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btContactSend" xml:space="preserve">
+    <value>Gửi</value>
+  </data>
+  <data name="DateTimeInvalid" xml:space="preserve">
+    <value>{0} không hợp lệ</value>
+  </data>
+  <data name="DepositAddress" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="DepositCustomerContent" xml:space="preserve">
+    <value>Nội dung</value>
+  </data>
+  <data name="DepositCustomerName" xml:space="preserve">
+    <value>Tên của bạn</value>
+  </data>
+  <data name="DepositCustomerPhone" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="DepositEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="DepositFormality" xml:space="preserve">
+    <value>Hình thức</value>
+    <comment>Cho thuê, bán....</comment>
+  </data>
+  <data name="EmailAddressValidMes" xml:space="preserve">
+    <value>{0} chưa hợp lệ</value>
+  </data>
+  <data name="FCustomerContent" xml:space="preserve">
+    <value>Nội dung</value>
+  </data>
+  <data name="FCustomerName" xml:space="preserve">
+    <value>Tên của bạn</value>
+  </data>
+  <data name="FCustomerPhone" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="FEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FPhoneValidMes" xml:space="preserve">
+    <value>{0} chưa hợp lệ</value>
+  </data>
+  <data name="lblContactInfo" xml:space="preserve">
+    <value>Thông tin liên hệ</value>
+  </data>
+  <data name="PasswordCompareFail" xml:space="preserve">
+    <value>Nhập lại mật khẩu sai</value>
+  </data>
+  <data name="StringEmptyMessage" xml:space="preserve">
+    <value>{0} không được để trống</value>
+  </data>
+  <data name="StringLengthMessage" xml:space="preserve">
+    <value>{0} không quá {1} ký tự</value>
+  </data>
+  <data name="Call" xml:space="preserve">
+    <value>Gọi ngay</value>
+  </data>
+  <data name="QuickCall" xml:space="preserve">
+    <value>Liên hệ nhanh : {0}</value>
+  </data>
+  <data name="_Address" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="_BlogId" xml:space="preserve">
+    <value>Mã bài viết</value>
+  </data>
+  <data name="_CategoryId" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="_CreatedById" xml:space="preserve">
+    <value>Đăng bởi</value>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Ngày tạo</value>
+  </data>
+  <data name="_DepartId" xml:space="preserve">
+    <value>Điểm đi</value>
+  </data>
+  <data name="_DepartureTime" xml:space="preserve">
+    <value>Giờ khởi hành</value>
+  </data>
+  <data name="_Description" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="_DestinationId" xml:space="preserve">
+    <value>Điểm đến</value>
+  </data>
+  <data name="_Detail" xml:space="preserve">
+    <value>Chi tiết</value>
+  </data>
+  <data name="_ImageUrl" xml:space="preserve">
+    <value>Đường dẫn hình</value>
+  </data>
+  <data name="_Index" xml:space="preserve">
+    <value>Sắp xếp</value>
+  </data>
+  <data name="_IsActive" xml:space="preserve">
+    <value>Kích hoạt</value>
+  </data>
+  <data name="_IsFeature" xml:space="preserve">
+    <value>Nổi bật</value>
+  </data>
+  <data name="_Key" xml:space="preserve">
+    <value>Mã</value>
+  </data>
+  <data name="_MetaDescription" xml:space="preserve">
+    <value>Thẻ mô tả</value>
+  </data>
+  <data name="_MetaKeyword" xml:space="preserve">
+    <value>Thẻ từ khóa</value>
+  </data>
+  <data name="_MetaTitle" xml:space="preserve">
+    <value>Thẻ tiêu đề</value>
+  </data>
+  <data name="_Price" xml:space="preserve">
+    <value>Giá</value>
+  </data>
+  <data name="_RouteAbout" xml:space="preserve">
+    <value>Khoảng</value>
+    <comment>bao nhiêu giờ</comment>
+  </data>
+  <data name="_RouteKm" xml:space="preserve">
+    <value>Khoảng cách</value>
+  </data>
+  <data name="_Sort" xml:space="preserve">
+    <value>Sắp xếp</value>
+  </data>
+  <data name="_Title" xml:space="preserve">
+    <value>Tiêu đề</value>
+  </data>
+  <data name="_Title2" xml:space="preserve">
+    <value>Tiêu đề phụ</value>
+  </data>
+  <data name="_TypeCar" xml:space="preserve">
+    <value>Loại xe</value>
+  </data>
+  <data name="_Viewed" xml:space="preserve">
+    <value>Lượt xem</value>
+  </data>
+  <data name="BookNow" xml:space="preserve">
+    <value>Đặt vé</value>
+  </data>
+  <data name="MoreView" xml:space="preserve">
+    <value>Chi tiết</value>
+  </data>
+  <data name="FeatureBlogs" xml:space="preserve">
+    <value>Tin nổi bật</value>
+  </data>
+  <data name="_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="_IsCompany" xml:space="preserve">
+    <value>Là Công ty</value>
+  </data>
+  <data name="_Lat" xml:space="preserve">
+    <value>Lat</value>
+  </data>
+  <data name="_Lng" xml:space="preserve">
+    <value>Lng</value>
+  </data>
+  <data name="_Location" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="_Phone" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="_Web" xml:space="preserve">
+    <value>Web</value>
+  </data>
+  <data name="_IsHideMap" xml:space="preserve">
+    <value>Ẩn trên bản đồ</value>
+  </data>
+  <data name="btnUpload" xml:space="preserve">
+    <value>Chọn tệp tin</value>
+  </data>
+  <data name="Agency" xml:space="preserve">
+    <value>Đại lý</value>
+  </data>
+  <data name="BoxSetting" xml:space="preserve">
+    <value>Cấu hình</value>
+  </data>
+  <data name="CreatNew" xml:space="preserve">
+    <value>Tạo mới</value>
+  </data>
+  <data name="SelectEmpty" xml:space="preserve">
+    <value>- - -</value>
+  </data>
+  <data name="_ModifiedById" xml:space="preserve">
+    <value>Sửa bởi</value>
+  </data>
+  <data name="_ModifiedDate" xml:space="preserve">
+    <value>Ngày cập nhật</value>
+  </data>
+  <data name="Breadcrumb_Home" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="_Link" xml:space="preserve">
+    <value>Đường dẫn </value>
+  </data>
+  <data name="_MenuTypeKey" xml:space="preserve">
+    <value>Loại</value>
+  </data>
+  <data name="_ParentId" xml:space="preserve">
+    <value>Cấp Cha</value>
+  </data>
+  <data name="_Emergency" xml:space="preserve">
+    <value>Cấp cứu</value>
+  </data>
+  <data name="_Hotline" xml:space="preserve">
+    <value>Hotline</value>
+  </data>
+  <data name="btBook" xml:space="preserve">
+    <value>Đăng ký</value>
+  </data>
+  <data name="_AgeSelect" xml:space="preserve">
+    <value>Chọn độ tuổi</value>
+  </data>
+  <data name="_Note" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
+  <data name="_ServiceSelect" xml:space="preserve">
+    <value>Chọn dịch vụ</value>
+  </data>
+  <data name="lblAgent" xml:space="preserve">
+    <value>ĐỘI NGŨ BÁC SỸ</value>
+  </data>
+  <data name="lblAgentDesc" xml:space="preserve">
+    <value>Bệnh viện Đa khoa Buôn Mê Thuột quy tụ đội ngũ chuyên gia, giáo sư, bác sĩ đầu ngành, có nhiều năm kinh nghiệm công tác tại các bệnh viện tuyến đầu trong cả nước và tu nghiệp tại các trung tâm chăm sóc sức khỏe, bệnh viện lớn ở nước ngoài.</value>
+  </data>
+  <data name="Faqs" xml:space="preserve">
+    <value>THƯ VIỆN HỎI ĐÁP</value>
+  </data>
+  <data name="NewsFeature" xml:space="preserve">
+    <value>TIN NỔI BẬT</value>
+  </data>
+  <data name="NewsLastest" xml:space="preserve">
+    <value>TIN MỚI NHẤT</value>
+  </data>
+  <data name="OpenHours" xml:space="preserve">
+    <value>THỜI GIAN LÀM VIỆC</value>
+  </data>
+  <data name="OpenHoursDesc" xml:space="preserve">
+    <value>&lt;p&gt;Thứ 2 - Thứ 6 &lt;span&gt;8:00 - 17:00&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Thứ 7 &lt;span&gt;9:30 - 12:30&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Chủ nhật &lt;span&gt;9:30 - 15.00&lt;/span&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="RequesterContent" xml:space="preserve">
+    <value>Nội dung</value>
+  </data>
+  <data name="RequesterEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="RequesterFullName" xml:space="preserve">
+    <value>Họ và tên</value>
+  </data>
+  <data name="RequesterPhone" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="_AgencyTitle" xml:space="preserve">
+    <value>Chức danh</value>
+  </data>
+  <data name="_FullName" xml:space="preserve">
+    <value>Họ tên</value>
+  </data>
+  <data name="_Position" xml:space="preserve">
+    <value>Vị trí</value>
+  </data>
+  <data name="_SpecialistId" xml:space="preserve">
+    <value>Chuyên khoa</value>
+  </data>
+  <data name="PhoneValidMes" xml:space="preserve">
+    <value>{0} không hợp lệ</value>
+  </data>
+  <data name="RequesterDate" xml:space="preserve">
+    <value>Ngày hẹn</value>
+  </data>
+  <data name="RequesterContentDefaultValue" xml:space="preserve">
+    <value>Chào Bác Sỹ ! Tôi có vài câu hỏi về tình trạng sức khỏe của mình. Vui lòng liên hệ tôi sớm nhất. Xin Cảm ơn!</value>
+  </data>
+  <data name="ContactSendFail" xml:space="preserve">
+    <value>Vui lòng kiểm tra lại thông tin</value>
+  </data>
+  <data name="ContactSendOk" xml:space="preserve">
+    <value>Gửi thông tin thành công,  Xin chân thành cảm ơn quý khách</value>
+  </data>
+  <data name="CustomerRequest" xml:space="preserve">
+    <value>Liên hệ</value>
+  </data>
+  <data name="AgencyFound" xml:space="preserve">
+    <value>Tìm được {0} nhân viên</value>
+  </data>
+  <data name="BlogFound" xml:space="preserve">
+    <value>Tìm được {0} bài viết</value>
+  </data>
+  <data name="InputAnyKey" xml:space="preserve">
+    <value>Nhập từ khóa bất kỳ</value>
+  </data>
+  <data name="PostCategoryTitle" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="ServiceFeature" xml:space="preserve">
+    <value>DỊCH VỤ NỔI BẬT</value>
+  </data>
+  <data name="ServiceFound" xml:space="preserve">
+    <value>Tìm được {0} bài viết</value>
+  </data>
+  <data name="ServiceLastest" xml:space="preserve">
+    <value>DỊCH VỤ MỚI NHẤT</value>
+  </data>
+  <data name="AgencySearchCategory" xml:space="preserve">
+    <value>Nhóm</value>
+  </data>
+  <data name="AgencySearchKey" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="AgencySearchSpecialist" xml:space="preserve">
+    <value>Chuyên khoa</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>Chọn nhóm</value>
+  </data>
+  <data name="SelectSpecialist" xml:space="preserve">
+    <value>Chuyên Khoa</value>
+  </data>
+  <data name="AgencyCategoryTitle" xml:space="preserve">
+    <value>Danh mục khoa</value>
+  </data>
+  <data name="AgentDetail" xml:space="preserve">
+    <value>Lịch làm việc chi tiết</value>
+  </data>
+  <data name="AgentSimilar" xml:space="preserve">
+    <value>BÁC SỸ KHÁC CÙNG KHOA</value>
+  </data>
+  <data name="FaqFeature" xml:space="preserve">
+    <value>CÂU HỎI NỔI BẬT</value>
+  </data>
+  <data name="FaqLastest" xml:space="preserve">
+    <value>CÂU HỎI MỚI NHẤT</value>
+  </data>
+  <data name="FaqSearchCategory" xml:space="preserve">
+    <value>Loại</value>
+  </data>
+  <data name="FaqSearchKey" xml:space="preserve">
+    <value>Câu hỏi</value>
+  </data>
+  <data name="FaqSearchKeyDesc" xml:space="preserve">
+    <value>Có một câu hỏi? Hỏi hoặc nhập một thuật ngữ tìm kiếm ở đây.</value>
+  </data>
+  <data name="RequesterContentAgentValue" xml:space="preserve">
+    <value>Chào Bác Sỹ{0}! Tôi có vài câu hỏi về tình trạng sức khỏe của mình. Vui lòng liên hệ tôi sớm nhất. Xin Cảm ơn!</value>
+  </data>
+  <data name="RequesterContentNote" xml:space="preserve">
+    <value>Thông tin của bạn sẽ được giữ kin. Trước khi đặt lịch vui lòng đọc kỹ &lt;a href="/dieu-khoan-dich-vu"&gt;
+    Điều khoản dịch vụ
+&lt;/a&gt; và &lt;a href="/chinh-sach-bao-mat"&gt;Chính sách bảo mật&lt;/a&gt;.</value>
+  </data>
+  <data name="RequesterContentTitle" xml:space="preserve">
+    <value>Đặt lịch hẹn</value>
+  </data>
+  <data name="SelectFaq" xml:space="preserve">
+    <value>Chọn loại </value>
+  </data>
+  <data name="btSearch" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
+  <data name="InputAnyKeyFaq" xml:space="preserve">
+    <value>Nhập câu hỏi cần tìm</value>
+  </data>
+  <data name="SpecialistSearchKey" xml:space="preserve">
+    <value>Nhập khoa cần tìm</value>
+  </data>
+  <data name="ViewMore" xml:space="preserve">
+    <value>Xem thêm</value>
+  </data>
+  <data name="SpecialistSearchCategory" xml:space="preserve">
+    <value>Danh mục khoa</value>
+  </data>
+  <data name="SpecialistDetail" xml:space="preserve">
+    <value>Chi tiết</value>
+  </data>
+  <data name="SpecialistFound" xml:space="preserve">
+    <value>Tìm được {0} chuyên khoa</value>
+  </data>
+  <data name="SpecialistMember" xml:space="preserve">
+    <value>Chuyên khoa</value>
+  </data>
+  <data name="SpecialistMemberDesc" xml:space="preserve">
+    <value>Bệnh viện Đa khoa Buôn Mê Thuột được xây dựng theo mô hình bệnh viện – khách sạn, tiêu chuẩn quốc tế với 9 chuyên khoa tổng hợp, hệ thống phòng cấp cứu, hệ thống phòng mổ hiện đại, tiêu chuẩn quốc tế cùng các khu dịch vụ hỗ trợ.</value>
+  </data>
+  <data name="TeamMember" xml:space="preserve">
+    <value>ĐỘI NGŨ Y BÁC SỸ</value>
+  </data>
+  <data name="TeamMemberDesc" xml:space="preserve">
+    <value>Bệnh viện Đa khoa Buôn Mê Thuột được xây dựng theo mô hình bệnh viện - khách sạn, tiêu chuẩn quốc tế với 9 chuyên khoa, &lt;br /&gt;
+                    hệ thống phòng cấp cứu, hệ thống phòng mổ hiện đại, tiêu chuẩn quốc cùng các khu dịch vụ hỗ trợ.</value>
+  </data>
+  <data name="AgentofSpecialist" xml:space="preserve">
+    <value>Đội ngũ bác sỹ khoa</value>
+  </data>
+  <data name="RequesterContentSpecialistValue" xml:space="preserve">
+    <value>Chào Bác Sỹ ! Tôi có vài câu hỏi về {0}. Vui lòng liên hệ tôi sớm nhất. Xin Cảm ơn!</value>
+  </data>
+  <data name="ServiceofSpecialist" xml:space="preserve">
+    <value>Dịch vụ khám chữa bệnh</value>
+  </data>
+  <data name="ServiceofSpecialistDesc" xml:space="preserve">
+    <value>Bệnh viện cung cấp các dịch vụ y khoa Khám, tư vấn, chữa bệnh và điều trị tất cả các loại bệnh lý theo các chuyên khoa gồm khám chữa bệnh, điều trị nội khoa/ ngoại khoa và các dịch vụ hỗ trợ.</value>
+  </data>
+  <data name="_SliderId" xml:space="preserve">
+    <value>Tệp tin</value>
+  </data>
+  <data name="_Type" xml:space="preserve">
+    <value>Loại</value>
+  </data>
+  <data name="_AgencyCategoryId" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="_BlogCategoryId" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="_FaqCategoryId" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="_PostId" xml:space="preserve">
+    <value>Bài viết</value>
+  </data>
+  <data name="_ServiceCategoryId" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="_SpecialistCategoryId" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="Wishlist" xml:space="preserve">
+    <value>Quan tâm</value>
+  </data>
+  <data name="_ProductCategoryId" xml:space="preserve">
+    <value>Danh mục sản phẩm</value>
+  </data>
+  <data name="GetDataFromServer" xml:space="preserve">
+    <value>Đang lấy dữ liệu từ hệ thống...</value>
+  </data>
+  <data name="NewsSimilar" xml:space="preserve">
+    <value>Tin tức cùng loại</value>
+  </data>
+  <data name="_BrandId" xml:space="preserve">
+    <value>Thương hiệu</value>
+  </data>
+  <data name="_DiscountFromDate" xml:space="preserve">
+    <value>Từ ngày</value>
+  </data>
+  <data name="_DiscountToDate" xml:space="preserve">
+    <value>Đến ngày</value>
+  </data>
+  <data name="_MenuIcon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="_NewsSearch" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
+  <data name="_PriceDiscount" xml:space="preserve">
+    <value>Giá khuyến mãi</value>
+  </data>
+  <data name="_ProductId" xml:space="preserve">
+    <value>Mã sản phẩm</value>
+  </data>
+  <data name="_Sku" xml:space="preserve">
+    <value>Mã sản phẩm</value>
+  </data>
+  <data name="ProductFound" xml:space="preserve">
+    <value>Tìm được {0} sản phẩm</value>
+  </data>
+  <data name="Sale_Title" xml:space="preserve">
+    <value>Khuyến mãi</value>
+  </data>
+</root>

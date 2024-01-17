@@ -1,0 +1,114 @@
+﻿@model FSite.Models.ServiceSearchViewModel
+@using FSite.Models.Enum
+@using MvcPaging
+@{
+    var data = (IEnumerable<FSite.Models.Data.Service>)ViewBag.Data;
+}
+
+    <div class="panel filter-panel">
+        <div class="panel-body">
+            <h4 class="filter-title pull-left">@Html.Raw(string.Format(FSite.Resources.Resource.ServiceFound,$"<span id='item-count' class='badge badge-secondary'>{@ViewBag.TotalItemCount}</span>"))</h4>
+            @*<form action="#" class="form-inline pull-right">
+                    <div class="form-group">
+                        <label>Sắp xếp:</label>
+                        <select class="form-control js-sort">
+                            <option value="lastest">Ngày đăng mới nhất</option>
+                            <option value="popupar">Tin Xem nhiều nhất</option>
+                            <option value="highest">Giá cao nhất</option>
+                            <option value="lowest">Giá thấp nhất</option>
+                        </select>
+                    </div>
+                </form>*@
+            <div class="pull-right">
+                @if (ViewData["category"] != null)
+                {
+                    var Ca = (FSite.Models.Data.ServiceCategory)ViewData["category"];
+                    <a href="#Category" data-target="#Category" class="js-filter-remove"><i class="fa fa-remove"></i>@Ca.Title</a>
+                }
+            </div>
+        </div>
+    </div>
+@foreach (var item in data)
+{
+    var link = $"/{item.Key}/dich-vu"; 
+    <article class="blog-item">
+        <div class="post-media">
+            <a href="@link">
+                <img src="@item.ImageUrl" alt="@item.Title" class="img-responsive"/>
+            </a>
+        </div>
+        <div class="item-content">
+            <!-- start:Post date -->
+            <div class="post-date">
+                <ul>
+                    @*@Html.DisplayFor(m => item.CreatedDate)*@
+                    @if (item.CreatedDate.HasValue)
+                    {
+                    <li class="date">
+                        <span class="day">@item.CreatedDate.Value.Day</span>
+                        <span class="month">@item.CreatedDate.Value.Month</span>
+                        <span class="year">@item.CreatedDate.Value.Year</span>
+                    </li>
+                    }
+@if (item.Category != null)
+{
+    <li>
+        <span class="post-category"><a href="/dich-vu/@item.Category.Key">@item.Category.Title</a></span>
+    </li>
+}
+                    @*<li class="comments">
+            <a href="#">
+                <span>9</span>comments
+            </a>
+        </li>*@
+                </ul>
+            </div>
+            <!-- end:Post date -->
+            <div class="post-title">
+                <h2 class="title"><a href="@link">@item.Title</a></h2>
+            </div>
+            <!-- end:Post Title -->
+            <div class="post-entry">
+                <p>@item.Description</p>
+                <p><a href="@link" class="btn btn-info btn-fill">@FSite.Resources.Resource.MoreView</a></p>
+            </div>
+            <!-- end:Post Entry -->
+        </div>
+    </article>
+    <!--/.blog-item-->
+    <!-- end:post -->
+}
+<hr class="hr-small" />
+<div class="pagination pagination-lg">
+
+    @if (ViewBag.TotalItemCount > 9)
+    {
+        <div class="pager text-center">
+            @Html.Raw(Ajax.Pager(
+       new Options
+       {
+           PageSize = ViewBag.PageSize,
+
+           TotalItemCount = ViewBag.TotalItemCount,
+           CurrentPage = ViewBag.Page,
+           ItemTexts = new ItemTexts() { Next = ">", Previous = "<", Page = "", First = "<<", Last = ">>" },
+           // ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-left", Next = "icon-chevron-right", Last = "icon-forward" },
+           TooltipTitles = new TooltipTitles() { Next = "Trang kế tiếp", Previous = "Trang lùi về", Page = "Tới trang {0}.", First = "Tới trang đầu", Last = "Tới cuối trang" },
+           Size = Size.small,
+           Alignment = Alignment.centered,
+           IsShowControls = true,
+           IsShowFirstLast = true,
+           CssClass = "js-box-pagination metro-theme"
+
+
+       },
+
+       new AjaxOptions
+       {
+           UpdateTargetId = "content",
+           LoadingElementId = "progress",
+           OnSuccess = "pagingOnSuccess"
+       }, new { controller = "Home", action = "AjaxService", SortColumn = ViewBag.SortColumn, SortColumnDir = ViewBag.SortColumnDir, Category = Model.Category, Key = Model.Key }))
+        </div>
+    }
+</div><!-- .pagination end -->

@@ -1,0 +1,302 @@
+﻿@model FSite.Models.FaqSearchViewModel
+@{
+    /**/
+
+
+    ViewBag.MenuKey = "Static-3";
+    ViewBag.Title = "Hỏi đáp";
+    ViewBag.Desc = "Hỏi đáp nổi bật";
+    ViewBag.BodyClass = "page-Faq";
+    ViewBag.MenuKey = $"{FSite.Models.Enum.EnumTypeMenu.Static}-7";//
+    FSite.Models.Data.FaqCategory category = new FSite.Models.Data.FaqCategory();
+    //if (ViewData["category"] != null)
+    //{
+    //    category = (FSite.Models.Data.FaqCategory)ViewData["category"];
+    //    ViewBag.Title = category.Title;
+    //    ViewBag.MenuKey = string.Format("{0}-{1}", FSite.Models.Enum.EnumTypeMenu.CategoryNews, category.Id);//
+    //}
+
+    var Categories = ViewBag.Category as IEnumerable<SelectListItem>;
+    bool isMobile = Request.Browser.IsMobileDevice;
+}
+
+@section headers{
+    @if (!string.IsNullOrEmpty(category.Title))
+    {
+        @*<meta name="description" content="@(!string.IsNullOrEmpty(category.MetaDescription)?category.MetaDescription: category.Description)" />
+            <meta name="keywords" content="@category.MetaKeyword" />
+            <meta property="og:title" content="@(!string.IsNullOrEmpty(category.MetaTitle)?category.MetaTitle:category.CategoryName)" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="@string.Format("{0}/tin-tuc/{1}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"),category.Key)" />
+            <meta property="og:image" content="@string.Format("{0}/Uploads/newscategory/{1}", System.Configuration.ConfigurationManager.AppSettings.Get("BaseUrl"), category)" />*@
+
+    }
+    else
+    {
+        <meta name="description" content="@string.Format("Hỏi đáp {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteDesc"))" />
+        <meta name="keywords" content="@string.Format("Hỏi đáp {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteKeyWord"))" />
+        <meta property="og:title" content="@string.Format("Hỏi đáp {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteTitle"))" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="@string.Format("{0}/hoi-dap",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"))" />
+        <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
+        <meta property="og:description" content="@string.Format("Hỏi đáp {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteDesc"))" />
+    }
+}
+@Html.Action("Widget_Slider", new { type = FSite.Models.Enum.EnumSliderModules.Faq, Id = category.Id })
+<div class="container page-content faq-page">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="panel">
+                <div class="panel-body">
+                    @using (Ajax.BeginForm("AjaxFaq", null, new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        UpdateTargetId = "content",
+                        LoadingElementId = "progress",
+                        OnSuccess = "searchOnSuccess"
+                    },
+        new { @class = "search-form" }))
+                    {
+
+                        <div class="row">
+                            @*@Html.LabelFor(model => model.Key, htmlAttributes: new { @class = "control-label col-md-3" })*@
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.Key, new { htmlAttributes = new { @placeholder = FSite.Resources.Resource.InputAnyKeyFaq, @class = "form-control" } })
+                                <span class="input-group-btn">
+                                @*<button class="btn btn-default" id="btnsearch" type="submit">&nbsp;<i class="fa fa-search"></i></button>*@
+                                    <button class="btn btn-info btn-fill"  id="btnsearch" type="submit">@FSite.Resources.Resource.btSearch</button>
+                                </span>
+                            </div>
+                            <div class="col-md-4 col-sm-6 hidden">
+                                @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownList("Category", null, FSite.Resources.Resource.SelectFaq, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                            </div>
+                            @*<div class="col-md-4 col-sm-6">
+                    @Html.LabelFor(model => model.Key, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Key, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Specialist, "", new { @class = "text-danger" })
+                </div>*@
+
+                        </div>
+
+
+
+                    }
+                    
+                    <!-- /input-group -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQ Blocks -->
+    @*<div class="row space-sm">
+        <div class="col-sm-4">
+            <div class="med-iconBox med-iconBox--left">
+                <div class="med-iconBox-icon icon-big color-blue">
+                    <span class="icon-i-oncology" aria-hidden="true"></span>
+                </div>
+                <div class="med-iconBox-content">
+                    <h4 class="med-iconBox-title hr-after">
+                        Alternative Medicine
+                    </h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- /.col 4 -->
+        <div class="col-sm-4">
+            <div class="med-iconBox med-iconBox--left">
+                <div class="med-iconBox-icon icon-big color-red">
+                    <span class="icon-i-genetics" aria-hidden="true"></span>
+                </div>
+                <div class="med-iconBox-content">
+                    <h4 class="med-iconBox-title hr-after">
+                        Heart Disease
+                    </h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- /.col 4 -->
+        <div class="col-sm-4">
+            <div class="med-iconBox med-iconBox--left">
+                <div class="med-iconBox-icon icon-big color-green">
+                    <span class="icon-i-surgery" aria-hidden="true"></span>
+                </div>
+                <div class="med-iconBox-content">
+                    <h4 class="med-iconBox-title hr-after">
+                        Infectious Diseases
+                    </h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- /.col 4 -->
+    </div>*@
+    <!-- End FAQ Blocks -->
+    @*<hr />*@
+    <!-- FAQ Content -->
+    <div class="row">
+        <!-- Begin Tab v1 -->
+        <div class="col-md-8" >
+            <div class="list-tab">
+                <div class="the-tab">
+                    <div class="tab-nav tabbable-line">
+                        <ul class="bxslider-tab list-inline nav nav-tabs margin-bottom-20">
+                        @foreach (var sp in Categories)
+                        {
+                            <li class="item-inline active1"><a href="#@sp.Value" data-key="@sp.Value">@sp.Text</a></li>
+                        }
+                    </ul>
+                    </div>
+                    <div class="tab-content no-border">
+                    <div class="tab-pane-page active" id="content">
+                    </div>
+                </div>
+                </div>
+            </div>
+           
+        </div>
+        <!--/col-md-6-->
+        <!--End Tab v1-->
+        <!-- Begin Tab v1 -->
+        <div class="col-md-4 widget">
+            <div class="tabbable-line">
+                <ul class="nav nav-tabs margin-bottom-20">
+                    <li class="active">
+                        <a data-toggle="tab" href="#FaqLastest" aria-expanded="true">@FSite.Resources.Resource.FaqLastest</a>
+                    </li>
+                    <li class="">
+                        <a data-toggle="tab" href="#FaqFeature" aria-expanded="false">@FSite.Resources.Resource.FaqFeature</a>
+                    </li>
+
+                </ul>
+                <div class="tab-content no-border">
+                    <!-- Tab Content 1 -->
+                    <div id="FaqLastest" class="tab-pane fade active in">
+                        @Html.Action("SFaqLastest")
+                    </div>
+                    <!-- End Tab Content 1 -->
+                    <!-- Tab Content 2 -->
+                    <div id="FaqFeature" class="tab-pane fade">
+                        @Html.Action("SFaqFeature")
+                      
+                    </div>
+                    <!-- Tab Content 2 -->
+
+                </div>
+            </div>
+        </div>
+        <!--/col-md-6-->
+        <!-- End Popular Topics -->
+    </div>
+    <!-- End FAQ Content -->
+</div>
+
+
+@section scripts
+    {
+    <link href="~/Scripts/slick/slick.css" rel="stylesheet" />
+    <link href="~/Scripts/slick/slick-theme.css" rel="stylesheet" />
+    <script src="~/Scripts/slick/slick.min.js"></script>
+    <script>
+        
+        /* Tab */
+        $('.tab-nav ul li a').on('click', function () {
+            var href = $(this).attr('href');
+            $('.tab-nav ul li').removeClass('active');
+            $(this).parents().addClass('active');
+            $('.tab-content .tab-pane-page').removeClass('active');
+            $(href).addClass('active');
+            //  config.slick('setPosition');
+
+            $('#Category').val($(this).data('key'));
+
+            searchClick();
+            return false;
+        });
+        $('.bxslider-tab').slick({
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1230,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 914,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                    }
+                },
+                {
+                    breakpoint: 450,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
+                },
+            ]
+        });
+        function searchClick() {
+            document.getElementById('btnsearch').click();
+        }
+        function searchOnSuccess(res) {
+            trickStyleforpager();
+            //   pushState(res, document.title, "/tin-tuc" + genUrl());
+        }
+        function pagingOnSuccess(res) {
+            trickStyleforpager();
+            //   pushState(res, document.title, "/tin-tuc" + genUrl());
+        }
+        //trick css for pager
+        function trickStyleforpager() {
+            //setTimeout(function () {
+            //    scrolltopview($("#content").offset().top - 100);
+            //}, 500)
+
+            //$('.js-box-pagination ul').addClass('pagination');
+            //$('.js-box-pagination li').addClass('page-item');
+            //$('.js-box-pagination a').addClass('page-link');
+            //$('.js-box-pagination span').addClass('page-link');
+        }
+        function genUrl() {
+            var url = "";
+            var params = new Array();
+            if ($('#Key').val()) {
+                params.push("key=" + $('#Key').val())
+            }
+            if (params.length != 0) {
+                url = "?" + params.join('&');
+            }
+            var Category = $('#Category').val();
+            if (Category) {
+                url = "/" + Category + url;
+            }
+
+            return url;
+        }
+        searchClick();
+
+
+    </script>
+    @*@if (!string.IsNullOrEmpty(category.CategoryName))
+        {
+            <script>
+                $('.widget_categories li a[href*="@category.Key"]').parent().addClass('active');
+            </script>
+        }*@
+
+}

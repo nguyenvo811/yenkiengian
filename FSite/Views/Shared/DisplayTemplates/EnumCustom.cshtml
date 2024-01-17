@@ -1,0 +1,12 @@
+﻿@model Enum
+@using realestate.Helpers  
+@if (Model == null)
+{
+    @Html.DisplayTextFor(model => Model)
+}
+else
+{
+    var _enum = Model;
+    var content = Model.GetDescription();
+    @Html.DisplayTextFor(model => content)
+}

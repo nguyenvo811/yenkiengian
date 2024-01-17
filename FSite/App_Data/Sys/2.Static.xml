@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StaticViewModels>
+  
+  <StaticViewModel>
+    <Id>2</Id>
+    <Name>Cấu hình Gửi Mail</Name>
+    <Location>2.Static</Location>
+    <MetaStr>{"Seo":{},"Agent":{},"Mail":{"Recieve":"tponguyen86@gmail.com","From":"tponguyen86@gmail.com","SysMailDisplay":"Bất động sản eraliving.com.vn","deliveryMethod":"Network","defaultCredentials":false,"host":"smtp.gmail.com","port":"465","userName":"traminguyenhuynh@gmail.com","password":"trami@123654","enableSsl":true},"Map":{},"Loan":{"Duration":12,"AddedTax":0.0,"ServiceFee":0.0,"PaymentFrequency":0}}</MetaStr>
+    <Meta>realestate.Models.MetaData</Meta>
+  </StaticViewModel>
+ 
+</StaticViewModels>

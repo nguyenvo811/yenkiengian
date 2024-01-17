@@ -1,0 +1,251 @@
+﻿@using FSite.Models
+@model StaticViewModel
+@{
+    var meta = (StaticFrontEndMetaData)ViewData["meta"];
+    //meta.files = new List<StaticSliderItemMetaData>() { new StaticSliderItemMetaData() {Path="p.png" }, new StaticSliderItemMetaData() { Path = "p1.png" } };
+}
+<style>
+    /*#info3 input[type=checkbox]{
+        position: unset;
+    left: unset;
+    opacity: 1;
+    }*/
+</style>
+<!-- Page -->
+<div class="page-content" ng-app="myApp" ng-controller="newsCtrl">
+    <!-- page -->
+    <div class="row">
+
+
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="col-lg-12 col-md-12">
+                <!-- Example Tabs In The Panel -->
+                <div class="panel nav-tabs-horizontal">
+
+                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
+
+                        <li class="active" role="presentation">
+                            <a data-toggle="tab" href="#infotab" aria-controls="infotab"
+                               role="tab"><i class="fa fa-tag" aria-hidden="true"></i>Căn bản</a>
+                        </li>
+                        <li role="presentation">
+                            <a data-toggle="tab" href="#info2" aria-controls="info2"
+                               role="tab"><i class="fa fa-user" aria-hidden="true"></i>Smtp</a>
+                        </li>
+
+                       
+
+                    </ul>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="infotab" role="tabpanel">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="hidden">
+                                    @Html.TextBoxFor(m => m.Name)
+                                    @Html.TextBoxFor(m => m.Location)
+                                  
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.From, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.From, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.From, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.Recieve, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.Recieve, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.Recieve, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.SysMailDisplay, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.SysMailDisplay, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.SysMailDisplay, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.SystemsMailBCC, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.SystemsMailBCC, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.SystemsMailBCC, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.SystemsMailCC, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.SystemsMailCC, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.SystemsMailCC, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!-- End Example Tabs In The Panel -->
+                            <div class="tab-pane" id="info2" role="tabpanel">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.defaultCredentials, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.defaultCredentials, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.defaultCredentials, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.deliveryMethod, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.deliveryMethod, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.deliveryMethod, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.enableSsl, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.enableSsl, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.enableSsl, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.host, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.host, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.host, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.userName, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.userName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.userName, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.password, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.password, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Mail.port, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => meta.Mail.port, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Mail.port, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+          
+
+        }
+
+    </div>
+
+
+   
+    <!-- End page -->
+
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+         naviActive("@Request.Path.Split('/')[1]");
+ $('body').on('click', '.js-select-path', function () {
+        var url = $(this).attr('href');
+        alertify.alert().set({
+            'startMaximized': true, 'message': "<iframe src='" + url + "' width='100%' height='100%'></iframe>"
+        ,basic:true,
+        padding:false
+        }).show();
+        return false;
+ })
+ var _current_path_list;//a click
+ $('body').on('click', '.js-select-path-list', function () {
+     _current_path_list=$(this);//get curent to update when selected
+     var url = $(this).attr('href');
+     alertify.alert().set({
+         'startMaximized': true, 'message': "<iframe src='" + url + "' width='100%' height='100%'></iframe>"
+     ,basic:true,
+         padding:false
+     }).show();
+     return false;
+ })
+ function files_list(path){
+
+     //console.log("_current_path_list",_current_path_list);
+     //console.log("path",path);
+
+     var _row=$(_current_path_list).parents('tr');
+     $(_current_path_list).find('img').attr('src', path);
+     $(_row).find('.js-file-path,.js-file-name').val(path)
+     alertify.closeAll();
+ }
+    //when ImageUrl change
+ function meta_Header_Logo(path)
+    {
+     $('#meta_Header_Logo').attr('src', path);
+        alertify.closeAll();
+ }
+ function meta_Seo_SiteLogo(path)
+ {
+     $('#meta_Seo_SiteLogo').attr('src', path);
+     alertify.closeAll();
+ }
+ function meta_Header_Logo1(path) {
+            $('#meta_Header_Logo1').attr('src', path);
+            alertify.closeAll();
+        }
+    </script>
+
+    @*galley*@
+    <script src="~/Scripts/angular.min.js"></script>
+    <script>
+
+        (function (window, document, $, angular) {
+            'use strict';
+
+            var myApp = angular.module('myApp', []);
+            myApp.controller('newsCtrl',function ($scope, $http) {
+
+            $scope.files = @Html.Raw(Json.Encode(meta.files!=null?meta.files.ToArray():null));
+                if (!$scope.files) {
+                    $scope.files=[];
+                }
+                $scope.fileNew = function (fileDetail)
+                {
+
+                    $scope.files.push({
+                        'Id': "",
+                        'Title': "",
+                        'Desc': "",
+                        'FileName': "",
+                        'Url': "",
+                        'Path': "/images/mini-no_image.jpg",
+                        'Index': "",
+                        'IsActive': true
+                    });
+                };
+
+                $scope.fileRemove = function () {
+                    var newDataList = [];
+                    $scope.selectedAll = false;
+                    angular.forEach($scope.files, function (selected) {
+                        if (!selected.selected) {
+                            newDataList.push(selected);
+                        }
+                    });
+                    $scope.files = newDataList;
+                };
+
+                $scope.checkAll = function () {
+                    if (!$scope.selectedAll) {
+                        $scope.selectedAll = true;
+                    } else {
+                        $scope.selectedAll = false;
+                    }
+                    angular.forEach($scope.files, function (fileDetail) {
+                        console.log(fileDetail);
+                        fileDetail.selected = $scope.selectedAll;
+                    });
+                };
+
+            })
+
+        })(window, document, jQuery, angular);
+    </script>
+
+}
+
+

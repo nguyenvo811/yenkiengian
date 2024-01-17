@@ -1,0 +1,51 @@
+﻿@model realestate.Models.RequestViewModel
+    @{ 
+        var itemid = (int)ViewBag.itemid;
+    }
+
+ <!-- widget section Message -->
+<div id="agent-fix" class="widget">
+    <div class="panel-box">
+        <!-- Panel Header / Title -->
+        <div class="panel-header">
+            <h3 class="panel-title">YÊU CẦU CỦA BẠN</h3>
+        </div>
+        <!-- Panel Body -->
+        <div class="panel-body">
+          @using (Ajax.BeginForm("CustomerRequestSideBar", "Home",
+                                                       new AjaxOptions
+                                                       {
+                                                           HttpMethod = "POST",
+                                                           // UpdateTargetId = "boxRequestItem",//insert when load modal on script
+                                                           OnSuccess = "RequestItemDetailOnSuccess",
+                                                           OnFailure = "RequestItemDetailOnFailure"
+                                                       },
+                                                       new { @class = "request-to-item-form form", @id = "customercontactsidebar" }))
+          {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.Hidden("itemid", itemid)
+                <div class="form-group">
+                    @Html.EditorFor(c => c.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Họ tên" } })
+                    @Html.ValidationMessageFor(c => c.FullName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(c => c.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
+                    @Html.ValidationMessageFor(c => c.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(c => c.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Điện thoại" } })
+                    @Html.ValidationMessageFor(c => c.Phone, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control customer-content" cols="20" data-val="true" data-val-maxlength="Nội dung không được > 2000 ký tự" data-val-maxlength-max="2000" data-val-required="Nội dung không được rỗng" id="Content" name="Content" placeholder="Nội dung" rows="4">Xin chào ! Tôi có hứng thú tìm hiểu thêm về Bất Động Sản số [@itemid]. Vui lòng liên hệ tôi sớm nhất. Cảm ơn!</textarea>
+                    @*@Html.TextAreaFor(c => c.Content, new { @class = "form-control customer-content", @placeholder = "Nội dung" })*@
+                    @Html.ValidationMessageFor(c => c.Content, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn-submit btn-primary btn" value="Gửi liên hệ">
+                </div>
+          }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,185 @@
+﻿@{ 
+    Layout = null;
+}
+
+<nav class="navbar navbar-violet-dark" id="main_navbar" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_add_menu_5">
+                <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="javascript:void(0);" class="toggle_fixing"><i class="fa fa-chevron-down"></i>&nbsp;</a></li>
+            </ul>
+            <a class="navbar-brand navbar-left" href="#">Maps demo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar_add_menu_5">
+            <ul class="nav navbar-nav navbar-left">
+
+                <li class="dropdown-grid" id="jVectorMapDropdown">
+                    <a data-toggle="dropdown" href="javascript:;" class="dropdown-toggle"><i class="fa fa-globe"></i> jVectorMap<span class="caret"></span></a>
+                    <div class="dropdown-grid-wrapper">
+                        <div class="dropdown-menu col-xs-12 col-sm-6 col-md-6 col-lg-6" role="menu">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <div class="embed-responsive-item" id="jVectorMap"></div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="dropdown-grid">
+                    <a data-toggle="dropdown" href="javascript:;" class="dropdown-toggle"><i class="fa fa-google"></i> Google<span class="caret"></span></a>
+                    <div class="dropdown-grid-wrapper">
+                        <div class="dropdown-menu col-xs-12 col-sm-6 col-md-6 col-lg-6" role="menu">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Bern&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown-grid">
+                    <a data-toggle="dropdown" href="javascript:;" class="dropdown-toggle"><i class="fa fa-map-marker"></i> Bing<span class="caret"></span></a>
+                    <div class="dropdown-grid-wrapper">
+                        <div class="dropdown-menu col-xs-12 col-sm-6 col-md-6 col-lg-6" role="menu">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" id="map" name="mapFrame" scrolling="no" width="1000" height="512" frameborder="0" src="http://www.bing.com/maps/embed/?lvl=13&amp;cp=46.947954~7.444284&amp;sty=r&amp;draggable=true&amp;v=2&amp;dir=0&amp;where1=Bern%2C+Schweiz&amp;form=LMLTEW&amp;pp=46.948429107666016~7.440460205078125&amp;mkt=de-de&amp;gen=false&amp;emid=0268dbb0-0977-3717-0aff-4f79b8311370&amp;w=1000&amp;h=512"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown-full no-shadow no-border-radius">
+                    <a data-toggle="dropdown" href="javascript:;" class="dropdown-toggle"><i class="fa fa-envelope"></i>&nbsp;<span class="hidden-sm">Contact us (Google)</span><span class="caret"></span></a>
+                    <ul class="dropdown-menu no-padding">
+                        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <iframe class="embed-responsive-item" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=de&amp;geocode=&amp;q=Bern&amp;aq=&amp;sll=46.813187,8.22421&amp;sspn=3.379772,8.453979&amp;ie=UTF8&amp;hq=&amp;hnear=Bern&amp;t=m&amp;z=12&amp;ll=46.947922,7.444608&amp;output=embed&amp;iwloc=near"></iframe>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 ">
+                                    <h3 style="border-bottom: 1px solid #664c7c; margin-bottom: 10px;"><i class="fa fa-envelope"></i> Contact us</h3>
+                                    <div class="row  hidden-sm">
+                                        <address class="col-xs-12 col-md-6">
+                                            <strong>Brand, Inc.</strong><br>
+                                            123 Folsom Ave, Suite 600<br>
+                                            San Francisco, CA 94107<br>
+                                        </address>
+                                        <address class="col-xs-12 col-md-6">
+                                            <abbr title="Phone">Phone:</abbr> (123) 456-7890<br>
+                                            <abbr title="Mobile Phone">Mobile:</abbr> (098) 765-4321<br>
+                                            <strong class="hidden-md">Full Name: </strong><a href="mailto:#">email@example.com</a>
+                                        </address>
+                                    </div>
+                                </div>
+                                <form class="" role="form">
+                                    <div class="col-xs-6 col-md-6 ">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Enter your name">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 ">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="inputEmail" name="inputEmail" placeholder="Enter your email address">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-12 hidden-md  hidden-sm">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="inputSubject" name="inputSubject" placeholder="Subject ...">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-12 ">
+                                        <div class="form-group">
+                                            <textarea style="resize: none;" class="form-control" id="inputMessage" name="inputMessage" placeholder="Message" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-offset-3 col-sm-9" style="margin-bottom: 0">
+                                        <button class="btn btn-default pull-right" type="submit"><i class="fa fa-chevron-circle-right"></i> Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown-full no-shadow no-border-radius">
+                    <a data-toggle="dropdown" href="javascript:;" class="dropdown-toggle"><i class="fa fa-envelope"></i>&nbsp;<span class="hidden-sm">Contact us (Bing)</span><span class="caret"></span></a>
+                    <ul class="dropdown-menu no-padding">
+                        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <iframe class="embed-responsive-item" id="map" name="mapFrame" scrolling="no" width="1000" height="512" frameborder="0" src="http://www.bing.com/maps/embed/?lvl=13&amp;cp=46.947954~7.444284&amp;sty=r&amp;draggable=true&amp;v=2&amp;dir=0&amp;where1=Bern%2C+Schweiz&amp;form=LMLTEW&amp;pp=46.948429107666016~7.440460205078125&amp;mkt=de-de&amp;gen=false&amp;emid=0268dbb0-0977-3717-0aff-4f79b8311370&amp;w=1000&amp;h=512"></iframe>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12 ">
+                                    <h3 style="border-bottom: 1px solid #664c7c; margin-bottom: 10px;"><i class="fa fa-envelope"></i> Contact us</h3>
+                                    <div class="row  hidden-sm">
+                                        <address class="col-xs-12 col-md-6">
+                                            <strong>Brand, Inc.</strong><br>
+                                            123 Folsom Ave, Suite 600<br>
+                                            San Francisco, CA 94107<br>
+                                        </address>
+                                        <address class="col-xs-12 col-md-6">
+                                            <abbr title="Phone">Phone:</abbr> (123) 456-7890<br>
+                                            <abbr title="Mobile Phone">Mobile:</abbr> (098) 765-4321<br>
+                                            <strong class="hidden-md">Full Name: </strong><a href="mailto:#">email@example.com</a>
+                                        </address>
+                                    </div>
+                                </div>
+                                <form class="" role="form">
+                                    <div class="col-xs-6 col-md-6 ">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Enter your name">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 ">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="inputEmail" name="inputEmail" placeholder="Enter your email address">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-12 hidden-md  hidden-sm">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="inputSubject" name="inputSubject" placeholder="Subject ...">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-12 ">
+                                        <div class="form-group">
+                                            <textarea style="resize: none;" class="form-control" id="inputMessage" name="inputMessage" placeholder="Message" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-offset-3 col-sm-9" style="margin-bottom: 0">
+                                        <button class="btn btn-default pull-right" type="submit"><i class="fa fa-chevron-circle-right"></i> Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<link rel="stylesheet" media="all" href="doc/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" />
+<script src="doc/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="http://jvectormap.com/js/jquery-jvectormap-world-mill-en.js"></script>
+
+<script id="script_tag">
+    //jVectorMap
+	var VMShown=false;
+	$('#jVectorMapDropdown').on('shown.bs.dropdown', function () {
+	    if (!VMShown) {
+	        $('#jVectorMap').vectorMap();
+	        VMShown=true;
+	    }
+	    else {$('#jVectorMap').resize();}
+	})
+</script>

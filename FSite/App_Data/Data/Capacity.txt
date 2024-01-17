@@ -1,0 +1,12 @@
+﻿[{
+"Id": 1,
+"Code": "8GB",
+"Title": "8 GB",
+"Index":0
+},
+{
+"Id": 2,
+"Code": "16GB",
+"Title": "16 GB",
+"Index":1
+}]

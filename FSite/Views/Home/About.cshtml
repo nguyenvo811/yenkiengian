@@ -1,0 +1,971 @@
+﻿@model FSite.Models.AgencySearchViewModel
+@{
+    /**/
+
+    ViewBag.MenuKey = "Static-3";
+    ViewBag.Title = "Nhân viên";
+    ViewBag.Desc = "Nhân viên nổi bật";
+    ViewBag.BodyClass = "page-agency";
+    ViewBag.MenuKey = $"{FSite.Models.Enum.EnumTypeMenu.Static}-7";//
+    FSite.Models.Data.SpecialistCategory category = new FSite.Models.Data.SpecialistCategory();
+    //if (ViewData["category"] != null)
+    //{
+    //    category = (FSite.Models.Data.AgencyCategory)ViewData["category"];
+    //    ViewBag.Title = category.Title;
+    //    ViewBag.MenuKey = string.Format("{0}-{1}", FSite.Models.Enum.EnumTypeMenu.CategoryNews, category.Id);//
+    //}
+    //else
+    //{
+    //    category.CategoryName = Resources.Resource.NBlogDesc;
+    //}
+      var Specialists = ViewBag.Specialist as IEnumerable<SelectListItem>;
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 space-sm">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object"  alt="64x64" src="http://placehold.it/300x200"  >
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading  hr-after">SỨ MỆNH</h4>
+                    Trở thành một trung tâm đào tạo nghiên cứu – khám chữa bệnh hàng đầu cả nước ứng dụng công nghệ khoa học kỹ thuật tiên tiến trong quá trình chăm sóc sức khoẻ người bệnh cũng như xây dựng hệ thống dịch vụ khám chữa bệnh tiêu chuẩn và chất lượng.
+                </div>
+            </div>
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object" alt="64x64" src="http://placehold.it/300x200">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading  hr-after">TẦM NHÌN & ĐỊNH HƯỚNG</h4>
+                    Xây dựng môi trường y tế văn minh, hiện đại đầy tính chuyên nghiệp. Trong đó, người bệnh được khám chữa bệnh với đội ngũ y bác sĩ có trình độ chuyên môn cao và y đức tốt cùng chất lượng dịch vụ hàng đầu đi kèm. Y bác sĩ, nhân viên được làm việc trong môi trường đảm bảo, tôn trọng, công bằng, với cơ hội nâng cao nghiệp vụ, tham gia nghiên cứu y khoa, cũng như thăng tiến trong công việc. Sinh viên được học tập và đạo tạo bởi những chuyên gia đầu ngành đầy tâm huyết, được tạo mọi điều kiện thực hành lâm sàng bên cạnh lý thuyết có hệ thống, có cơ hội được học tập và làm việc trong môi trường văn minh, hiện đại và chuyên nghiệp.
+                </div>
+            </div>
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object hr-after" alt="64x64" src="http://placehold.it/300x200">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">NĂNG LỰC CẠNH TRANH</h4>
+                    Người bệnh được khám chữa bệnh với đội ngũ y bác sĩ có trình độ chuyên môn và y đức tốt. Nhân viên được làm việc trong môi trường
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 ">
+            <section class="space-sm bg-light home-service" id="service">
+                <div class="container">
+                    <div class="service-box">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 clearfix cr-nav">
+                                <h3 class="f-500">Dịch vụ của chúng tôi</h3>
+                                <p>
+                                    Bệnh viện Đại Học Buôn Ma Thuột cung cấp các dịch vụ y khoa Khám, tư vấn, chữa bệnh và điều trị tất cả các loại bệnh lý theo các chuyên khoa gồm khám chữa bệnh, điều trị nội khoa/ ngoại khoa và các dịch vụ hỗ trợ.Với sứ mệnh "Nâng niu từng sự sống", Bệnh viện Đại Học Buôn Ma Thuột mang đến những dịch vụ chăm sóc sức khỏe tốt nhất
+                                    cùng chính sách giá cả hợp lý tạo nên sự an tâm và hài lòng cho mỗi khách hàng.
+                                </p>
+
+                                <div class="customNavigation">
+                                    <a class="btn btn-default carousel-prev fa fa-long-arrow-left">&nbsp;</a>
+                                    <a class="btn btn-default carousel-next fa fa-long-arrow-right">&nbsp;</a>
+                                </div>
+                                <!-- cr.navigation icons:ends -->
+                            </div>
+                            <!-- .col 3 -->
+                            <div class="col-md-9 col-sm-9">
+                                <div id="owl-demo" class="row">
+                                    <div class="item">
+                                        <div class="info-block">
+                                            <div class="thumbnail">
+                                                <figure>
+                                                    <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                                                </figure>
+                                                <div class="round-icon bg-blue-light">
+                                                    <span class="icon-i-dental" aria-hidden="true">&nbsp;</span>
+                                                </div>
+                                                <div class="caption" onclick="location.href='service-details.html';">
+                                                    <h4>Dental department</h4>
+                                                    <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                                                </div>
+                                                <ul class="spark-actions">
+                                                    <li>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Find out more about dental health">
+                                                            <span class="fa fa-info">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="fa fa-link">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /.info bock -->
+                                    </div>
+                                    <!-- /.tem -->
+                                    <div class="item">
+                                        <div class="info-block">
+                                            <div class="thumbnail">
+                                                <figure>
+                                                    <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                                                </figure>
+                                                <div class="round-icon bg-green-light">
+                                                    <span class="icon-i-genetics" aria-hidden="true">&nbsp;</span>
+                                                </div>
+                                                <div class="caption" onclick="location.href='service-details.html';">
+                                                    <h4>Genetic Disorders</h4>
+                                                    <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                                                </div>
+                                                <ul class="spark-actions">
+                                                    <li>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Yes,I'm your info tooltip">
+                                                            <span class="fa fa-info">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="fa fa-link">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /.info bock -->
+                                    </div>
+                                    <!-- /.tem -->
+                                    <div class="item">
+                                        <div class="info-block">
+                                            <div class="thumbnail">
+                                                <figure>
+                                                    <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                                                </figure>
+                                                <div class="round-icon bg-red-light">
+                                                    <span class="icon-i-pathology" aria-hidden="true">&nbsp;</span>
+                                                </div>
+                                                <div class="caption" onclick="location.href='service-details.html';">
+                                                    <h4>Paediatric Care</h4>
+                                                    <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                                                </div>
+                                                <ul class="spark-actions">
+                                                    <li>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Yes,I'm your info tooltip">
+                                                            <span class="fa fa-info">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="fa fa-link">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /.info bock -->
+                                    </div>
+                                    <!-- /.tem -->
+                                    <div class="item">
+                                        <div class="info-block">
+                                            <div class="thumbnail">
+                                                <figure>
+                                                    <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                                                </figure>
+                                                <div class="round-icon bg-blue">
+                                                    <span class="icon-i-pathology" aria-hidden="true">&nbsp;</span>
+                                                </div>
+                                                <div class="caption" onclick="location.href='service-details.html';">
+                                                    <h4>Paediatric Care</h4>
+                                                    <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                                                </div>
+                                                <ul class="spark-actions">
+                                                    <li>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Yes,I'm your info tooltip">
+                                                            <span class="fa fa-info">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="fa fa-link">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /.info bock -->
+                                    </div>
+                                    <!-- /.tem -->
+                                    <div class="item">
+                                        <div class="info-block">
+                                            <div class="thumbnail">
+                                                <figure>
+                                                    <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                                                </figure>
+                                                <div class="round-icon bg-red">
+                                                    <span class="icon-i-pathology" aria-hidden="true">&nbsp;</span>
+                                                </div>
+                                                <div class="caption" onclick="location.href='service-details.html';">
+                                                    <h4>Paediatric Care</h4>
+                                                    <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                                                </div>
+                                                <ul class="spark-actions">
+                                                    <li>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Yes,I'm your info tooltip">
+                                                            <span class="fa fa-info">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="fa fa-link">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /.info bock -->
+                                    </div>
+                                    <!-- /.tem -->
+                                    <div class="item">
+                                        <div class="info-block">
+                                            <div class="thumbnail">
+                                                <figure>
+                                                    <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                                                </figure>
+                                                <div class="round-icon bg-green">
+                                                    <span class="icon-i-pathology" aria-hidden="true">&nbsp;</span>
+                                                </div>
+                                                <div class="caption" onclick="location.href='service-details.html';">
+                                                    <h4>Paediatric Care</h4>
+                                                    <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                                                </div>
+                                                <ul class="spark-actions">
+                                                    <li>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Yes,I'm your info tooltip">
+                                                            <span class="fa fa-info">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span class="fa fa-link">&nbsp;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /.info bock -->
+                                    </div>
+                                    <!-- /.tem -->
+                                </div>
+                            </div>
+                        </div>
+                        <!--col 9-->
+                    </div>
+                </div>
+                <!-- /.container -->
+            </section>
+            <hr />
+            <section class="space-md">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="lead hr-after">Perfect for your business</p>
+                            <p>Phasellus enim libero,ut et lobortis aliquam aliquam in tortor et libero, blandit vel sapi condimentum ultricies magn</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row margin-bottom-35">
+                                <div class="col-sm-6">
+                                    <div class="med-iconBox med-iconBox--left">
+                                        <div class="med-iconBox-icon icon-big color-blue">
+                                            <span class="icon-i-alternative-complementary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Web Design">&nbsp;</span>
+                                        </div>
+                                        <div class="med-iconBox-content">
+                                            <h4 class="med-iconBox-title hr-after">
+                                                Genetic Disorders
+                                            </h4>
+                                            <p>
+                                                Praesent faucibus nisl sit amet nulla sollicitudin pretium a sed purus. Nullam bibendum porta magna.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.med box -->
+                                <div class="col-sm-6">
+                                    <div class="med-iconBox med-iconBox--left">
+                                        <div class="med-iconBox-icon icon-big color-blue">
+                                            <span class="icon-i-laboratory" data-toggle="tooltip" data-placement="top" title="" data-original-title="Web Design">&nbsp;</span>
+                                        </div>
+                                        <div class="med-iconBox-content">
+                                            <h4 class="med-iconBox-title hr-after">
+                                                Laboratory tests
+                                            </h4>
+                                            <p>
+                                                Praesent faucibus nisl sit amet nulla sollicitudin pretium a sed purus. Nullam bibendum porta magna.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.med box -->
+                            </div>
+                            <div class="row margin-bottom-35">
+                                <div class="col-sm-6">
+                                    <div class="med-iconBox med-iconBox--left">
+                                        <div class="med-iconBox-icon icon-big color-blue">
+                                            <span class="icon-i-nutrition">&nbsp;</span>
+                                        </div>
+                                        <div class="med-iconBox-content">
+                                            <h4 class="med-iconBox-title hr-after">
+                                                Nutrition disorders
+                                            </h4>
+                                            <p>
+                                                Praesent faucibus nisl sit amet nulla sollicitudin pretium a sed purus. Nullam bibendum porta magna.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.med box -->
+                                <div class="col-sm-6">
+                                    <div class="med-iconBox med-iconBox--left">
+                                        <div class="med-iconBox-icon icon-big color-blue">
+                                            <span class="icon-i-genetics" data-toggle="tooltip" data-placement="top" title="" data-original-title="Web Design">&nbsp;</span>
+                                        </div>
+                                        <div class="med-iconBox-content">
+                                            <h4 class="med-iconBox-title hr-after">
+                                                Genetics Disorders
+                                            </h4>
+                                            <p>
+                                                Praesent faucibus nisl sit amet nulla sollicitudin pretium a sed purus. Nullam bibendum porta magna.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.med box -->
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="med-iconBox med-iconBox--left">
+                                        <div class="med-iconBox-icon icon-big color-blue">
+                                            <span class="icon-i-respiratory" data-toggle="tooltip" data-placement="top" title="" data-original-title="Web Design">&nbsp;</span>
+                                        </div>
+                                        <div class="med-iconBox-content">
+                                            <h4 class="med-iconBox-title hr-after">
+                                                Consultation
+                                            </h4>
+                                            <p>
+                                                Praesent faucibus nisl sit amet nulla sollicitudin pretium a sed purus. Nullam bibendum porta magna.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.med box -->
+                                <div class="col-sm-6">
+                                    <div class="med-iconBox med-iconBox--left">
+                                        <div class="med-iconBox-icon icon-big color-blue">
+                                            <span class="icon-i-intensive-care" data-toggle="tooltip" data-placement="top" title="" data-original-title="Web Design">&nbsp;</span>
+                                        </div>
+                                        <div class="med-iconBox-content">
+                                            <h4 class="med-iconBox-title hr-after">
+                                                Intesive care
+                                            </h4>
+                                            <p>
+                                                Praesent faucibus nisl sit amet nulla sollicitudin pretium a sed purus. Nullam bibendum porta magna.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.med box -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="benefits-quote bg-light">
+                <div class="container-fluid tile-container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 bg-image tile-item" data-image-src="http://placehold.it/1600x800">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="quote">
+                                <p>After 8 Gold Medals</p>
+                                <blockquote>You can't put a limit on anything. The more you dream, the farther you get.</blockquote>
+
+                                <h2>Dummy Name</h2>
+                                <h6>CEO at Dummy</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.benefits -->
+
+            <h4 class="hr-after">Icon box</h4>
+            <div class="row space-icon-row">
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-blue-light">
+                            <span class="icon-i-oncology" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                Alternative Medicine
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-green-light">
+                            <span class="icon-i-genetics" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                Heart Disease
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-red-light">
+                            <span class="icon-i-surgery" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                Infectious Diseases
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+            </div>
+            <!-- /.row -->
+            <div class="row space-icon-row">
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-blue">
+                            <span class="icon-i-ear-nose-throat" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                Mental Health
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-green">
+                            <span class="icon-i-nutrition" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                Nutrition
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-red">
+                            <span class="icon-i-neurology" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                High Standards
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+            </div>
+            <!-- /.row -->
+            <div class="row space-icon-row">
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-red-dark">
+                            <span class="icon-i-ear-nose-throat" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                Mental Health
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-green-dark">
+                            <span class="icon-i-nutrition" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                Nutrition
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-blue-dark">
+                            <span class="icon-i-neurology" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                High Standards
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+            </div>
+            <!-- /.row -->
+            <div class="row space-icon-row">
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-green">
+                            <span class="icon-ear-nose-throat" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                Mental Health
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-green">
+                            <span class="icon-nutrition" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                Nutrition
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+                <div class="col-sm-4">
+                    <div class="med-iconBox med-iconBox--left">
+                        <div class="med-iconBox-icon icon-big color-green">
+                            <span class="icon-neurology" aria-hidden="true">&nbsp;</span>
+                        </div>
+                        <div class="med-iconBox-content">
+                            <h4 class="med-iconBox-title hr-after">
+                                High Standards
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor sit amet, consecte adipiscing elit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col 4 -->
+            </div>
+            <div class="spacer30">&nbsp;</div>
+            <h4 class="widget-title">Info blocks</h4>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="info-block">
+                        <div class="thumbnail">
+                            <figure>
+                                <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                            </figure>
+                            <div class="round-icon bg-blue-light">
+                                <span class="icon-i-dental" aria-hidden="true">&nbsp;</span>
+                            </div>
+                            <div class="caption" onclick="location.href='service-details.html';">
+                                <h4>Dental department</h4>
+                                <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                            </div>
+                            <ul class="spark-actions">
+                                <li>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Find out more about dental health">
+                                        <span class="fa fa-info">&nbsp;</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-link">&nbsp;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /col 3 -->
+                <div class="col-sm-3">
+                    <div class="info-block">
+                        <div class="thumbnail">
+                            <figure>
+                                <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                            </figure>
+                            <div class="round-icon bg-green-light">
+                                <span class="icon-i-genetics" aria-hidden="true">&nbsp;</span>
+                            </div>
+                            <div class="caption" onclick="location.href='service-details.html';">
+                                <h4>Genetic Disorders</h4>
+                                <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                            </div>
+                            <ul class="spark-actions">
+                                <li>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Yes,I'm your info tooltip">
+                                        <span class="fa fa-info">&nbsp;</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-link">&nbsp;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /col 3 -->
+                <div class="col-sm-3">
+                    <div class="info-block">
+                        <div class="thumbnail">
+                            <figure>
+                                <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                            </figure>
+                            <div class="round-icon bg-red-light">
+                                <span class="icon-i-pathology" aria-hidden="true">&nbsp;</span>
+                            </div>
+                            <div class="caption" onclick="location.href='service-details.html';">
+                                <h4>Paediatric Care</h4>
+                                <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                            </div>
+                            <ul class="spark-actions">
+                                <li>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Yes,I'm your info tooltip">
+                                        <span class="fa fa-info">&nbsp;</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-link">&nbsp;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /col 3 -->
+                <div class="col-sm-3">
+                    <div class="info-block">
+                        <div class="thumbnail">
+                            <figure>
+                                <img src="http://placehold.it/400x200" alt="" class="img-responsive">
+                            </figure>
+                            <div class="round-icon bg-blue">
+                                <span class="icon-i-pathology" aria-hidden="true">&nbsp;</span>
+                            </div>
+                            <div class="caption" onclick="location.href='service-details.html';">
+                                <h4>Paediatric Care</h4>
+                                <p>You can find general information about making appointments, as well as other helpful tips..</p>
+                            </div>
+                            <ul class="spark-actions">
+                                <li>
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Yes,I'm your info tooltip">
+                                        <span class="fa fa-info">&nbsp;</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-link">&nbsp;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /col 3 -->
+            </div>
+            <!-- /row -->
+            <div class="spacer30">&nbsp;</div>
+            <h4 class="widget-title">Accordions</h4>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel-group" id="accordion-1">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        Patient Online Services
+                                        <span class="glyphicon glyphicon-plus">&nbsp;</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        Patient Care and Health Information
+                                        <span class="glyphicon glyphicon-plus">&nbsp;</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <ul class="bullet-list list-unstyled">
+                                        <li>Contact Office-Based Physicians</li>
+                                        <li>Target Pharmacists and Pharmacies</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                                        Opening Hours
+                                        <span class="glyphicon glyphicon-minus">&nbsp;</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse4" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <!-- col 6 -->
+                <div class="col-sm-6">
+                    <div class="panel-group" id="accordion-2">
+                        <div class="panel">
+                            <div class="panel-heading blue-border">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#10">
+                                        Patient and Visitor Guide
+                                        <span class="glyphicon glyphicon-plus">&nbsp;</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="10" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading light-blue-border">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#20">
+                                        Patient Online Services
+                                        <span class="glyphicon glyphicon-plus">&nbsp;</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="20" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading red-border">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#30">
+                                        Patient Care and Health Information
+                                        <span class="glyphicon glyphicon-plus">&nbsp;</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="30" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="bullet-list list-unstyled">
+                                        <li>Contact Office-Based Physicians</li>
+                                        <li>Target Pharmacists and Pharmacies</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading green-border">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#40">
+                                        Doctors and Medical Staff
+                                        <span class="glyphicon glyphicon-minus">&nbsp;</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="40" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <ul class="bullet-list list-unstyled">
+                                        <li>Contact Office-Based Physicians</li>
+                                        <li>Target Pharmacists and Pharmacies</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /col 6 -->
+            </div>
+            <!-- /.row -->
+            <h4 class="widget-title">3 col</h4>
+            <div class="row space-xs">
+                <div class="col-sm-4">
+                    <div class="info-box info-3">
+                        <div class="info-image">
+                            <img src="http://placehold.it/400x200" class="img-responsive" alt="#">
+                        </div>
+                        <div class="info-content">
+                            <h3>Office-Based Physicians</h3>
+                            <div class="info-txt">Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus...</div>
+                            <a href="#" class="readmore">Read more</a>
+                        </div>
+                    </div>
+                    <!-- /.item -->
+                </div>
+                <!-- /col 4 -->
+                <div class="col-sm-4">
+                    <div class="info-box info-3">
+                        <div class="info-image">
+                            <img src="http://placehold.it/400x200" class="img-responsive" alt="#">
+                        </div>
+                        <div class="info-content">
+                            <h3>Pharmacists and Pharmacies</h3>
+                            <div class="info-txt">Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus...</div>
+                            <a href="#" class="readmore">Read more</a>
+                        </div>
+                    </div>
+                    <!-- /.item -->
+                </div>
+                <!-- / col 4 -->
+                <div class="col-sm-4">
+                    <div class="info-box info-3">
+                        <div class="info-image">
+                            <img src="http://placehold.it/400x200" class="img-responsive" alt="#">
+                        </div>
+                        <div class="info-content">
+                            <h3>Office-Based Physicians</h3>
+                            <div class="info-txt">Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus...</div>
+                            <a href="#" class="readmore">Read more</a>
+                        </div>
+                    </div>
+                    <!-- /.item -->
+                </div>
+                <!-- / col 4 -->
+                <!-- /.row -->
+            </div>
+            <h4 class="widget-title">4 col</h4>
+            <div class="row space-xs">
+                <div class="col-sm-3">
+                    <div class="info-box info-3">
+                        <div class="info-image">
+                            <img src="http://placehold.it/400x200" class="img-responsive" alt="#">
+                        </div>
+                        <div class="info-content">
+                            <h3>Office-Based Physicians</h3>
+                            <div class="info-txt">Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus...</div>
+                            <a href="#" class="readmore">Read more</a>
+                        </div>
+                    </div>
+                    <!-- /.item -->
+                </div>
+                <div class="col-sm-3">
+                    <div class="info-box info-3">
+                        <div class="info-image">
+                            <img src="http://placehold.it/400x200" class="img-responsive" alt="#">
+                        </div>
+                        <div class="info-content">
+                            <h3>Office-Based Physicians</h3>
+                            <div class="info-txt">Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus...</div>
+                            <a href="#" class="readmore">Read more</a>
+                        </div>
+                    </div>
+                    <!-- /.item -->
+                </div>
+                <!-- /col 4 -->
+                <div class="col-sm-3">
+                    <div class="info-box info-3">
+                        <div class="info-image">
+                            <img src="http://placehold.it/400x200" class="img-responsive" alt="#">
+                        </div>
+                        <div class="info-content">
+                            <h3>Pharmacists and Pharmacies</h3>
+                            <div class="info-txt">Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus...</div>
+                            <a href="#" class="readmore">Read more</a>
+                        </div>
+                    </div>
+                    <!-- /.item -->
+                </div>
+                <!-- / col 4 -->
+                <div class="col-sm-3">
+                    <div class="info-box info-3">
+                        <div class="info-image">
+                            <img src="http://placehold.it/400x200" class="img-responsive" alt="#">
+                        </div>
+                        <div class="info-content">
+                            <h3>Office-Based Physicians</h3>
+                            <div class="info-txt">Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus...</div>
+                            <a href="#" class="readmore">Read more</a>
+                        </div>
+                    </div>
+                    <!-- /.item -->
+                </div>
+                <!-- / col 4 -->
+                <!-- /.row -->
+            </div>
+            <!--/right-->
+        </div>
+        <!--/row-->
+    </div>
+    <!--/container-->
+</div>

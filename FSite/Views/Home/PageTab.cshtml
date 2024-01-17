@@ -1,0 +1,272 @@
+﻿@using FSite.Models.Data
+@model Post
+
+@{
+
+    ViewBag.Title = Model.Title;
+    ViewBag.Desc = Model.Description;
+    ViewBag.BodyClass = "m-page";
+    ViewBag.MenuKey = string.Format("{0}-{1}", FSite.Models.Enum.EnumTypeMenu.Post, Model.Id);//
+    var template = (FSite.Models.Enum.EnumPostTemplate?)null;
+    if (Model.Template.HasValue)
+    {
+        try
+        {
+            template = (FSite.Models.Enum.EnumPostTemplate)Enum.ToObject(typeof(FSite.Models.Enum.EnumPostTemplate), Model.Template);
+        }
+        catch { }
+    }
+    if (template.Value == FSite.Models.Enum.EnumPostTemplate.None || !template.HasValue)
+    {
+        Layout = null;
+    }
+    var ismobile = Request.Browser.IsMobileDevice;
+}
+@section headers{
+    <meta name="description" content="@(!string.IsNullOrEmpty(Model.MetaDescription)?Model.MetaDescription: Model.Description)" />
+    <meta name="keywords" content="@Html.Raw(Model.MetaKeyword)" />
+    <meta property="og:title" content="@(!string.IsNullOrEmpty(Model.MetaTitle)?Model.MetaTitle: Model.Title)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@string.Format("{0}/{1}.html",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"),Model.Key)" />
+    <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
+    <meta property="og:description" content="@(!string.IsNullOrEmpty(Model.MetaDescription)?Model.MetaDescription: Model.Description)" />
+    @*@if (!string.IsNullOrEmpty(Model.SHeader))
+        {
+            <script type="application/ld+json">
+                @Html.Raw(Model.SHeader)
+            </script>
+        }*@
+}
+@if (!ismobile)
+{
+
+    <div class="page-title-style01 page-title-negative-top pt-bkg01" style="padding-top:50px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Title2</h1>
+
+                    <div class="breadcrumb-container">
+                        <ul class="breadcrumb clearfix">
+                            <li></li>
+                            <li>
+                                <a href="/">Trang chủ</a>
+                            </li>
+                            <li>
+                                @Model.Title
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div><!-- .row end -->
+        </div><!-- .container end -->
+    </div><!-- .page-title-style01.page-title-negative-top end -->
+
+}
+<div class="page-content">
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-2 aside aside-left">
+                <ul class="aside-widgets">
+                    <li class="widget widget_nav_menu clearfix">
+                        <div class="title">
+                            <h3>Danh mục</h3>
+                        </div>
+
+                        <ul class="menu">
+                            @foreach (var item in (List<Post>)ViewBag.Groups)
+                            {
+                                <li class="menu-item">
+                                    <a href="@(item.Key).html">@item.Title</a>
+                                </li>
+                            }
+                            @*<li class="menu-item">
+                                    <a href="about01.html">About simple</a>
+                                </li>*@
+
+
+                        </ul><!-- .menu end -->
+                    </li><!-- .widget.widget_nav_menu end -->
+                    @*<li class="widget widget-text">
+                            <div class="title">
+                                <h3>brochure download</h3>
+                            </div>
+
+                            <img src="img/pics/brochure02.jpg" alt="Trucking brochure" />
+                            <br />
+
+                            <a href="trucking_brochure.pdf" target="_blank" class="download-link">
+                                <span>
+                                    <i class="fa fa-file-pdf-o"></i>
+                                    Annual brochure_EN.pdf
+                                </span>
+                            </a>
+
+                            <a href="trucking_brochure.pdf" target="_blank" class="download-link">
+                                <span>
+                                    <i class="fa fa-file-pdf-o"></i>
+                                    Annual brochure_FR.pdf
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="widget widget-text">
+                            <div class="title">
+                                <h3>contact us</h3>
+                            </div>
+
+                            <img src="img/pics/locations.jpg" alt="contact us" />
+
+                            <br />
+
+                            <p>
+                                Let us know what can we do for you. Contact
+                                us today!
+                            </p>
+
+                            <a href="contact-simple.html" class="read-more">
+                                <span>
+                                    Contact us
+                                    <i class="fa fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </li>*@
+                </ul><!-- .aside-widgets end -->
+            </aside><!-- .aside.aside-left end -->
+
+            <div class="col-md-10">
+                <div class="custom-heading">
+                    <h2>@Model.Title</h2>
+                </div>
+
+                @*<img class="float-right" src="img/pics/img25.jpg" alt="" width="360" />*@
+
+                <div class="js-detail">
+                    @Html.Raw(Model.Detail)
+                </div>
+
+
+            </div><!-- .col-md-9 end -->
+        </div><!-- .row end -->
+    </div><!-- .container end -->
+</div>
+
+@section scripts{
+    <style>
+        .scroll-up {
+            bottom: 60px;
+            right: 10px;
+        }
+
+        #navbarCollapse {
+            float: left;
+        }
+
+        .footer-navi {
+            background: #003265;
+        }
+
+            .footer-navi ul > li {
+                background-image: url(../img/arrow.png);
+                background-repeat: no-repeat;
+                background-position: 0 center;
+                list-style: none;
+                padding-left: 15px;
+                margin: 0 5px;
+            }
+
+            .footer-navi ul li {
+                list-style: none;
+            }
+
+                .footer-navi ul li a {
+                    color: #bcc0c4;
+                }
+
+
+            
+    </style>
+    @if (ismobile)
+    {
+        <style>
+            .menu, .footer-navi .navbar-nav{
+                display:inline-flex;
+            }
+            .widget{
+                    margin-bottom: 5px;
+            }
+            .footer-navi .navbar-nav{
+                margin: 0 -15px;
+            }
+           .contact-group{
+               display:none;
+           }
+  .scroll-up {
+            right: unset;
+                left: 10px;
+        }
+        </style>
+    }
+    <nav class="footer navbar-fixed-bottom footer-navi">
+        @*<a class="navbar-brand" href="#">Bottom navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>*@
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                @foreach (var item in (List<Post>)ViewBag.Groups)
+                {
+                    <li class="nav-item">
+                        <a href="@(item.Key).html">@item.Title</a>
+                    </li>
+                }
+                @*<li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropup">
+                        <a class="nav-link dropdown-toggle" href="https://getbootstrap.com/" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropup</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown10">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                                <li class="nav-item">
+                                <a class="nav-link disabled" href="#">Disabled</a>
+                            </li>*@
+
+
+            </ul>
+        </div>
+    </nav>
+    <script>
+		$(".js-detail img[src*='/uploads/'],.js-detail img[src*='/Uploads/']").each(function () {
+//$(this).attr('src',baseUrl+$(this).attr('src'))
+})
+		$('.js-detail').append($('.js-cut-bottom'))
+
+        if ($('.js-category-pages').length!=0)
+{
+            $.get("/Home/PagesByPageID/@Model.Id", function (res) {
+                var content = "";
+                var pageid = $('body').data('page');
+                var elclass = "";
+                for (var i = 0; i < res.pages.length; i++)
+                {
+                    elclass = "";
+                    if ("Post-" + res.pages[i].Id===pageid) {
+                        elclass = "active";
+                    }
+                    if ($('.js-category-pages .Post-' + pageid).length !== 0) {
+                    }
+                    content += "<li class='" + elclass + "'><a href='/" + res.pages[i].Key + ".html'>" + res.pages[i].Title + "</a></li>"
+                }
+                $('.js-category-pages').html(content);
+                $('.js-category-post').text(res.CategoryName);
+            })
+}
+
+    </script>
+}

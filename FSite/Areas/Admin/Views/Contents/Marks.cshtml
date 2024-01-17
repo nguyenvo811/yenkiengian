@@ -1,0 +1,27 @@
+﻿@model dynamic
+
+<h2>Enter Marks For @Model.Name</h2>
+
+@using (Html.BeginForm("Marks", "Home"))
+ {
+@Html.ValidationSummary()
+<fieldset>
+    @Html.Hidden("Name", (string)Model.Name)
+    <legend></legend>
+    <ol>
+        @Html.Label("Physics")
+        @Html.TextBox("Physics", (string)Model.Physics)
+        @*@ViewData.Eval("Physics")*@
+    </ol>
+    <ol>
+        @Html.Label("Chemistry")
+        @Html.TextBox("Chemistry", (string)Model.Chemistry)
+    </ol>
+    <ol>
+        @Html.Label("Biology")
+        @Html.TextBox("Biology", (string)Model.Biology)
+    </ol>
+    <input type="submit" value="Submit" />
+
+</fieldset>
+}

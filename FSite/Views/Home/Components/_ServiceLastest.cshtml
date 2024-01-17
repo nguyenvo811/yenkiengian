@@ -1,0 +1,24 @@
+﻿@model IEnumerable<FSite.Models.Data.Service>
+<div class="widget categories">
+    <h3>@FSite.Resources.Resource.ServiceFeature</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            @foreach (var item in Model)
+            {
+                var link = $"/{item.Key}/dich-vu";
+                <div class="single_comments">
+                    <img src="@item.ImageUrl" alt="@item.Title" />
+                    @*<img src="http://placehold.it/200x200" alt="@item.Title" />*@
+                    <p><a href="@link">@item.Title</a></p>
+                    <div class="entry-meta small muted">
+                        <span class="post-date"><i class="fa fa-calendar"></i> @Html.DisplayFor(m => item.CreatedDate)</span>
+                        @if (item.CategoryId.HasValue)
+                        {
+                            <span class="post-category pull-right"><a href="/dich-vu/@item.Category.Key">@item.Category.Title</a></span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

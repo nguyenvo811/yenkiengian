@@ -1,0 +1,442 @@
+﻿@{
+    var v = 2;
+    // var _controller = Request.Path.Split('/')[1];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Manager</title>
+    <link href="~/templates/admin/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/templates/admin/css/bootstrap-extend.min.css" rel="stylesheet" />
+    <!-- theme style & skin -->
+    <link rel="stylesheet" href="~/templates/admin/css/master_style.css">
+    <link rel="stylesheet" href="~/templates/admin/css/skins/_all-skins.css">
+    <!--semantic ui-->
+    <link href="~/templates/admin/css/semantic.min.css" rel="stylesheet" />
+    <!--css custom-->
+    <link href="~/templates/admin/css/custom/custom.css" rel="stylesheet" />
+    <!-- date picker -->
+    <link rel="stylesheet" href="~/templates/admin/assets/vendor_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/templates/admin/assets/vendor_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- Morris charts -->
+    <link rel="stylesheet" href="~/templates/admin/assets/vendor_components/morris.js/morris.css">
+    <link href="~/templates/admin/assets/vendor_components/nestable/nestable.css" rel="stylesheet" type="text/css">
+    <link href="~/templates/admin/js/alertify/css/alertify.min.css" rel="stylesheet" />
+    <link href="~/Content/alerttify/themes/semantic.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/templates/admin/css/tibi-style.css">*@
+    <link href="~/Content/daterangepicker.css" rel="stylesheet" />
+     <!--toast-->
+    <link href="~/templates/admin/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.css" rel="stylesheet" />
+    <link href="/Content/select2.css" rel="stylesheet" />
+    <link href="/Content/select2-bootstrap.css" rel="stylesheet" />
+    <link href="~/templates/admin/custom/css/admin.css" rel="stylesheet" />
+    <script>
+       // var baseApi = 'http://localhost:51475/';
+     var baseApi = '@System.Configuration.ConfigurationManager.AppSettings.Get("ApiUrl")';
+         var imageDefault = {1:"/Content/img/no_image.png", 2: "/Uploads/images/no-avartar.png"}
+        function imgError(o, imgDefault) {
+            console.log(o);
+            if (imgDefault) {
+                o.src = imageDefault[imgDefault];
+            } else {
+                o.src = imageDefault[2];
+            }
+            o.removeAttribute('onerror');
+        }
+    </script>
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymcecus.js"></script>
+
+</head>
+
+<body class="sidebar-mini skin-blue-light">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                @*<b class="logo-mini">
+                    <span class="light-logo"><img src="~/templates/admin/images/logo-light.png" alt="logo"></span>
+                    <span class="dark-logo"><img src="~/templates/admin/images/logo-dark.png" alt="logo"></span>
+                </b>*@
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">
+                    <img src="~/templates/admin/images/logo-light-text.png" alt="logo" class="light-logo">
+                    @*<img src="~/templates/admin/images/logo-dark-text.png" alt="logo" class="dark-logo">*@
+                </span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        @*<li class="dropdown notifications-menu">
+                                <a href="#" class="bt_notify dropdown-toggle" onclick="getNotify()" data-toggle="dropdown">
+                                    <i class="mdi mdi-bell"></i>
+                                    <span class="badge bg-red count_notify">0</span>
+                                </a>
+                                <ul class="dropdown-menu scale-up">
+                                    <li class="header">Thông báo</li>
+                                    <li>
+
+                                        <ul class="lstnotify menu inner-content-div">
+                                            <li>
+                                                <span>
+                                                    <i></i>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">View all</a></li>
+                                </ul>
+                            </li>*@
+
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="/templates/admin/images/noavatar.jpg" class="user-image rounded-circle" alt="">
+                            </a>
+                            <ul class="dropdown-menu scale-up">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="/templates/admin/images/noavatar.jpg" class="float-left rounded-circle" alt="">
+                                    <p>
+                                        <small class="mb-5">@User.Identity.Name</small>
+                                        <a href="#" class="btn btn-danger btn-sm btn-rounded hidden">View Profile</a>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row no-gutters">
+
+
+                                        <div class="col-12 text-left">
+                                            <a href="@Url.Action("Profile", "Manage")"><i class="ion ion-person"></i> Thông tin cá nhân</a>
+                                        </div>
+                                        <div class="col-12 text-left">
+                                            <a href="@Url.Action("ChangePass", "Manage")"><i class="fa fa-unlock-alt"></i> Đổi mật khẩu</a>
+                                        </div>
+                                        <div class="col-12 text-left">
+                                            @using (Html.BeginForm("LogOff", "Account", null, FormMethod.Post, new { id = "logoutForm", @class = "" }))
+                                            {@Html.AntiForgeryToken()
+                                            <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-power-off"></i>Thoát</a>
+                                        }
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+
+                    <li class="nav-devider"></li>
+                    @*<li class="active">
+            <a href="/">
+                <i class="fa fa-dashboard"></i> <span>Trang chính</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-right pull-right"></i>
+                </span>
+            </a>
+        </li>*@
+
+                    @if (User.IsInRole(FSite.Models.Enum.EnumUserRole.Admin.ToString()) || User.IsInRole(FSite.Models.Enum.EnumUserRole.Operator.ToString()))
+                    {
+
+
+                        @*<li class="treeview">
+                <a href="@Url.Action("Index","Blogs")">
+                    <i class="fa fa-newspaper-o"></i>
+                    <span>Tin tức</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li id="mBlogs"><a href="@Url.Action("Index","Blogs")">Tin tức</a></li>
+                    <li id="mBlogCategories"><a href="@Url.Action("Index","BlogCategories")">Danh mục tin</a></li>
+                </ul>
+            </li>*@
+                        <li class="treeview ">
+                            <a href="@Url.Action("Index","Contents")">
+                                <i class="fa fa-user-plus"></i> <span>Liên hệ</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-right pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="nav-item" id="mContents"><a class="nav-link" href="@Url.Action("Index","Contents",new  { area = "Admin" })">Tất Cả</a></li>
+                                <li class="nav-item" id="mContents_Status_0"><a class="nav-link" href="@Url.Action("Index","Contents",new  { area = "Admin", Status=0})">Chờ xử lý</a></li>
+                                <li class="nav-item" id="mContents_Status_1"><a class="nav-link" href="@Url.Action("Index","Contents",new  { area = "Admin", Status=1})">Kết thúc</a></li>
+                                
+                            </ul>
+                        </li>
+
+                        <li class="treeview">
+                            <a href="@Url.Action("Index","Blogs")">
+                                <i class="fa fa-newspaper-o"></i>
+                                <span>Tin tức</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-right pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li id="mBlogs"><a href="@Url.Action("Index","Blogs")">Tin tức</a></li>
+                                <li id="mBlogCategories"><a href="@Url.Action("Index","BlogCategories")">Danh mục tin</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="@Url.Action("Index","Products")">
+                                <i class="fa fa-user-plus"></i> <span>Sản phẩm</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-right pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li id="mProducts"><a href="@Url.Action("Index","Products")">Sản phẩm</a></li>
+                                <li id="mProductCategories"><a href="@Url.Action("Index","ProductCategories")">Danh mục</a></li>
+                                <li id="mProductBrands"><a href="@Url.Action("Index","ProductBrands")">Thương hiệu</a></li>
+                            </ul>
+                        </li>
+                       
+                        <li class="treeview">
+                            <a href="@Url.Action("Index","Services")">
+                                <i class="fa fa-user-plus"></i> <span>Dịch vụ</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-right pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li id="mServices"><a href="@Url.Action("Index","Services")">Thêm dịch vụ</a></li>
+                                <li id="mServiceCategories"><a href="@Url.Action("Index","ServiceCategories")">Nhóm dịch vụ</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="@Url.Action("Index","Faqs")">
+                                <i class="fa fa-user-plus"></i> <span>Hỏi đáp</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-right pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li id="mFaqs"><a href="@Url.Action("Index","Faqs")">Thêm Hỏi đáp</a></li>
+                                <li id="mFaqCategories"><a href="@Url.Action("Index","FaqCategories")">Nhóm Hỏi đáp</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-tags"></i>
+                                <span>Quản lý chung</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-right pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li id="mStatic"><a href="@Url.Action("Index","Static")">Cấu hình</a></li>
+                                <li id="mMenus"><a href="@Url.Action("Index","Menus")">Thanh điều hướng</a></li>
+                                <li id="mPostCategories"><a href="@Url.Action("Index","PostCategories")">Nhóm trang</a></li>
+                                <li id="mPosts"><a href="@Url.Action("Index","Posts")">Danh sách trang</a></li>
+                                <li id="mSliders"><a href="@Url.Action("Index","Sliders")">Slider</a></li>
+                                @*@if (User.IsInRole(FSite.Models.Enum.EnumUserRole.Admin.ToString()))
+                    {
+                        <li id="mUsers"><a href="@Url.Action("Index","Users")">Tài khoản</a></li>
+                    }*@
+                            </ul>
+                        </li>
+                    }
+                    @*@Html.Action("PartialNavigation", "Admin", new { roleid = int.Parse(menuid) })*@
+                </ul>
+            </section>
+        </aside>
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+    </div>
+    <footer class="main-footer">
+        <div class="pull-right d-none d-sm-inline-block">
+            <ul class="nav nav-primary nav-dotted nav-dot-separated justify-content-center justify-content-md-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)">Questions?</a>
+                </li>
+            </ul>
+        </div>
+        &copy; 2019 by <a href="mailto:tponguyen86@gmail.com">TPO Group</a>.
+    </footer>
+
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+    <script src="~/templates/admin/custom/js/jquery-3.3.1.min.js"></script>
+    <script>
+        //$.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- popper -->
+    <!-- Bootstrap 4.0-->
+    <script src="~/templates/admin/assets/vendor_components/popper/dist/popper.min.js"></script>
+    <script src="~/templates/admin/custom/js/bootstrap.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    <!-- Slimscroll -->
+    <script src="~/templates/admin/assets/vendor_components/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- Alfa_admin App -->
+    <script src="~/templates/admin/js/template.js"></script>
+    <script src="~/Scripts/alertify.min.js"></script>
+    <script src="~/Scripts/alertifycus.js"></script>
+    <script src="/Scripts/select2.js"></script>
+    <script src="/Scripts/i18n/vi.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/Scripts/moment.min.js"></script>
+    <script src="/Scripts/daterangepicker.js"></script>
+    <script src="~/Scripts/Site.js?v=2"></script>
+    <script>
+     
+        var count = 0;//biến toàn cục
+        $(document).ready(function () {
+            // countnotify();
+            //trick for checkbox
+            $('[type="checkbox"]').each(function () {
+                var lb = $(this).parent().find('label');
+                $(lb).insertAfter($(this))
+            })
+        });
+        function getNotify() {
+            $.get('/api/booking/getnotify', {}, function (data) {
+                var dt = data.data;
+                var str = "";
+                var stt = 0;
+                $.each(dt, function (i, o) {
+                    str += "<li class='notify_item'>";
+                    str += "<span style='font-size:12px'>";
+                    str += "<i class='fa fa-user-circle text-aqua'></i> " + o.Note + " &nbsp; <i class='fa fa-snowflake-o'></i>";
+                    str += "</span>";
+                    str += "</li>";
+                    stt += 1;
+                });
+                //var h = parseInt(stt) * 60;
+                $('.lstnotify').html(str);
+                $('.lstnotify').removeAttr('style');
+                $('.slimScrollBar').remove();
+                $('.slimScrollRail').remove();
+            });
+        }
+
+        function countnotify() {
+            $.get("/api/booking/countnotify", {}, function (data) {
+                count = data.count;
+                $('.count_notify').text(data.count);
+            });
+        }
+
+        function cvalid() {
+            var err = "";
+            var pwdold = $('#pwdold').val();
+            var pwdnew = $('#pwdnew').val();
+            var pwdnewconfirm = $('#pwdnewconfirm').val();
+            //pwdold
+            if (pwdold === '' || pwdold === null) {
+                $('#pwdold').addClass('input-require');
+                $('.crequire.pwdold').text('(bặt buộc nhập)');
+                err += "vui lòng nhập mật khẩu cũ, ";
+            } else {
+                $('#pwdold').removeClass('input-require');
+                $('.crequire.pwdold').text('(*)');
+            }
+            //pwdnew
+            if (pwdnew === '' || pwdnew === null) {
+                $('#pwdnew').addClass('input-require');
+                $('.crequire.pwdnew').text('(bặt buộc nhập)');
+                err += "vui lòng nhập mật khẩu mới, ";
+            } else {
+                $('#pwdnew').removeClass('input-require');
+                $('.crequire.pwdnew').text('(*)');
+            }
+            //pwdnewconfirm
+            if (pwdnewconfirm === '' || pwdnewconfirm === null) {
+                $('#pwdnewconfirm').addClass('input-require');
+                $('.crequire.pwdnewconfirm').text('(bặt buộc nhập)');
+                err += "vui lòng nhập lại mật khẩu mới, ";
+            } else {
+                $('#pwdnewconfirm').removeClass('input-require');
+                $('.crequire.pwdnewconfirm').text('(*)');
+            }
+            //return err
+            return err;
+        }
+
+        function modalChangepass() {
+            $.get("/modal/modalChangepass.html", function (respond) {
+                alertify.confirm()
+                    .setting({
+                        'label': 'YES',
+                        'message': respond,
+                        'onok': function () { },
+                        'startMaximized': false
+                    }).setHeader('Đổi mật khẩu').set({ 'startMaximized': false }).show();
+            }).then(function () {
+                $('.ajs-footer').remove();
+            });
+        }
+
+        function changePass() {
+            var error = cvalid();
+            if (error === '') {
+                $.post('/api/user/changepass', {
+                    formVars: {
+                        pwdold: $('#pwdold').val(),
+                        pwdnew: $('#pwdnew').val(),
+                        pwdnewconfirm: $('#pwdnewconfirm').val()
+                    }
+                }, function (resp) {
+                    alert(resp.msg);
+                    if (resp.isok) {
+                        alertify.confirm().destroy();
+                    }
+                });
+            }
+        }
+
+
+
+        //Loading khi click menu
+        function loading() {
+            $('#waitingLoad').modal('show');
+            setTimeout(function () {
+                $('#waitingLoad').modal('hide');
+            }, 10000);
+        }
+
+        function opennav(menuid) {
+            $('.treeview-menu').attr('style', 'display:none');
+            $('.ul_' + menuid).attr('style', 'display:block');
+        }
+
+        var nav_title = $('.nav-title').html();
+        $('.page-title').html(nav_title);
+
+        $('.custom-file-input').on('change', function () {
+            //let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
+            // $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
+            let fileName = $(this).val().split('\\').pop();
+            if (!fileName) {
+                fileName = '@FSite.Resources.Resource.btnUpload';
+            }
+            $(this).siblings('.custom-file-label').addClass("selected").html(fileName);
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

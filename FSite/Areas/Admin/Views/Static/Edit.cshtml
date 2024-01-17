@@ -1,0 +1,312 @@
+﻿@using FSite.Models
+@model StaticViewModel
+@using FSite.Resources;
+@{
+    ViewBag.Title = R_Admin.TitleEdit;
+    string desc = "Cấu hình";
+    ViewBag.Desc = desc;
+    var syntax = this.ViewContext.RouteData.Values["controller"].ToString();
+    var action = this.ViewContext.RouteData.Values["action"].ToString();
+    // string syntax = "Blogs";
+    var br = new FSite.Areas.Admin.Models.BreadcrumbViewModels() { Title = desc };
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.Breadcrumb_Home, Link = "/" });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = desc, Link = Url.Action("Index") });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.TitleEdit });
+    var meta = (StaticFrontEndMetaData)ViewData["meta"];
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="content-header">
+    @Html.Partial("_AdminBreadcrumb", br)
+</section>
+<section class="content" ng-app="myApp" ng-controller="newsCtrl">
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="row">
+                @using (Ajax.BeginForm(action, syntax,
+                                                                     new AjaxOptions
+                                                                     {
+                                                                         HttpMethod = "POST",
+                                                                         UpdateTargetId = "boxfrm",//insert when load modal on script
+                                                                             OnSuccess = "SubmitOnSuccess",
+                                                                         OnFailure = "SubmitOnFailure",
+                                                                         OnBegin = "SubmitOnBegin"
+                                                                     },
+                                                                     new { @class = "form-horizontal form-manage", @id = "frm" }))
+                {
+                    <div id="boxfrm">
+                    @*@Html.Partial("Components/_Field", Model)*@
+                    @Html.Partial($"Components/{Model.Location}")
+                        <div class="panel-footer">
+                            <div class="form-group row">
+                                <div class="col-md-offset-2 col-md-10">
+                                    @Html.ActionLink(R_Admin.Link_Back, "Index", null, new { @class = "btn btn-default" })
+                                    <input type="submit" value="@R_Admin.Edit" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+@Html.Partial("_NaviActive")
+@Html.Partial("_Script_Submit", new ViewDataDictionary { { "ListUrl", Url.Action("Index") } })
+@Html.Partial("_GoogleMapApi")
+@{
+    var point = new FSite.Areas.Admin.Models.MapPointModel();
+    //if (Model != null)
+    //{
+    //    point.Location = Model.Location;
+    //    point.Lat = Model.Lat;
+    //    point.Lng = Model.Lng;
+    //}
+}
+@Html.Partial("_Map_Control", point)
+<script>
+
+        //js for map update
+        var _current_location_list;//a click
+        $('body').on('click', '.js-map-location-edit', function () {
+            _current_location_list=$(this);//get curent to update when selected
+            var _tr= $(_current_location_list).parents("tr");
+            alertify.genericDialog($('#BoxMap')[0]);
+           setValue('#autocomplete', $(_tr).find('.js-map-location').val());
+           setValue('#pLat',  $(_tr).find('.js-map-lat').val());
+           setValue('#pLng',  $(_tr).find('.js-map-lng').val());
+
+            return false;
+        })
+        $('body').on('click', '.js-map-location-update', function () {
+            var _tr= $(_current_location_list).parents("tr");
+            setValue($(_tr).find('.js-map-location'), document.getElementById('autocomplete').value);
+            setValue($(_tr).find('.js-map-lat'), document.getElementById('pLat').value);
+            setValue( $(_tr).find('.js-map-lng'), document.getElementById('pLng').value);
+            alertify.closeAll();
+        })
+
+
+ $('body').on('click', '.js-select-path', function () {
+        var url = $(this).attr('href');
+        alertify.alert().set({
+            'startMaximized': true, 'message': "<iframe src='" + url + "' width='100%' height='100%'></iframe>"
+        ,basic:true,
+        padding:false
+        }).show();
+        return false;
+ })
+ var _current_path_list;//a click
+ $('body').on('click', '.js-select-path-list', function () {
+     _current_path_list=$(this);//get curent to update when selected
+     var url = $(this).attr('href');
+     alertify.alert().set({
+         'startMaximized': true, 'message': "<iframe src='" + url + "' width='100%' height='100%'></iframe>"
+     ,basic:true,
+         padding:false
+     }).show();
+     return false;
+ })
+        //path list
+ function path_list(path){
+
+     var _row=$(_current_path_list).parents('tr');
+     $(_current_path_list).find('img').attr('src', path);
+     $(_row).find('.js-file-path,.js-file-name').val(path)
+     alertify.closeAll();
+ }
+ function files_list(path){
+
+     path_list(path);
+ }
+ function locations_list(path){
+
+     path_list(path);
+ } 
+ function policies_list(path){
+
+     path_list(path);
+ }
+ function banks_list(path){
+
+     path_list(path);
+ }
+    //when ImageUrl change
+ function meta_Header_Logo(path)
+    {
+     $('#meta_Header_Logo_display').attr('src', path);
+        alertify.closeAll();
+ }
+ function meta_Seo_SiteLogo(path)
+ {
+     $('#meta_Seo_SiteLogo_display').attr('src', path);
+     alertify.closeAll();
+ }
+ function meta_Header_Logo1(path) {
+     $('#meta_Header_Logo1_display').attr('src', path);
+            alertify.closeAll();
+ }function meta_Agent_Avatar(path) {
+     $('#meta_Agent_Avatar_display').attr('src', path);
+     alertify.closeAll();
+ }function meta_Map_Path(path) {
+     $('#meta_Map_Path_display').attr('src', path);
+     alertify.closeAll();
+ }
+</script>
+
+@*galley*@
+<script src="~/Scripts/angular.min.js"></script>
+<script>
+
+        (function (window, document, $, angular) {
+            'use strict';
+
+            var myApp = angular.module('myApp', []);
+            myApp.controller('newsCtrl',function ($scope, $http) {
+
+            $scope.files = @Html.Raw(Json.Encode(meta.files!=null?meta.files.ToArray():null));
+                if (!$scope.files) {
+                    $scope.files=[];
+                }
+                $scope.fileNew = function (fileDetail)
+                {
+
+                    $scope.files.push({
+                        'Id': "",
+                        'Title': "",
+                        'Code': "",
+                        'Desc': "",
+                        'FileName': "",
+                        'Url': "",
+                        'Path': "/images/mini-no_image.jpg",
+                        'Index': "",
+                        'IsActive': true
+                    });
+                };
+
+                $scope.fileRemove = function () {
+                    var newDataList = [];
+                    $scope.selectedAll = false;
+                    angular.forEach($scope.files, function (selected) {
+                        if (!selected.selected) {
+                            newDataList.push(selected);
+                        }
+                    });
+                    $scope.files = newDataList;
+                };
+
+                $scope.checkAll = function () {
+                    if (!$scope.selectedAll) {
+                        $scope.selectedAll = true;
+                    } else {
+                        $scope.selectedAll = false;
+                    }
+                    angular.forEach($scope.files, function (fileDetail) {
+                        console.log(fileDetail);
+                        fileDetail.selected = $scope.selectedAll;
+                    });
+                };
+
+
+                //---------------info5 tab locations
+                $scope.locations = @Html.Raw(Json.Encode(meta.locations != null?meta.locations.ToArray():null));
+                if (!$scope.locations) {
+                    $scope.locations=[];
+                }
+                $scope.locationNew = function (locationDetail)
+                {
+
+                    $scope.locations.push({
+                        'Zoom': "14",
+                        'Title': "",
+                        'Desc': "",
+                        'Address': "",
+                        'Embed': "",
+                        'Icon': "/images/mini-no_image.jpg",
+                        'Index': "",
+                        'Lat': "",
+                        'Lng': "",
+                        'IsActive': true
+                    });
+                 //   console.log("locationNew",$scope.locations)
+                };
+
+                $scope.locationRemove = function () {
+                    var _dataList = [];
+                    //$scope.selectedAll = false;
+                    angular.forEach($scope.locations, function (selected) {
+                        if (!selected.selected) {
+                            _dataList.push(selected);
+                        }
+                    });
+                    $scope.locations = _dataList;
+                };
+
+                //---------------info6 tab banks
+                $scope.banks = @Html.Raw(Json.Encode(meta.Loan.banks != null?meta.Loan.banks.ToArray():null));
+                if (!$scope.banks) {
+                    $scope.banks=[];
+                }
+                $scope.bankNew = function (bankDetail)
+                {
+
+                    $scope.banks.push({
+                        'Title': "Mặc định",
+                        'Code': "MD",
+                        'CreditScore': "7.6",
+                        'Desc': "",
+                        'Url': "",
+                        'Path': "/images/mini-no_image.jpg",
+                        'Index': "",
+                        'IsActive': true
+                    });
+                    //   console.log("bankNew",$scope.banks)
+                };
+
+                $scope.bankRemove = function () {
+                    var _dataList = [];
+                    //$scope.selectedAll = false;
+                    angular.forEach($scope.banks, function (selected) {
+                        if (!selected.selected) {
+                            _dataList.push(selected);
+                        }
+                    });
+                    $scope.banks = _dataList;
+                };
+                //---------------info7 tab policies
+                $scope.policies = @Html.Raw(Json.Encode(meta.policies != null?meta.policies.ToArray():null));
+                if (!$scope.policies) {
+                    $scope.policies=[];
+                }
+                $scope.policyNew = function (policyDetail)
+                {
+
+                    $scope.policies.push({
+                        'Title': "",
+                        'Desc': "",
+                        'Embed': "",
+                        'Icon': "/images/mini-no_image.jpg",
+                        'Index': "1",
+                        'IsActive': true
+                    });
+                    //   console.log("locationNew",$scope.policies)
+                };
+
+                $scope.policyRemove = function () {
+                    var _dataList = [];
+                    //$scope.selectedAll = false;
+                    angular.forEach($scope.policies, function (selected) {
+                        if (!selected.selected) {
+                            _dataList.push(selected);
+                        }
+                    });
+                    $scope.policies = _dataList;
+                };
+
+            })
+
+        })(window, document, jQuery, angular);
+</script>
+}

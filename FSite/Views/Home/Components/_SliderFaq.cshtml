@@ -1,0 +1,73 @@
+﻿@model IEnumerable<FSite.Models.Data.SliderItem>
+@if (Model.Count() != 0)
+{
+    <div class="fullsize-container">
+        <div class="fullsize-slider">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li data-transition="fade" data-slotamount="1" data-thumb="/Uploads/thumbs/FaqCategories/@item.Title" data-delay="7500" data-saveperformance="off" data-title="">
+                        <!-- MAIN IMAGE -->
+                        <img src="/Uploads/images/FaqCategories/@item.Title" data-bgfit="cover" data-bgrepeat="no-repeat" alt="" />
+                        <!-- LAYERS -->
+                        @*<div class="tp-caption theme-caption rs-parallaxlevel-4 transform " data-x="20" data-y="center" data-speed="700" data-voffset="-75" data-start="600" data-easing="Power3.easeInOut">
+                                Be seen.
+                                <br>Be cared for.
+                                <br>Be on your way.
+                            </div>
+                            <div class="tp-caption sfl rs-parallaxlevel-4" data-x="20" data-y="center" data-voffset="15" data-speed="1000" data-start="2000" data-easing="">
+                                <a href="#service" class="btn-round tp-simpleresponsive button blue">SCROLL DOWN</a>
+                            </div>*@
+                    </li>
+                }
+
+                @*<li data-transition="fade" data-slotamount="1" data-thumb="http://placehold.it/200x200" data-delay="7500" data-saveperformance="off" data-title="Our Workplace">
+                        <!-- MAIN IMAGE -->
+                        <img src="~/Uploads/generals/ri_31.png" data-bgfit="cover" data-bgrepeat="no-repeat" alt="" />
+                        <!-- LAYERS -->
+                        <div class="tp-caption theme-caption rs-parallaxlevel-4 transform " data-x="20" data-y="center" data-speed="700" data-voffset="-75" data-start="600" data-easing="Power3.easeInOut">
+                            Be seen.
+                            <br>Be cared for.
+                            <br>Be on your way.
+                        </div>
+                        <div class="tp-caption sfl rs-parallaxlevel-4" data-x="20" data-y="center" data-voffset="15" data-speed="1000" data-start="2000" data-easing="">
+                            <a href="#service" class="btn-round tp-simpleresponsive button blue">SCROLL DOWN</a>
+                        </div>
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1500" data-thumb="http://placehold.it/200x200" data-delay="7000" data-saveperformance="off" data-title="Slide">
+                        <!-- MAIN IMAGE -->
+
+                        <img src="~/Uploads/generals/ri_32.png" alt="fullslide6" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" />
+
+                        <!-- LAYERS -->
+                        <div class="caption theme-caption rs-parallaxlevel-4 transform " data-x="20" data-y="center" data-speed="700" data-voffset="-95" data-start="600" data-easing="Power3.easeInOut">
+                            Be seen.
+                            <br>Be cared for.
+                            <br>Be on your way.
+                        </div>
+                        <div class="caption mediumlarge_light_dark rs-parallaxlevel-4" data-x="20" data-y="center" data-speed="800" data-voffset="-20" data-start="1500" data-easing="Power3.easeInOut">CREATIVITY</div>
+                        <div class="caption sfl rs-parallaxlevel-4" data-x="20" data-y="center" data-voffset="27" data-speed="1000" data-start="2000" data-easing="">
+                            <a href="#service" class="btn-round tp-simpleresponsive button blue">SCROLL DOWN</a>
+                        </div>
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-transition="fade" data-slotamount="1" data-masterspeed="1500" data-thumb="http://placehold.it/200x200" data-delay="7000" data-saveperformance="off" data-title="Slide">
+                        <!-- MAIN IMAGE -->
+
+                        <img src="~/Uploads/generals/ri_33.png" alt="fullslide6" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" />
+
+                        <!-- LAYERS -->
+                        <div class="caption theme-caption rs-parallaxlevel-4 transform " data-x="20" data-y="center" data-speed="700" data-voffset="-95" data-start="600" data-easing="Power3.easeInOut">
+                            Be seen.
+                            <br>Be cared for.
+                            <br>Be on your way.
+                        </div>
+                        <div class="caption mediumlarge_light_dark rs-parallaxlevel-4" data-x="20" data-y="center" data-speed="800" data-voffset="-20" data-start="1500" data-easing="Power3.easeInOut">CREATIVITY</div>
+                        <div class="caption sfl rs-parallaxlevel-4" data-x="20" data-y="center" data-voffset="27" data-speed="1000" data-start="2000" data-easing="">
+                            <a href="#service" class="btn-round tp-simpleresponsive button blue">SCROLL DOWN</a>
+                        </div>
+                    </li>*@
+            </ul>
+        </div>
+    </div>}

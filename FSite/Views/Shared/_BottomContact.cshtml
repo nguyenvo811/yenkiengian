@@ -1,0 +1,16 @@
+﻿<div class="contact-group">
+    @*<div class="icon active1"><span></span><span></span><span></span></div>*@
+    <div class="icon active1">
+        <img src="~/images/phone.png" />
+    </div>
+    <div class="button-action-group active1">
+        @*<a href="tel:@System.Configuration.ConfigurationManager.AppSettings.Get("ContactPhoneManager")"><i class="fa fa-phone"></i><strong>Thuê xe:</strong> @System.Configuration.ConfigurationManager.AppSettings.Get("ContactPhoneManager")</a>*@
+        <a class="js-contact-modal" href="tel:@System.Configuration.ConfigurationManager.AppSettings.Get("ContactPhone")" title="@string.Format(FSite.Resources.Resource.QuickCall,System.Configuration.ConfigurationManager.AppSettings.Get("ContactPhone"))">
+            <i class="fa fa-calendar"></i><strong>Đặt lịch khám</strong>
+        </a>
+        <a href="tel:@System.Configuration.ConfigurationManager.AppSettings.Get("ContactPhone")" title="@string.Format(FSite.Resources.Resource.QuickCall,System.Configuration.ConfigurationManager.AppSettings.Get("ContactPhone"))">
+            <i class="fa fa-phone"></i><strong>Hotline:</strong> @System.Configuration.ConfigurationManager.AppSettings.Get("ContactPhone")
+        </a>
+    </div>
+
+</div>

@@ -1,0 +1,54 @@
+﻿@model FSite.Models.Data.Product
+@using FSite.Resources;
+@{
+    ViewBag.Title = R_Admin.TitleEdit;
+    string desc = "Sản phẩm";
+    ViewBag.Desc = desc;
+    var syntax = this.ViewContext.RouteData.Values["controller"].ToString();
+    var action = this.ViewContext.RouteData.Values["action"].ToString();
+    var br = new FSite.Areas.Admin.Models.BreadcrumbViewModels() { Title = desc };
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.Breadcrumb_Home, Link = "/" });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = desc, Link = Url.Action("Index") });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.TitleEdit });
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Page -->
+
+<section class="content-header">
+    @Html.Partial("_AdminBreadcrumb", br)
+</section>
+<section class="content">
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="row">
+                @using (Ajax.BeginForm(action, syntax,
+                                                                     new AjaxOptions
+                                                                     {
+                                                                         HttpMethod = "POST",
+                                                                         UpdateTargetId = "boxfrm",//insert when load modal on script
+                                                                         OnSuccess = "SubmitOnSuccess",
+                                                                         OnFailure = "SubmitOnFailure",
+                                                                         OnBegin = "SubmitOnBegin"
+                                                                     },
+                                                                     new { @class = "form-horizontal form-manage", @id = "frm" }))
+                {
+                    <div id="boxfrm">@Html.Partial("_Field", Model)</div>
+                    <div class="panel-footer">
+                        <div class="form-group row">
+                            <div class="col-md-offset-2 col-md-10">
+                                @Html.ActionLink(R_Admin.Link_Back, "Index", null, new { @class = "btn btn-default" })
+                                <input type="submit" value="@R_Admin.Edit" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Page -->
+@section Scripts {
+    @Html.Partial("_Upload_Script", new ViewDataDictionary { { "syntax", syntax } })
+    @Html.Partial("_NaviActive")
+    @Html.Partial("_Script_Submit", new ViewDataDictionary { { "ListUrl", Url.Action("Index") } })
+}

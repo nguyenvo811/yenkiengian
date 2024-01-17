@@ -1,0 +1,48 @@
+﻿@model FSite.Areas.Admin.Models.FileViewModel
+@{
+    var imgs = Model.Items.ToArray();
+}
+
+@if (imgs.Count()!=0)
+{
+    <div class="form-horizontal form-element item-gallery">
+        <div class="box-body row">
+            <input name="files_list" id="files_list" class="hidden" />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Số thứ tự</th>
+                        <th>Hình ảnh</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < imgs.Count(); i++)
+                    {
+                        <tr data-iid="@imgs[i].Id" data-ajax-delete="@Model.DeleteUrl" data-ajax-active="@Model.ActiveUrl">
+                            <td><a href="#remove" class="btn btn-warning js-img-remove">Xóa</a></td>
+                            <td>@(i + 1)</td>
+                            <td>
+                         
+                                <div class="thumbnail box-main-img">
+                                    <input name="_Path@(imgs[i].Id)" value="@imgs[i]._Path" class="real-path hidden"/>
+                                    <a title="Hình đại diện" href="/public/cropper/MediaCropper?field_id=files_list" class="btn js-select-cropper" type="button">
+                                        <img src="@imgs[i]._Path?v=@DateTime.Now.ToLongTimeString()" style="width:100px" onerror="this.src = '/Content/img/no_image.png';" class="img-rounded img-bordered img-bordered-primary files_list" />
+                                        <p class="caption"> Sửa ảnh</p>
+                                    </a>
+                                </div>
+
+                            </td>
+                            <td>
+                                <input class="tickbox-single-line" id="imgActive@(i)" name="imgActives" type="checkbox" @(imgs[i].IsActive == true ? "checked" : "") value="true">
+                                <label class="control-label" for="imgActive@(i)">Kích hoạt</label>
+                                <input name="imgActive@(i)" type="hidden" value="false">
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

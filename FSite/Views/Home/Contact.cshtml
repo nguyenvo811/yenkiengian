@@ -1,0 +1,103 @@
+﻿@model FSite.Models.ContactViewModels
+@{
+    ViewBag.Title = "Liên hệ";
+    ViewBag.BodyClass = "insTemplate page.contact";
+    ViewBag.MenuKey = "Static-10";
+    ViewBag.Desc = "Về chúng tôi";
+    FSite.Models.StaticFrontEndMetaData meta = FSite.Helpers.StaticHelpers.GetMeta(Server.MapPath("~/App_Data/Sys/1.Static.xml"));
+}
+<script>
+window.shop = {
+	template: "page.contact",
+	moneyFomat: '{{amount}}₫'
+}
+</script>
+<section id="insContactPage">
+    <div class="insBreadcrumb ">
+        <div class="container">
+            <div class="breadcrumb-wrap">
+                <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+                    <li><a href="/" target="_self">@FSite.Resources.Resource.Breadcrumb_Home</a></li>
+                    <li class="active"><span>Liên hệ</span></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="wrapperContactPage">
+            <div class="headingPage">
+                <h1 class="title">@ViewBag.Title</h1>
+            </div>
+            @Html.Raw(meta.Contact)
+            @*<div class="row">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="ggMap">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3919.124049264035!2d106.6585903!3d10.80181!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529309b4f2dbd%3A0x1f7b3ba34d630248!2zMjQgVGjEg25nIExvbmcsIFBoxrDhu51uZyA0LCBUw6JuIELDrG5oLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1543898514856" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 pull-right infoText">
+                    <div class="wrap">
+                        <h3 class="name-head">	Cổ và độc</h3>
+                        
+                        <ul class="info-address">
+                            <li>
+                                <i class="glyphicon glyphicon-map-marker">&nbsp;</i>
+                                <span>172/21 Đặng Văn Ngữ, Phường 14, Phú Nhuận , Hồ Chí Minh</span>
+                            </li>
+                            <li>
+                                <i class="glyphicon glyphicon-envelope">&nbsp;</i>
+                                <span>wanmap2407@gmail.com</span>
+                            </li>
+
+                            <li>
+                                <i class="glyphicon glyphicon-phone-alt">&nbsp;</i>
+                                <span>0988477479</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>*@
+            
+
+            <div class="contactList">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 infoForm">
+                        <div class="wrapForm">
+                            <h3 class="name-head">
+                                <span>Bạn cần hỗ trợ? Hãy gửi thông tin cho chúng tôi</span>
+                            </h3>
+                            <div id="boxGeneral_Contact_Page">
+                                @Html.Action("CustomerRequest", new { Content = "", TypeRequest = FSite.Models.Enum.EnumTypeRequest.General_Contact_Page })
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*<link href="/templates/front/css/pages.css" rel="stylesheet" />*@
+
+@section scripts{
+    <!-- Google Maps js -->
+    @*@Html.Partial("_GoogleMapApi")*@
+    
+
+    <script>
+        function fn_General_Contact_PageOnEnd() {
+            var _frmId = "#_FormGeneral_Contact_Page";
+            if ($(_frmId + ' .field-validation-error').text() !== "") {
+                //   alertify.error("FSite.Resources.Resource.ContactSendFail");
+            } else {
+                alertify.notify("Gửi th&#244;ng tin th&#224;nh c&#244;ng,  Xin ch&#226;n th&#224;nh cảm ơn qu&#253; kh&#225;ch", 'success', 2, function () { });
+                $(_frmId + ' .row input').val("");
+                $(_frmId + ' textarea').val($(_frmId + ' #DefaultContent').val());
+            }
+            //  data_Init(_frmId+' .cdate');
+        }
+        function fn_General_Contact_PageOnSuccess(res) { fn_General_Contact_PageOnEnd(); }
+        function fn_General_Contact_PageOnFailure() { fn_General_Contact_PageOnEnd(); }
+    </script>
+}

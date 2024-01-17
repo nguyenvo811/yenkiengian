@@ -1,0 +1,639 @@
+﻿h1, h2, h3, h4, h5, h6 {
+    margin-top:0px; margin-bottom:0px;
+}
+.dropdown-login{
+    min-height:34px;
+padding: 5px 8px;
+    width: 100%;
+    background-color: #f9fafb;
+  
+    border: 1px solid #d9d9d9;
+    color:#67757c;
+}
+.dropdown-login:focus{
+    outline:none;
+}
+.dropdown-item-login{
+   line-height:20px;
+   padding-top:10px !important;
+}
+.font-bold{
+    font-weight:bold;
+}
+.login-page .form-control-feedback{
+    width:38px;
+}
+.login-box{
+        width: 500px;
+    margin: 2% auto;
+}
+.register-box-custom{
+    width:500px;
+}
+.login-logo, .register-logo{
+    margin-bottom:10px;
+}
+.form-group {
+    margin-bottom: 17px;
+}
+.form-control{
+    height:unset;
+}
+.form-element .form-control{
+    min-height:34px;
+}
+.cl-red{
+  color:#ef5350;
+}
+.cl-blue{
+    color:#398bf7;
+}
+.cl-green{
+    color:#009428;
+}
+.cl-purple{
+    color:#926dde;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+.modal-lock{
+    margin-top:80px;
+}
+.close{
+    cursor:pointer;
+}
+.modal-title-default{
+    font-size:15px;
+    color:#fff;
+}
+.modal-header {
+    padding: 10px 15px;
+}
+.bg-modal{
+    background-color:#0070ba;
+}
+.bg-modal .close{
+    color:#fff;
+    font-weight:400;
+    font-size:13px;
+    opacity:1;
+}
+.center-align{
+    text-align:center !important;
+}
+.left-align{
+    text-align:left;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    padding: 2px 9px;
+}
+.table-bordered, .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{
+    border: 1px solid #e8e8e8;
+}
+.btn-modal{
+    min-width:80px;
+}
+.modal-footer{
+    text-align:right;
+    padding: 10px 15px 15px;
+}
+.bg-danger-2{
+    background:#ef5350;
+    color:#fff;
+}
+.bg-info-2{
+    background:#398bf7;
+    color:#fff;
+}
+.dropdown-confirm{
+    margin-top:15px;
+}
+.item-modal{
+    display:flex;
+    width:100%;
+    margin-bottom:10px;
+}
+.item-modal .col-3{
+    padding-top:5px;
+    padding-right:0px;
+}
+.item-modal .form-group, .item-modal .dropdown-confirm{
+    margin:0px;
+}
+.dd-item > button{
+    background:#398bf7;
+    color:#fff;
+    margin:0;
+    width:30px; height:30px;
+}
+.dd-handle{
+    padding: 5px 10px;
+    cursor:unset;
+    color:#455a64;
+    font-weight:500;
+}
+.item-title{
+    padding-left:40px;
+}
+.modal-footer .input-group{
+    margin-bottom:10px;
+}
+.modal-footer > :not(:first-child){
+    margin-left:0px;
+}
+.modal-lock .modal-footer{
+    padding-left:20px;
+    padding-right:20px;
+}
+.btn-sp{
+    cursor:pointer !important;
+    padding-left:5px !important;
+}
+.no-padding .col-5{
+    
+    padding-right:0px;
+}
+.btn-update-branch{
+    margin-top:10px;
+
+}
+.table.bold th{
+    font-weight:bold;
+} 
+.item-manager .col-4{
+    padding-top:5px;
+    padding-right:0px;
+}
+.table>tbody>tr>th{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #0070bae8;
+    color: #fff;
+}
+.dataTables_length select{
+    padding: 3px 8px;
+}
+.dataTables_filter input:focus{
+    outline:none;
+   
+}
+.dataTables_filter input {
+    padding: 3px 8px;
+}
+.modal-full-size{
+    /*justify-content:unset;*/
+}
+
+ .modal-full {
+        max-width: 100%;
+        width: 100%;margin:0 !important;
+    }
+ .modal-full .close{
+     font-size:18px;
+     
+ }
+ .modal-form{
+     border: 1px solid #e9ecef;
+     
+ }
+ .modal-form .header{
+     background: #0070ba;
+    color: #fff;
+    padding: 5px 10px;
+    
+ }
+ .modal-form .header h4{
+     font-size: 16px;
+ }
+ .form-item{
+     margin-left:0px;
+     margin-right:0px;
+     margin-bottom:15px;
+ }
+ .form-item .text-title{
+     margin-bottom:0px;
+     padding-top:5px;
+ }
+ .body-form{
+     padding:20px 10px;
+ }
+ .none-right{
+     padding-right:0px;
+ }
+ .alertify .ajs-header{
+     background:#0070ba;
+     color:#fff;
+     font-size: 16px;
+    padding: 10px 15px;
+    height:50px;
+ }
+ .alertify .ajs-commands {
+    position: absolute;
+    right: 4px;
+    margin: -18px 15px 0 0;
+    z-index: 2;
+}
+ .alertify .ajs-commands button.ajs-close{
+     background-image:url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ3Ljk3MSA0Ny45NzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ3Ljk3MSA0Ny45NzE7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cGF0aCBkPSJNMjguMjI4LDIzLjk4Nkw0Ny4wOTIsNS4xMjJjMS4xNzItMS4xNzEsMS4xNzItMy4wNzEsMC00LjI0MmMtMS4xNzItMS4xNzItMy4wNy0xLjE3Mi00LjI0MiwwTDIzLjk4NiwxOS43NDRMNS4xMjEsMC44OCAgIGMtMS4xNzItMS4xNzItMy4wNy0xLjE3Mi00LjI0MiwwYy0xLjE3MiwxLjE3MS0xLjE3MiwzLjA3MSwwLDQuMjQybDE4Ljg2NSwxOC44NjRMMC44NzksNDIuODVjLTEuMTcyLDEuMTcxLTEuMTcyLDMuMDcxLDAsNC4yNDIgICBDMS40NjUsNDcuNjc3LDIuMjMzLDQ3Ljk3LDMsNDcuOTdzMS41MzUtMC4yOTMsMi4xMjEtMC44NzlsMTguODY1LTE4Ljg2NEw0Mi44NSw0Ny4wOTFjMC41ODYsMC41ODYsMS4zNTQsMC44NzksMi4xMjEsMC44NzkgICBzMS41MzUtMC4yOTMsMi4xMjEtMC44NzljMS4xNzItMS4xNzEsMS4xNzItMy4wNzEsMC00LjI0MkwyOC4yMjgsMjMuOTg2eiIgZmlsbD0iI0ZGRkZGRiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
+ background-size:12px;
+     }
+ .alertify .ajs-body .ajs-content{
+     padding-left:0px;
+     padding-right:0px;
+     padding-top:10px;
+ }
+ .alertify .ajs-footer .ajs-buttons.ajs-primary {
+    text-align: right;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
+
+.modal-confirm-user .form-group{
+    margin-bottom:0px;
+
+}
+.copy-permiss-footer{
+    width:100%;
+    padding-top:20px;
+
+}
+.copy-permiss-footer .input-group{
+    margin-bottom:10px;
+}
+.md-footer {
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.alertify.ajs-maximized .ajs-body .ajs-content{
+    overflow:unset;
+}
+.alertify.ajs-maximized .ajs-modal{
+    background:#fff;
+}
+.ajs-maximized .form-item{
+    min-height:47px;
+}
+.ajs-maximized .box-body{
+    padding-left:0px; padding-right:0px;
+}
+.center-button{
+    text-align:center;
+    padding-top:15px;
+}
+.search-table{
+        width: 300px;
+    float: right;
+}
+.search-table input{
+    font-size:13px; 
+    padding:5px 10px;
+}
+.search-table .input-group-btn .btn{
+    font-size:13px;
+}
+.page-group{
+    display:block;
+}
+.page-group ul{
+    text-align:center;
+    display:block;
+}
+.page-group ul li{
+    display:inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+   padding: 2px 9px;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: #67757c;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+.page-group ul li.active{
+    color: #fff;
+    border: 1px solid #398bf7;
+    background-color: #398bf7;
+}
+.page-group ul li.active a{
+    color:#fff;
+}
+.page-group ul li:hover{
+    color: #fff;
+    border: 1px solid #398bf7;
+    background-color: #398bf7;
+}
+.page-group ul li:hover a{
+    color:#fff;
+}
+.box-permission{
+    padding:0;
+    overflow-x:scroll;
+    padding-top: 20px;
+}
+.btn-new{
+    margin-left:20px;
+}
+.item-group{
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.btn-add-admin{
+    min-width:114px;
+}
+.support-team .form-control{
+    font-size:12px;
+}
+.padding{
+    padding:15px;
+}
+.full-width{
+    width:100%;
+}
+.alertify .ajs-dialog{
+    max-width:600px;
+}
+.none-padding{ padding:0px;}
+/*.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    white-space: nowrap;
+}*/
+.support-team .margin-bottom{
+    margin-bottom:10px;
+}
+.group-button{
+    text-align:right;
+}
+.btn-plus{
+    font-size:16px;
+    margin-left:5px !important;
+    cursor:pointer;
+}
+.cursor-item{
+    cursor:pointer;
+}
+.table thead:first-child th{border-top:1px solid #e8e8e8}
+.alertify.ajs-resizable .ajs-body .ajs-content{
+  overflow:unset;
+}
+
+@media only screen and (max-width:1600px) {
+    .table-responsive {
+       /*display: block;*/
+        width: 100%;
+        overflow-x: auto;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    .table-custom{
+        display:table;
+    }
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    white-space: nowrap;
+    }
+    .custom-mobile{
+        background:#fff;
+        margin-left:-24px;
+        margin-right:-24px;
+    }
+ }
+
+@media only screen and (max-width:1140px){
+    .mobile-margin{
+        margin-bottom:15px;
+    }
+
+    .custom-display .form-item{
+        width:50%;
+       float:left;
+       padding-left:15px;
+    }
+    .custom-display .form-item:first-child{
+       padding-right:15px;
+       padding-left:0px;
+    }
+}
+@media only screen and (min-width:500px){
+    .table-small{
+        display:table;
+    }
+}
+
+@media only screen and (max-width:991px){
+    .table-custom{
+        display:block;
+    }
+    
+}
+
+@media only screen and (max-width:966px) {}
+
+
+/* Landscape Asus Nexus 7 (v2), LG G Pad 8.3  */
+
+@media only screen and (max-width:960px) {}
+
+
+/* Landscape Apple iPhone X */
+
+@media only screen and (max-width:812px) {}
+
+
+/* Landscape Amazon Kindle Fire HD 7 - Portrait Samsung Galaxy Tab 3 10", Samsung Galaxy Tab 2 10", Samsung Galaxy Tab (8.9"), Samsung Nexus 10, Amazon Kindle Fire HD 8.9  */
+
+@media only screen and (max-width:800px) {}
+
+
+/* Landscape Microsoft Lumia 1520, Portrait Apple iPad Pro 9.7, Apple iPad 3, 4, Air, Air2, Apple iPad 1, 2, Apple iPad mini 2, 3, 4, Apple iPad mini, HTC Nexus 9, Microsoft Surface  */
+
+@media only screen and (max-width:768px) {
+
+    .login-box, .register-box{
+        width: 360px;
+    margin: 7% auto;
+    }
+    .modal-full .form-control, .modal-full .text-title{
+        font-size:12px;
+    }
+    .search-table{
+     width:100%;
+     padding-top:10px;
+    }
+        .search-table input{
+        font-size:12px; 
+        padding:5px 10px;
+    }
+    .search-table .input-group-btn .btn{
+        font-size:12px;
+    }
+    .btn-new{
+        float:right;
+    }
+}
+
+
+/* Landscape Samsung Galaxy Note 8,Samsung Galaxy S8+, Samsung Galaxy S8  */
+
+@media only screen and (max-width:740px) {}
+
+
+/* Landscape Apple iPhone 6+, 6s+, 7+, 8+  */
+
+@media only screen and (max-width:736px) {}
+
+
+/* Portrait Microsoft Surface Pro 2, Microsoft Surface Pro  */
+
+@media only screen and (max-width:720px) {}
+
+
+/* LandscapeBlackberry Leap  */
+
+@media only screen and (max-width:695px) {}
+
+
+/* Landscape Motorola Nexus 6  */
+
+@media only screen and (max-width:690px) {}
+
+
+/* Landscape Apple iPhone 7, iPhone 8, Apple iPhone 6, 6s	*/
+
+@media only screen and (max-width:667px) {}
+
+
+/* Landscape LG G5, LG G4, LG G3, Samsung Galaxy S7, S7 edge, Samsung Galaxy S6, Samsung Galaxy S5, Samsung Galaxy S4, Samsung Galaxy S4 mini, Samsung Galaxy S3, Samsung Galaxy Note 4, Samsung Galaxy Note 3 ,Samsung Galaxy Note 2 ,Samsung Galaxy Note , LG Nexus 5, LG Nexus 4 , HTC One, HTC Evo 3D, Sony Xperia Z, Sony Xperia S,    Sony Xperia P, Xiaomi Mi 4 , Xiaomi Mi 3, Lenovo K900, Blackberry Z30, Blackberry Z10, ZTE Grand S,  */
+
+@media only screen and (max-width:640px) {}
+
+
+/* Portrait Asus Nexus 7 (v1)	*/
+
+@media only screen and (max-width:604px) {}
+
+
+/* Landscape Samsung Galaxy Nexus,  Portrait Samsung Galaxy Tab 2 (7"), Asus Nexus 7 (v2), LG G Pad 8.3, Amazon Kindle Fire, Blackberry Playbook	*/
+
+@media only screen and (max-width:600px) {}
+
+
+/* Landscape Sony Xperia Z3		*/
+
+@media only screen and (max-width:598px) {}
+
+@media only screen and (max-width:575px) {
+     .custom-display .form-item{
+        width:100%;
+       float:left;
+       padding-left:0px;
+    }
+    .custom-display .form-item:first-child{
+       padding-right:0px;
+       padding-left:0px;
+    }
+    .content{
+        padding:0;
+    }
+}
+/* Landscape Apple iPhone 5, Apple iPod Touch, 		*/
+
+@media only screen and (max-width:568px) {
+    .group-button{
+    justify-content: space-between;
+    display: flex;
+}
+}
+
+
+/* Landscape Samsung Galaxy S3 mini , Samsung Galaxy S2 , Samsung Galaxy S		*/
+
+@media only screen and (max-width:533px) {}
+
+
+/* Blackberry Passport	*/
+
+@media only screen and (max-width:504px) {}
+
+
+/* Landscape Apple iPhone 4, Apple iPhone 3, Microsoft Lumia 1020, Microsoft Lumia 925, Microsoft Lumia 920, Microsoft Lumia 900, Microsoft Lumia 830, Microsoft Lumia 620, HTC 8X, Blackberry Torch 9800, ZTE Open (Firefox OS)		*/
+
+@media only screen and (max-width:480px) {}
+
+
+/* Portrait Microsoft Lumia 1520	*/
+
+@media only screen and (max-width:432px) {}
+
+
+/* Portrait Apple iPhone 6+, 6s+, 7+, 8+, 	*/
+
+@media only screen and (max-width:414px) {
+     
+}
+
+
+/* Portrait Motorola Nexus 6	*/
+
+@media only screen and (max-width:412px) {}
+
+
+/* Portrait Samsung Galaxy Note	*/
+
+@media only screen and (max-width:400px) {}
+
+
+/* Portrait LG Optimus G, LG Nexus 4, Blackberry Z10	*/
+
+@media only screen and (max-width:384px) {
+ .login-box, .register-box{
+        width: 333px;
+    margin: 7% auto;
+    }
+}
+
+
+/* Portrait Apple iPhone X, Apple iPhone 7, iPhone 8, Apple iPhone 6, 6s, 	*/
+
+@media only screen and (max-width:375px) {}
+
+
+/* Portrait LG G5, LG G4, LG G3, Samsung Galaxy S8+, Samsung Galaxy S8, Samsung Galaxy S7, S7 edge, Samsung Galaxy S6, Samsung Galaxy S5, Samsung Galaxy S4, Samsung Galaxy S4 mini, Samsung Galaxy S3, Samsung Galaxy Nexus, Samsung Galaxy Note 8, Samsung Galaxy Note 4, Samsung Galaxy Note 3, Samsung Galaxy Note 2, LG Nexus 5, HTC One, ..... 	*/
+
+@media only screen and (max-width:360px) {}
+
+
+/* Portrait Apple iPhone 5, 4 , 3 	*/
+
+@media only screen and (max-width:320px) {
+    .login-box, .register-box{
+        width: 300px;
+    margin: 7% auto;
+    }
+}
+@-moz-document url-prefix(){
+   .form-element .form-control, .form-element .form-control:focus{
+       border: 1px solid #d9d9d9;
+       background-size: 0 0px, 100% 0px;
+       padding:0px 10px;
+   }
+   .login-page .form-control-feedback {
+    width: 38px;
+}
+   .dropdown-login{
+       border: 1px solid #d9d9d9;
+       padding: 0px 10px;
+   }
+}
+body:first-of-type .form-element .form-control {
+    border: 1px solid #d9d9d9;
+    background-size: 0 0px, 100% 0px;
+    padding: 0px 10px;
+}
+.dropdown-login{
+    min-height:31px;
+}

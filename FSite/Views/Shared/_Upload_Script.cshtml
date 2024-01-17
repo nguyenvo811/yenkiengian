@@ -1,0 +1,148 @@
+﻿@Scripts.Render("~/bundles/dropzone")
+@Styles.Render("~/Content/dropzone")
+@{
+  string syntax= ViewBag.syntax;//ControlerName : Blogs, Products
+}
+<style>
+    #uploadfile {
+        display: none
+    }
+    .alertify #uploadfile {
+        display: unset
+    }
+</style>
+<!-- the form to be viewed as dialog-->
+<div id="uploadfile">
+    <div id="dropzone-previews"></div>
+    <div>
+        <form action="UploadImages" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data"></form>
+    </div>
+</div>
+<script>
+
+    //alertify.genericDialog ($('#uploadfile')[0]);
+    var fileList = [];
+    if (document.getElementById("Files").value) {
+        fileList = JSON.parse(document.getElementById("Files").value);
+        //dropLoad(fileList,"my-awesome-dropzone")
+    }
+
+    function drop_add(f) {
+        fileList.push(f),
+            setFiles()
+    }
+    function drop_remove(arr, k) {
+        var _ts = arr.filter(function (ele) { return ele.reName != k; });
+        fileList = _ts;
+        setFiles();
+    }
+    function setFiles() {
+        document.getElementById("Files").value = JSON.stringify(fileList);
+    }
+    function dropLoad(arr, iddrop) {
+        var imgDropzone = Dropzone.forElement("#" + iddrop);
+        for (var i = 0; i < arr.length; i++) {
+            var mockFile = {
+                name: arr[i].reName,
+                size: arr[i].size,
+                accepted: true,
+                kind: 'image'
+            };
+            imgDropzone.emit("addedfile", mockFile);
+            imgDropzone.files.push(mockFile);
+            imgDropzone.createThumbnailFromUrl(mockFile, arr[i].smallPicPath, function () {
+                imgDropzone.emit("complete", mockFile);
+            });
+        }
+    }
+
+    Dropzone.options.myAwesomeDropzone = {
+        paramName: "file",// The name that will be used to transfer the file
+        maxFilesize: 500,// mb
+        // url: 'UploadImages',
+        url: '/api/File/Upload?syntax=@syntax',
+        //previewsContainer: "#dropzone-previews",
+        uploadMultiple: true,
+        parallelUploads: 5,
+        //dictRemoveFile: "Xóa",
+        acceptedFiles: ".jpg,.jpeg,.png,.gif",
+        dictDefaultMessage:
+            '<span class="bigger-150 bolder"><i class=" fa fa-caret-right red"></i> Kéo tập tin</span> \
+                    <span class="smaller-80 grey">(hoặc nhấn vào đây)</span> <br /> \
+                    <i class="upload-icon fa fa-cloud-upload blue fa-3x"></i>',
+        dictResponseError: 'Lỗi trong qua trình đăng tập tin!',
+        init: function () {
+            dropLoad(fileList, "my-awesome-dropzone");
+            var cd;
+            //this.on("sending", function (file, xhr, formData) {
+            //    formData["size"] = '360,847';
+            //    formData["syntax"] = "blogs";
+            //    formData["type"] = "image";
+            //  });
+            this.on("success", function (file, response) {
+                $('.dz-progress').hide();
+                $('.dz-size').hide();
+                $('.dz-error-mark').hide();
+                var name = file.name;
+                var _file = response.files.filter(function (o) { return o.fileName === name; });
+                cd = _file[0];
+                var fileuploded = file.previewElement.querySelector("[data-dz-name]");
+                fileuploded.innerHTML = cd.reName;
+                var btndelete = file.previewElement.querySelector(".delete");
+                btndelete.setAttribute("data-reName", cd.reName);
+                btndelete.setAttribute("data-fileName", cd.fileName);
+                btndelete.setAttribute("data-smallPicPath", cd.smallPicPath);
+                btndelete.setAttribute("data-largePicPath", cd.largePicPath);
+                drop_add(cd);
+                //  console.log("fileList",fileList)
+            });
+            //this.on("removedfile", function(file) {
+            //        //   alert("Delete this file?");
+            //           console.log("cd", cd);
+            //           var _file = response.pis.pis.filter(function (o) { return o.fileName === name; });
+            //           var cd = _file[0];
+            //             var name = "reName=" + cd.reName + "&largePicPath=" + cd.largePicPath + "&smallPicPath=" + cd.smallPicPath;
+            //     $.ajax({
+            //                      type: 'POST',
+            //                   url: 'DeleteImage',
+            //                   data: name,
+            //                   dataType: 'json'
+            //     });
+            //});
+            this.on("addedfile", function (file) {
+                var removeButton = Dropzone.createElement("<a class='delete' href=\"#\">Xóa</a>");
+                var _this = this;
+                removeButton.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    _this.removeFile(file);
+                    //console.log(file);
+                    //console.log("cd",cd);
+                    var btndelete = file.previewElement.querySelector(".delete");
+                    if (btndelete.hasAttribute("data-reName")) {
+                        var iddelete = btndelete.getAttribute("data-reName");
+                        drop_remove(fileList, iddelete);
+                        var name = "reName=" + iddelete + "&smallPicPath=" + btndelete.getAttribute("data-smallPicPath") + "&largePicPath=" + btndelete.getAttribute("data-largePicPath");
+                        $.ajax({
+                            type: 'POST',
+                            url: '/api/File/Delete?syntax=@syntax',
+                            data: name,
+                            dataType: 'json'
+                        });
+                    }
+                    //  var name = "reName=" + cd.reName + "&largePicPath=" + cd.largePicPath + "&smallPicPath=" + cd.smallPicPath;
+
+                });
+                file.previewElement.appendChild(removeButton);
+            });
+        }
+        //   , addRemoveLinks: true,
+        //removedfile: function(file) {
+        //  var name = file.name;
+        //    console.log('success: name' + name);
+
+        //  //var _ref;
+        //   //return (_ref = file.previewElement) != null _ref.parentNode.removeChild(file.previewElement) : void 0;
+        //}
+    };
+</script>

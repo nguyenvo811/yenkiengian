@@ -1,0 +1,32 @@
+﻿@model IEnumerable<FSite.Models.Data.Faq>
+@{
+    var ar = Model.ToArray();
+}
+<div id="lastest-accordion" class="panel-group acc-v1">
+    @for (int i = 0; i < ar.Count(); i++)
+    {
+        var item = ar[i];
+        var link = $"/{item.Key}/hoi-dap";
+
+        <div class="panel">
+            <div class="panel-heading red-border">
+                <h4 class="panel-title">
+                    <a href="#la-collapse-@item.Id" data-parent="#lastest-accordion" data-toggle="collapse" class="accordion-toggle">
+                        @item.Title
+                        <span class="glyphicon glyphicon-plus"></span>
+                        @*@if (item.CategoryId.HasValue)
+                            {
+                                <span class="post-category pull-right"><a href="/dich-vu/@item.Category.Key">@item.Category.Title</a></span>
+                            }*@
+                    </a>
+                </h4>
+            </div>
+            <div class="panel-collapse collapse @(i==0?"in":"")" id="la-collapse-@item.Id">
+                <div class="panel-body">
+                    @item.Description
+                    <a class="bt-viewmore js-page-modal" href="@($"/{item.Key}/hoi-dap")" data-title="@item.Title" data-type="iframe1">@FSite.Resources.Resource.ViewMore</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

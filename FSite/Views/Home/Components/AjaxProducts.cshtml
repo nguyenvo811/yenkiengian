@@ -1,0 +1,153 @@
+﻿@model FSite.Models.ProductSearchViewModel
+@using FSite.Models.Enum
+@using MvcPaging
+@{
+    var data = (IEnumerable<FSite.Models.Data.Product>)ViewBag.Data;
+}
+
+<div class="row">
+    <div class="panel filter-panel">
+        <div class="panel-body">
+            <h4 class="filter-title pull-left">@Html.Raw(string.Format(FSite.Resources.Resource.ProductFound, $"<span id='item-count' class='badge badge-secondary'>{@ViewBag.TotalItemCount}</span>"))</h4>
+            @*<form action="#" class="form-inline pull-right">
+                    <div class="form-group">
+                        <label>Sắp xếp:</label>
+                        <select class="form-control js-sort">
+                            <option value="lastest">Ngày đăng mới nhất</option>
+                            <option value="popupar">Tin Xem nhiều nhất</option>
+                            <option value="highest">Giá cao nhất</option>
+                            <option value="lowest">Giá thấp nhất</option>
+                        </select>
+                    </div>
+                </form>*@
+            <div class="pull-right">
+                @if (!string.IsNullOrEmpty(Model.Key))
+            {
+                    <a href="#Key" data-target="#Key" class="js-filter-remove"><i class="fa fa-remove"></i>@Model.Key</a>
+                }
+                @if (ViewData["category"] != null)
+                {
+                    var Ca = (FSite.Models.Data.ProductCategory)ViewData["category"];
+                    <a href="#Category" data-target="#Category" class="js-filter-remove"><i class="fa fa-remove"></i>@Ca.Title</a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <ul class="product-list filter products row notStyle">
+
+        @foreach (var item in data)
+        {
+            var link = $"/{item.Key}/san-pham";
+            <li class="item_product col-md-3 col-sm-3 col-xs-6">
+
+                <div class="pdLoopItem animated zoomIn">
+                    <div class="itemLoop clearfix">
+                        <div class="pdLoopImg imageHovers">
+                            @if (item.DiscountShow)
+                            {
+                                <div class="pdLabel sale">
+                                    <span>@FSite.Resources.Resource.Sale_Title</span>
+                                </div>
+                            }
+                            <a href="@link" title="@item.Title">
+                                <img data-reg="false" class="imgLoopItem" src="@item.ImageUrl" alt="@item.Title">
+                            </a>
+                            @if (item.DiscountShow)
+                            {
+                                <div class="countdown-wrapper">
+                                    <div class="defaultCountdown clearfix" data-time-end="@item.DiscountToDate"></div>
+                                    @*<div class="defaultCountdown clearfix" data-time-end="@(DateTime.Now.AddMonths(12))"></div>*@
+                                </div>
+                            }
+                            <div class="pdLoopAction">
+                                <div class="listAction">
+                                    <a href="javascript:void(0)" class="btnLoop btnCompare" data-compare="@link" data-id="@item.Id" title="So sánh"><i class="fa fa-compress" aria-hidden="true"></i> <span class="btn-check"></span></a>
+                                    <a href="javascript:void(0)" class="btnLoop btn-quickview-1" data-handle="@link" data-toggle="tooltip" data-placement="left" title="Xem nhanh"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                                    <a href="@link" class="btnLoop view_product" data-toggle="tooltip" data-placement="left" title="Xem chi tiết"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0)" class="add-cart btnLoop Addcart" data-variantid="@item.Id" title="Thêm vào giỏ"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pdLoopDetail text-center clearfix">
+                            <h3 class="pdLoopName"><a class="productName" href="@link" title="@item.Title">@item.Title</a></h3>
+                            <p class="pdPrice">@Html.DisplayFor(m => item.Price, "DecimalCurrency")
+                                @if (item.DiscountShow)
+                                {
+                                    <del class="pdComparePrice">@Html.DisplayFor(f => item.PriceDiscount, "DecimalCurrency")</del>
+                                }
+                            </p>
+                          
+                            
+                            <div class="pdLoopListView">
+                                <ul>
+                                    @if (!string.IsNullOrEmpty(item.Sku))
+                                    {
+                                        <li><strong>Mã sản phẩm: </strong><span>@item.Sku</span></li>
+                                    }
+                                    @if (item.Category != null)
+                                    {
+                                        <li><strong>Danh mục: </strong><a href="/san-pham/@item.Category.Key"><span>@item.Category.Title</span></a></li>
+                                    }
+                                    @if (item.Brand != null)
+                                    {
+                                        <li><strong>Thương hiệu: </strong><span>@item.Brand.Title</span></li>
+                                    }
+                                    <li>
+                                        <strong>Mô tả ngắn: </strong>
+                                        <span class="short-des">@item.Description</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+    <!--/.Product-item-->
+    <!-- end:post -->
+        }
+    </ul>
+  
+
+ 
+
+</div>
+
+<div class="content_sortPagiBar pagi">
+    <div id="pagination" class="clearfix">
+        @if (ViewBag.TotalItemCount > 8)
+            {
+            <div class="pager text-center">
+                @Html.Raw(Ajax.Pager(
+       new Options
+       {
+           PageSize = ViewBag.PageSize,
+
+           TotalItemCount = ViewBag.TotalItemCount,
+           CurrentPage = ViewBag.Page,
+           ItemTexts = new ItemTexts() { Next = ">", Previous = "<", Page = "", First = "<<", Last = ">>" },
+           // ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-left", Next = "icon-chevron-right", Last = "icon-forward" },
+           TooltipTitles = new TooltipTitles() { Next = "Trang kế tiếp", Previous = "Trang lùi về", Page = "Tới trang {0}.", First = "Tới trang đầu", Last = "Tới cuối trang" },
+           Size = Size.small,
+           Alignment = Alignment.centered,
+           IsShowControls = true,
+           IsShowFirstLast = true,
+           CssClass = "js-box-pagination metro-theme"
+
+
+       },
+
+       new AjaxOptions
+       {
+           UpdateTargetId = "content",
+           LoadingElementId = "progress",
+           OnSuccess = "pagingOnSuccess"
+       }, new { controller = "Home", action = "AjaxProducts", SortColumn = ViewBag.SortColumn, SortColumnDir = ViewBag.SortColumnDir, Category = Model.Category, Key = Model.Key, PriceFrom= Model.PriceFrom, PriceTo=Model.PriceTo }))
+            </div>
+        }
+    </div>
+</div>
+
+   

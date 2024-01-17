@@ -1,0 +1,406 @@
+﻿@model FSite.Models.ProductSearchViewModel
+@{
+    /**/
+
+    ViewBag.BodyClass = "insTemplate collection";
+    ViewBag.MenuKey = "Static-3";
+    ViewBag.Title = "Sản phẩm";
+    ViewBag.Desc = "Sản phẩm nổi bật trong ngày";
+
+    ViewBag.MenuKey = $"{FSite.Models.Enum.EnumTypeMenu.Static}-7";//
+    FSite.Models.Data.ProductCategory category = new FSite.Models.Data.ProductCategory();
+
+    if (ViewData["category"]!=null)
+    {
+
+        category = (FSite.Models.Data.ProductCategory)ViewData["category"];
+        ViewBag.Title = category.Title;
+        ViewBag.MenuKey = string.Format("{0}-{1}", FSite.Models.Enum.EnumTypeMenu.ProductCate, category.Id);//
+    }
+    //else
+    //{
+    //    category.CategoryName = Resources.Resource.NProductDesc;
+    //}
+
+    var Categories = ViewBag.Categories as IEnumerable<SelectListItem>;
+    var Brands = ViewBag.Brands as IEnumerable<SelectListItem>;
+
+}
+
+@section headers{
+    @if (!string.IsNullOrEmpty(category.Title))
+    {
+        @*<meta name="description" content="@(!string.IsNullOrEmpty(category.MetaDescription)?category.MetaDescription: category.Description)" />
+            <meta name="keywords" content="@category.MetaKeyword" />
+            <meta property="og:title" content="@(!string.IsNullOrEmpty(category.MetaTitle)?category.MetaTitle:category.CategoryName)" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="@string.Format("{0}/san-pham/{1}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"),category.Key)" />
+            <meta property="og:image" content="@string.Format("{0}/Uploads/newscategory/{1}", System.Configuration.ConfigurationManager.AppSettings.Get("BaseUrl"), category)" />*@
+
+    }
+    else
+    {
+        <meta name="description" content="@string.Format("Sản phẩm {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteDesc"))" />
+        <meta name="keywords" content="@string.Format("Sản phẩm {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteKeyWord"))" />
+        <meta property="og:title" content="@string.Format("Sản phẩm {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteTitle"))" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="@string.Format("{0}/san-pham",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"))" />
+        <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
+        <meta property="og:description" content="@string.Format("Sản phẩm {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteDesc"))" />
+    }
+}
+<script>
+window.shop = {
+    template: "collection",
+	moneyFomat: '{{amount}}₫'
+}
+</script>
+
+
+
+@*<section id="childNavCatelog">
+    <div class="ctMain">
+        <div class="menu-list-child category-list">
+            <div class="menu-item head">
+                <a href="javascript:void(0)">Xem tất cả Điện thoại</a>
+            </div>
+
+            <div class="menu-item">
+                <a href="/collections/samsung" title="Samsung">Samsung <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="menu-item">
+                <a href="/collections/nokia" title="Nokia">Nokia <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="menu-item">
+                <a href="/collections/blackberry" title="Blackberry">Blackberry <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="menu-item">
+                <a href="/collections/huawei" title="Huawei">Huawei <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="menu-item">
+                <a href="/collections/smartphone-hang-khac" title="Hãng Khác">Hãng Khác <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="menu-item">
+                <a href="/collections/xiaomi" title="Xiaomi">Xiaomi <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div>
+
+        </div>
+    </div>
+</section>*@
+
+<section id="insCollectionPage">
+    <div class="insBreadcrumb ">
+        <div class="container">
+            <div class="breadcrumb-wrap">
+                <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+                    <li><a href="/" target="_self">@FSite.Resources.Resource.Breadcrumb_Home</a></li>
+                    @if (!string.IsNullOrEmpty(category.Key))
+                    {
+                        <li><a href="/san-pham">Sản phẩm</a></li>
+                        <li class="active"><span>@category.Title</span></li>
+                    }
+                    else
+                    {
+                        <li class="active"><span>Sản phẩm</span></li>
+                    }
+
+
+                </ol>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Widget_Slider", new { type = FSite.Models.Enum.EnumSliderModules.Product, Id = category.Id })
+ 
+    <div class="collection_head relative">
+        <div class="container">
+            <div class="boxSortHead relative">
+                <div class="page_head">
+                    @if (!string.IsNullOrEmpty(category.Key))
+                    {
+                        <h1 class="collection_title ins_title">@category.Title</h1>
+                    }
+                    else
+                    {
+                        <h1 class="collection_title ins_title">Sản phẩm</h1>
+                    }
+                  
+                    @*<span class="countPd">(4 sản phẩm)</span>*@
+                </div>
+                <div class="toggleFilter">
+                    <a href="javascript:void(0)"><i class="fa fa-filter" aria-hidden="true"></i></a>
+                </div>
+                <ul class="display-product-option notStyle">
+                    <li class="view-as-grid selected" data-view="view_grid">
+                        <span>grid</span>
+                    </li>
+                    <li class="view-as-list" data-view="view_list">
+                        <span>list</span>
+                    </li>
+                </ul>
+                <div class="browse-tags">
+                    <span>Sắp xếp theo:</span>
+                    <span class="custom-dropdown custom-dropdown--white">
+                        <select class="sort-by custom-dropdown__select custom-dropdown__select--white">
+                            <option value="manual">Sản phẩm nổi bật</option>
+                            <option value="price-ascending">Giá: Tăng dần</option>
+                            <option value="price-descending">Giá: Giảm dần</option>
+                            <option value="title-ascending">Tên: A-Z</option>
+                            <option value="title-descending">Tên: Z-A</option>
+                            <option value="created-ascending">Cũ nhất</option>
+                            <option value="created-descending">Mới nhất</option>
+                            <option value="best-selling">Bán chạy nhất</option>
+                        </select>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main bg_w">
+            <div class="row">
+                <div class="center_column col-xs-12 col-sm-12 col-md-12 product-col" id="center_column">
+                    <!-- view-product-list-->
+                    <div id="view-product-list" class="view-product-list">
+                        <div id="pd_collection">
+                            <div id="content">@FSite.Resources.Resource.GetDataFromServer</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Left colunm -->
+                <div class="column col-xs-12 col-sm-4 col-md-3" id="sidebarCollection">
+                    <div class="box_sidebar bg_w">
+                        <div class="block left-module">
+                            <p class="title_block">Bộ lọc</p>
+                            <div class="block_content filter_xs">
+                                <!-- layered -->
+                                @using (Ajax.BeginForm("AjaxProducts", null, new AjaxOptions
+                                {
+                                    HttpMethod = "GET",
+                                    UpdateTargetId = "content",
+                                    LoadingElementId = "progress",
+                                    OnSuccess = "searchOnSuccess"
+                                },
+new { @class = "search-form" }))
+                                {
+                                    <div class="layered layered-filter-price">
+                                        <!-- ./filter brand -->
+                                        <div class="layered_subtitle">Tên sản phẩm cần tìm</div>
+                                        <div class="layered-content filter-brand">
+                                            <ul class="check-box-list notStyle">
+                                                <li>
+                                                    <input class="form-control" value="@Model.Key" id="Key" name="Key" type="text" placeholder="@FSite.Resources.Resource.InputAnyKey" />
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="layered_subtitle">Danh mục</div>
+                                        <div class="layered-content filter-brand">
+                                            <ul class="check-box-list notStyle">
+                                                <li>
+                                                    <select name="Category" id="Category" data-allow-clear="true" data-placeholder="Chọn loại" class="form-control js-select2-basic" placeholder="Chọn Danh mục">
+                                                        <option value="">Tất cả</option>
+                                                        @foreach (var item in Categories)
+                                                        {
+                                                            <option value="@item.Value" @(Model.Category==item.Value?"selected":"")>@item.Text</option>
+                                                        }
+                                                    </select>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                         
+                                        @*<div class="layered_subtitle">Thương hiệu</div>
+                                        <div class="layered-content filter-brand">
+                                            <ul class="check-box-list notStyle">
+                                                <li>
+                                                    <select name="Brand" id="Brand" data-allow-clear="true" data-placeholder="Chọn Thương hiệu" class="form-control js-select2-basic" placeholder="Chọn Thương hiệu">
+                                                        <option value="">Tất cả</option>
+                                                        @foreach (var item in Brands)
+                                                        {
+                                                            <option value="@item.Value">@item.Text</option>
+                                                        }
+                                                    </select>
+                                                </li>
+                                            </ul>
+                                        </div>*@
+                                        <!-- ./filter brand -->
+                                        <!-- filter price -->
+
+                                        <div class="layered_subtitle">Giá</div>
+                                        <div class="layered-content slider-range filter-price">
+                                            <!--<div data-label-reasult="Range:" data-min="0" data-max="500" data-unit="$" class="slider-range-price" data-value-min="50" data-value-max="350"></div>
+                                            <div class="amount-range-price">Range: $50 - $350</div> -->
+                                            <ul class="check-box-list notStyle">
+                                                <li>
+                                                    <div class="pricerange-box pricerange-box-js">
+                                                        <input class="control-filter range-from range-from-js" id="PriceFrom" name="PriceFrom" type="text" value="@Model.PriceFrom">
+                                                        <input class="control-filter range-to range-to-js" id="PriceTo" name="PriceTo" type="text" value="@Model.PriceTo">
+                                                    </div>
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                        <!-- ./filter price -->
+                                        <!-- filter color -->
+
+                                        @*<div class="layered_subtitle">Màu sắc</div>
+                                        <div class="layered-content filter-color">
+                                            <ul class="check-box-list notStyle">
+                                                 <li>
+                                                    <input type="checkbox" id="color10" name="cc" data-color="(variant:product**Đen)" />
+                                                    <label style="background-color: #000000" for="color10"><span class="button"></span></label>
+                                                </li>
+                                            </ul>
+                                        </div>*@
+
+                                        <!-- ./filter color -->
+                                      
+                                    </div>
+
+                                    
+
+                       
+                                    <button class="btn-search" id="btnsearch" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                                }
+                              
+                                <!-- ./layered -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./left colunm -->
+            </div>
+        </div>
+    </div>
+</section>
+<div class="overlayFilter"></div>
+
+@section scripts
+    {
+<script>
+Haravan.queryParams = {};
+if (location.search.length) {
+	for (var aKeyValue, i = 0, aCouples = location.search.substr(1).split('&'); i < aCouples.length; i++) {
+		aKeyValue = aCouples[i].split('=');
+		if (aKeyValue.length > 1) {
+			Haravan.queryParams[decodeURIComponent(aKeyValue[0])] = decodeURIComponent(aKeyValue[1]);
+		}
+	}
+}
+var collFilters = jQuery('.coll-filter');
+collFilters.change(function() {
+	var newTags = [];
+	var newURL = '';
+	delete Haravan.queryParams.page;
+	collFilters.each(function() {
+		if (jQuery(this).val()) {
+			newTags.push(jQuery(this).val());
+		}
+	});
+
+	newURL = '/collections/' + 'dien-thoai';
+	 if (newTags.length) {
+		 newURL += '/' + newTags.join('+');
+	 }
+	 var search = jQuery.param(Haravan.queryParams);
+	 if (search.length) {
+		 newURL += '?' + search;
+	 }
+	 location.href = newURL;
+
+		});
+		jQuery('.sort-by')
+		.val('title-ascending')
+		.bind('change', function() {
+			Haravan.queryParams.sort_by = jQuery(this).val();
+			location.search = jQuery.param(Haravan.queryParams);
+		});
+</script>
+<script>
+$(document).on('click','.display-product-option li', function(){
+	$('#pd_collection').hide();
+	$('.display-product-option li').removeClass('selected');
+	$(this).addClass('selected');
+	sessionStorage.page_view = $(this).data('view');
+	if(sessionStorage.page_view.indexOf('view_grid') != -1 ){
+		$('.filter').removeClass('view_list').addClass('view_grid');
+	}else{
+		$('.filter').removeClass('view_grid').addClass('view_list');
+	}
+	setTimeout(function(){
+		$('#pd_collection').fadeIn(300);
+	},500)
+})
+$(document).ready(function(){
+	$('.display-product-option li').removeClass('selected');
+	if(sessionStorage.page_view == 'undefined' || sessionStorage.page_view == null){
+		sessionStorage.page_view = 'view_grid';
+	}
+	if(sessionStorage.page_view == 'view_grid' ){
+		$('.filter').removeClass('view_list').addClass('view_grid');
+		$('.display-product-option li.view-as-grid').addClass('selected');
+	}else{
+		$('.filter').removeClass('view_grid').addClass('view_list');
+		$('.display-product-option li.view-as-list').addClass('selected');
+	}
+})
+$(document).on('click', '.fil_mobile a, .overlay_chir.filter', function(){
+	$('body').toggleClass('open_drawer_filter');
+})
+</script>
+    <script>
+        function searchClick() {
+            document.getElementById('btnsearch').click();
+        }
+        function searchOnSuccess(res) {
+            trickStyleforpager();
+            //   pushState(res, document.title, "/san-pham" + genUrl());
+        }
+        function pagingOnSuccess(res) {
+            trickStyleforpager();
+            //   pushState(res, document.title, "/san-pham" + genUrl());
+        }
+        //trick css for pager
+        function trickStyleforpager() {
+            //setTimeout(function () {
+            //    scrolltopview($("#content").offset().top - 100);
+            //}, 500)
+
+            //$('.js-box-pagination ul').addClass('pagination');
+            //$('.js-box-pagination li').addClass('page-item');
+            //$('.js-box-pagination a').addClass('page-link');
+            _countdown('#content');
+            //$('.js-box-pagination span').addClass('page-link');
+        }
+        function genUrl() {
+            var url = "";
+            var params = new Array();
+            if ($('#Key').val()) {
+                params.push("key=" + $('#Key').val())
+            }
+            if (params.length != 0) {
+                url = "?" + params.join('&');
+            }
+            var Category = $('#Category').val();
+            if (Category) {
+                url = "/" + Category + url;
+            }
+
+            return url;
+        }
+        searchClick();
+
+
+    </script>
+    @*@if (!string.IsNullOrEmpty(category.CategoryName))
+        {
+            <script>
+                $('.widget_categories li a[href*="@category.Key"]').parent().addClass('active');
+            </script>
+        }*@
+
+}

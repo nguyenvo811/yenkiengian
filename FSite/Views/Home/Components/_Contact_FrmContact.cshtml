@@ -1,0 +1,65 @@
+﻿@model FSite.Models.ContactModels
+@using (Ajax.BeginForm("Contact", "Home",
+new AjaxOptions
+{
+HttpMethod = "POST",
+UpdateTargetId = "boxRequestItem",//insert when load modal on script
+OnSuccess = "ContactOnSuccess",
+OnFailure = "ContactOnFailure"
+},
+new { @class = "wpcf7", @id = "contactForm" }))
+{
+    <div class="row-1">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @*<fieldset>
+            <label>
+                <span class="required">*</span> Your request:
+            </label>
+
+            <select class="wpcf7-form-control-wrap wpcf7-select" id="contact-inquiry">
+                <option value="I need an offer for contract logistics">I need an offer for contract logistics</option>
+                <option value="I need an offer for air freight">I need an offer for air freight</option>
+                <option value="I want to become your partner">I want to become your partner</option>
+                <option value="I have some other request">I have some other request</option>
+            </select>
+        </fieldset>*@
+
+        <fieldset>
+            <label>
+                <span class="required">*</span> @FSite.Resources.Resource.FCustomerName:
+            </label>
+            @Html.EditorFor(c => c.FullName, new { htmlAttributes = new { @placeholder = FSite.Resources.Resource.FCustomerName, @class = "wpcf7-text" } })
+            @Html.ValidationMessageFor(c => c.FullName, "", new { @class = "text-danger" })
+        </fieldset>
+
+        <fieldset>
+            <label>
+                Email:
+            </label>
+
+            @Html.EditorFor(c => c.Email, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(c => c.Email), @class = "wpcf7-text" } })
+            @Html.ValidationMessageFor(c => c.Email, "", new { @class = "text-danger" })
+        </fieldset>
+        <fieldset>
+            <label>
+                <span class="required">*</span> @FSite.Resources.Resource.FCustomerPhone:
+            </label>
+            @Html.EditorFor(c => c.Phone, new { htmlAttributes = new { @placeholder = Html.DisplayNameFor(c => c.Phone), @class = "wpcf7-text" } })
+            @Html.ValidationMessageFor(c => c.Phone, "", new { @class = "text-danger" })
+        </fieldset>
+        <fieldset>
+            <label>
+                <span class="required">*</span> @FSite.Resources.Resource.FCustomerContent:
+            </label>
+            @Html.TextAreaFor(c => c.Content, new {@row=8, @class = "wpcf7-textarea", @placeholder = Html.DisplayNameFor(c => c.Content), @rows = Request.Browser.IsMobileDevice?"8":"16" })
+            @Html.ValidationMessageFor(c => c.Content, "", new { @class = "text-danger" })
+        </fieldset>
+
+        <input type="submit" class="wpcf7-submit" value="@FSite.Resources.Resource.btContactSend" />
+
+    </div>
+
+
+}

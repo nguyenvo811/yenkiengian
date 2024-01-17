@@ -1,0 +1,11 @@
+﻿@model IEnumerable<FSite.Areas.Admin.Models.MenuTypeItem>
+    <table class="table">
+    <thead>
+        <tr><th>Title</th><th>Key</th></tr>
+    </thead>
+        <tbody>
+    @foreach (var item in Model)
+    {
+        <tr class="menu-type-item" data-id="@item.Id" data-title="@item.Title" data-key="@item.Key"><td>@item.Title</td><td>@item.Key</td></tr>
+    }</tbody>
+</table>

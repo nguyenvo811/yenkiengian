@@ -1,0 +1,106 @@
+﻿@model FSite.Models.Data.Menu
+@using FSite.Resources;
+@{
+    ViewBag.Title = R_Admin.CreatNew;
+    string desc = "Thanh điều hướng";
+    ViewBag.Desc = desc;
+    var syntax = this.ViewContext.RouteData.Values["controller"].ToString();
+    var action = this.ViewContext.RouteData.Values["action"].ToString();
+    //string syntax = "Blogs";
+    var br = new FSite.Areas.Admin.Models.BreadcrumbViewModels() { Title = desc };
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.Breadcrumb_Home, Link = "/" });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = desc, Link = Url.Action("Index") });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.CreatNew });
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="content-header">
+    @Html.Partial("_AdminBreadcrumb", br)
+</section>
+<section class="content">
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="row">
+                @using (Ajax.BeginForm(action, syntax,
+                                                                     new AjaxOptions
+                                                                     {
+                                                                         HttpMethod = "POST",
+                                                                         UpdateTargetId = "boxfrm",//insert when load modal on script
+                                                                             OnSuccess = "SubmitOnSuccess",
+                                                                         OnFailure = "SubmitOnFailure",
+                                                                         OnBegin = "SubmitOnBegin"
+                                                                     },
+                                                                     new { @class = "form-horizontal form-manage", @id = "frm" }))
+                {
+                    <div id="boxfrm">@Html.Partial("_Field", Model)</div>
+                    <div class="panel-footer">
+                        <div class="form-group row">
+                            <div class="col-md-offset-2 col-md-10">
+                                @Html.ActionLink(R_Admin.Link_Back, "Index", null, new { @class = "btn btn-default" })
+                                <input type="submit" value="@R_Admin.CreatNew" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<select id="oMenuType" class="hidden">
+    @foreach (string value in Enum.GetNames(typeof(FSite.Models.Enum.EnumTypeMenu)))
+    {
+        // Get the enumeration's value.
+        FSite.Models.Enum.EnumTypeMenu t =
+            (FSite.Models.Enum.EnumTypeMenu)Enum.Parse(typeof(FSite.Models.Enum.EnumTypeMenu), value);
+        var des = FSite.Helpers.EnumHelper<FSite.Models.Enum.EnumTypeMenu>.GetDescriptionValue(t);
+        // Display the values.
+        <option value="@((int)t)" data-name="@t.ToString()" data-des="@des">@value</option>
+    }
+</select>
+
+@section Scripts {
+
+    @Html.Partial("_NaviActive")
+    @Html.Partial("_Script_Submit", new ViewDataDictionary { { "ListUrl", Url.Action("Index") } })
+    @Html.Partial("_select2tree")
+    <script>
+    var $ParentId = $('#ParentId');
+    $('#ParentId').select2({
+    placeholder: 'Đây là cấp 1',
+    allowClear: true,
+    maximumInputLength: 20,
+    });
+    $('body').on('change', '#TypeKey', function () {
+    var v = $(this).val();
+    if (v !== "") {
+    $.get("@Url.Action("Typemenu")?type=" + v, function (data) {alertify.alert(data);})
+    } else {
+    $('#Title').val("");
+    $('#Key').val("");
+    $('#Link').val("#");
+    }
+    });
+
+    $('body').on('click', '.menu-type-item', function () {
+    var type = $('#TypeKey').val();
+
+    var id = $(this).data('id');
+    var title = $(this).data('title');
+    var key = $(this).data('key');
+
+    var relid = $('#oMenuType option[value="' + type + '"]').data('name') + '-' + id;
+    var rellink = $('#oMenuType option[value="' + type + '"]').data('des');
+    var link = String.format(rellink, key);
+    $('#Title').val(title);
+    $('#Key').val(relid);
+    $('#Link').val(link);
+    alertify.closeAll();
+    })
+
+    //when ImageUrl change
+    function Icon(path) {
+        $('.img-Icon').attr('src', path);
+        alertify.closeAll();
+    }
+  
+    </script>
+}

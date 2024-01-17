@@ -1,0 +1,10 @@
+﻿@{
+    string eid = ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty).Replace(".", "_");
+}
+@Html.TextArea(string.Empty, /* Name suffix */
+    ViewData.TemplateInfo.FormattedModelValue /* Initial value */
+)
+<script>
+     window.onload = configTinymce(3, '#@eid');
+    //window.onload = configTinymce(1, '#ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)');
+</script>

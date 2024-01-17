@@ -1,0 +1,33 @@
+﻿@{
+    var p = ViewBag.Post as FSite.Models.Data.Post;
+
+}
+
+
+<div id="masthead" class="bg-image" data-image-src="@p.ImageUrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li><a href="/">@FSite.Resources.Resource.Breadcrumb_Home</a></li>
+                    <li class="active">@p.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!--/container-->
+</div>
+<section id="Service" class="container space-sm">
+    <div class="Service">
+        <div class="row">
+            <div class="col-md-9 Service-main">
+                <div class="js-detail">@Html.Raw(p.Detail)</div>
+            </div>
+            <!--/.col-md-8-->
+            <aside class="col-md-3">
+                @Html.Action("SPostCategory",new { CategoryId =p.CategoryId})
+            </aside>
+        </div>
+        <!--/.row-->
+    </div>
+</section>

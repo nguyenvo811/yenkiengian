@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FSite.Models.Data.Menu>
+@if (Model.Count() != 0)
+{
+    <ol class="dd-list">
+        @foreach (var m in Model)
+        {
+        <li class="dd-item dd3-item"  data-title="@m.Title" data-id="@m.Id" >
+            <div class="dd-handle dd3-handle">@*Drag*@</div><div class="dd3-content">@m.Title
+                                                                @*<div class='btn-group row-control-setting pull-right' data-id="{0}">
+                                                                    <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                                                                        <i class='fa fa-cog' aria-hidden='true'></i> <span class='caret'></span>
+                                                                    </button>
+                                                                    <ul class='row-control-setting dropdown-menu' role='menu'>
+                                                                        <li><a class='item-edit' data-id="{1}" title='Sửa' href='/{1}' data-href='/{1}'><i class='fa fa-edit' aria-hidden='true'></i>Sửa</a></li>
+                                                                        <li class='divider'></li>
+                                                                        <li><a class='item-delete' data-id="{1}" title='Xóa' href='' data-href=''><i class='fa fa-trash' aria-hidden='true'></i>Xóa</a></li>
+                                                                    </ul>
+                                                                </div>*@
+            </div>
+            @if (m.SubMenus.Count != 0)
+            {
+                @Html.Action("ExtList", "Menus", new { ParentId = m.Id })
+            }
+
+        </li>
+        }
+    </ol>
+}
+@*<li class="dd-item" data-id="15">
+    <div class="dd-handle">Item 15</div>
+    <ol class="dd-list">
+        <li class="dd-item" data-id="16"><div class="dd-handle">Item 16</div></li>
+        <li class="dd-item" data-id="17"><div class="dd-handle">Item 17</div></li>
+        <li class="dd-item" data-id="18"><div class="dd-handle">Item 18</div></li>
+    </ol>
+</li>*@

@@ -1,0 +1,67 @@
+﻿@model FSite.Models.Data.Post
+
+@{
+    ViewBag.MenuKey = string.Format("{0}-{1}", FSite.Models.Enum.EnumTypeMenu.Post, Model.Id);//
+    var template = (FSite.Models.Enum.EnumPostTemplate?)null;
+    if (Model.Template.HasValue)
+    {
+        try
+        {
+            template = (FSite.Models.Enum.EnumPostTemplate)Enum.ToObject(typeof(FSite.Models.Enum.EnumPostTemplate), Model.Template);
+        }
+        catch { }
+    }
+    ViewBag.Title = Model.Title;
+    ViewBag.Desc = Model.Description;
+    ViewBag.BodyClass = "m-page";
+
+    if (!template.HasValue||template.Value == FSite.Models.Enum.EnumPostTemplate.None)
+    {
+        Layout = null;
+    }
+    if (template.Value == FSite.Models.Enum.EnumPostTemplate.Scroll_ContentLeft)
+    {
+        Layout = null;
+       // Layout = $"~/Views/Shared/_Layout{FSite.Models.Enum.EnumPostTemplate.Scroll_ContentLeft.ToString()}.cshtml";
+    }
+
+
+}
+@section headers{
+    <meta name="description" content="@(!string.IsNullOrEmpty(Model.MetaDescription)?Model.MetaDescription: Model.Description)" />
+    <meta name="keywords" content="@Html.Raw(Model.MetaKeyword)" />
+    <meta property="og:title" content="@(!string.IsNullOrEmpty(Model.MetaTitle)?Model.MetaTitle: Model.Title)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@string.Format("{0}/{1}.html",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"),Model.Key)" />
+    <meta property="og:image" content="@string.Format("{0}{1}", System.Configuration.ConfigurationManager.AppSettings.Get("domain"), Model.ImageUrl)" />
+<meta property="og:image:alt" content="@Model.Title" />
+    <meta property="og:description" content="@(!string.IsNullOrEmpty(Model.MetaDescription)?Model.MetaDescription: Model.Description)" />
+    @*@if (!string.IsNullOrEmpty(Model.SHeader))
+        {
+            <script type="application/ld+json">
+                @Html.Raw(Model.SHeader)
+            </script>
+        }*@
+
+
+}
+@if (template.Value == FSite.Models.Enum.EnumPostTemplate.None || !template.HasValue)
+{
+    <div class="js-detail">@Html.Raw(Model.Detail)</div>
+}
+else
+{
+    @Html.Partial("Components/_Page" + template.ToString(), new ViewDataDictionary() { { "Post", Model }, { "Groups", ViewBag.Groups } })
+}
+@section scripts{
+   
+@*<link href="/templates/front/css/pages.css" rel="stylesheet" />*@
+@*<script src="~/Scripts/fullPage/dist/fullpage.min.js"></script>
+
+<script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+        verticalCentered: false
+    });
+</script>*@
+}
+

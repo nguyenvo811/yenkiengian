@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FSite.Models.Data.Product>
+
+@foreach (var item in Model)
+{
+    var link = $"/{item.Key}/san-pham";
+    <div class="itemResults">
+        <div class="wrapItem clearfix">
+            <div class="pull-left image">
+                <a href="@link" title="@item.Title"><img src="@item.ImageUrl" alt="@item.Title"></a>
+            </div>
+            <div class="pull-left info">
+                <a href="@link" title="@item.Title">
+                  @item.Title
+                </a>
+                <p class="pdPrice">
+                   @Html.DisplayFor(p => item.Price, "DecimalCurrency")
+                    @if (item.DiscountShow)
+                    {
+                        <del class="pdComparePrice">@Html.DisplayFor(f => item.PriceDiscount, "DecimalCurrency")</del>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewBag.TotalItemCount==0)
+{
+    <p class="dataEmpty">
+        Không tìm thấy sản phẩm nào...
+    </p>
+}
+else
+{
+    <div class="resultsMore">
+        <a href="/san-pham?Key=@Request.QueryString["q"]">Xem tất cả @ViewBag.TotalItemCount sản phẩm</a>
+    </div>
+}

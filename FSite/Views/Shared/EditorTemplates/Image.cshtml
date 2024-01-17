@@ -1,0 +1,57 @@
+﻿@model string
+@{
+    string name=  ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty);
+    string syntax = ViewBag.syntax;
+    string type= ViewBag.type;
+    if (string.IsNullOrEmpty(type))
+    { type = "image"; }
+
+    string ImageUrl = "/Content/img/no_image.png";
+    if (!string.IsNullOrEmpty(Model))
+    {
+        ImageUrl = Model;
+    }
+}
+   
+<div class="thumbnail box-main-img">
+    <div class="hidden">
+        @Html.TextBox(string.Empty, ViewData.TemplateInfo.FormattedModelValue, new { @class = "real-path" })
+    </div>
+    <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=@syntax&field_id=@name" class="btn js-select-path" type="button">
+        <img id="display_@name" src="@ImageUrl" onerror="imgError(this,1)" class="img-rounded img-bordered img-bordered-primary img-main img-@name" />
+        <p class="caption"> @FSite.Resources.R_Admin.SelectDefaultFirst</p>
+    </a>
+    <a title="Hình đại diện" href="/public/cropper/MediaCropper?type=image&syntax=@syntax&field_id=@name" class="btn js-select-cropper" type="button">
+        <p class="caption">Chỉnh Sửa Hình Ảnh</p>
+    </a>
+</div>
+<script>
+   //when ImageUrl change
+   function ImageUrl(path)
+    {
+      // $('.img-ImageUrl').attr('src', path);
+       $('#display_@name').attr('src', path);
+          alertify.closeAll();
+    }
+   
+    function cropper_ImageUrl(path) {
+        $('#display_@name').attr('src', path + "?v=" + (new Date().toLocaleString()));
+        alertify.closeAll();
+    }
+
+    //path list
+  
+    @*function files_list(path) {
+
+        $('#display_@name').attr('src', path + "?v=" + (new Date().toLocaleString()));
+        alertify.closeAll();
+    }*@
+    function cropper_files_list(path) {
+        $.each($('.files_list'), function (i, o) {
+            $(o).attr('src', path + "?v=" + (new Date().toLocaleString()));
+        });
+       
+        alertify.closeAll();
+    }
+   
+</script>

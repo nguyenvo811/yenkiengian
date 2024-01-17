@@ -1,0 +1,98 @@
+﻿@model IEnumerable<FSite.Models.Data.Menu>
+@{
+    bool? isfirst =(bool)ViewBag.isfirst;
+    //  bool isMobile = Request.Browser.IsMobileDevice;
+    bool isMobile =true;
+}
+
+@*@if (!isMobile)
+{
+    <ul class="@(isfirst==true?"sf-menu nav navbar-nav navbar-left":"")">
+        @foreach (var m in Model)
+        {
+            if (m.SubMenus.Count != 0)
+            {
+                <li id="m_@m.Id">
+                    <a title="@m.Title" href="@m.Link">@m.Title</a>
+                    @Html.Action("MenuTop", "Home", new { ParentId = m.Id, isfirst = false })
+                </li>
+
+            }
+            else
+            {
+                <li id="m_@m.Id">
+                    <a title="@m.Title" href="@m.Link">@m.Title</a>
+                </li>
+            }
+
+        }
+    </ul>
+
+}
+else
+{
+    <ul class="@(isfirst==true?"nav navbar-nav navbar-left":"dropdown-menu no-border-radius no-shadow")">
+        @foreach (var m in Model)
+        {
+            if (m.SubMenus.Count != 0)
+            {
+                <li id="m_@m.Id" class="dropdown-short @m.Key dropdown">
+                    <a data-toggle="dropdown" href="@m.Link" class="dropdown-toggle">
+                        <span class="hidden-sm1 hidden-md reverse">@m.Title</span>
+                        <span class="caret"></span>
+                    </a>
+                    @Html.Action("MenuTop", "Home", new { ParentId = m.Id, isfirst = false })
+                </li>
+
+            }
+            else
+            {
+                <li id="m_@m.Id" class="@m.Key">
+                    <a title="@m.Title" href="@m.Link"><span class="hidden-sm1">@m.Title</span></a>
+                </li>
+            }
+
+        }
+    </ul>
+}*@
+
+
+<ul class="@(isfirst==true?"nav-navbar clearfix":"mainChild levlup_2")">
+    @foreach (var m in Model)
+    {
+        if (m.SubMenus.Count != 0)
+        {
+            <li id="m_@m.Id" class="li_child">
+                <a title="@m.Title" href="@m.Link">
+                @if (isfirst == true)
+                {
+                    <img src="@m.Icon" alt="@m.Title" class="navIcon" />
+                }
+                <span>@m.Title</span></a>
+                @Html.Action("MenuTop", "Home", new { ParentId = m.Id, isfirst = false })
+            </li>
+
+        }
+        else
+        {
+            <li id="m_@m.Id">
+                <a title="@m.Title" href="@m.Link">
+                @if (isfirst == true)
+                {
+                    <img src="@m.Icon" alt="@m.Title" class="navIcon" />
+                }
+              <span>@m.Title</span></a>
+            </li>
+        }
+
+    }
+</ul>
+
+
+
+
+
+
+
+
+   

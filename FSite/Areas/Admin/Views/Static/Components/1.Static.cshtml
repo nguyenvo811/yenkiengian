@@ -1,0 +1,938 @@
+﻿@using FSite.Models
+@model StaticViewModel
+@{
+    var meta = (StaticFrontEndMetaData)ViewData["meta"];
+    //meta.files = new List<StaticSliderItemMetaData>() { new StaticSliderItemMetaData() {Path="p.png" }, new StaticSliderItemMetaData() { Path = "p1.png" } };
+}
+<style>
+    /*#info3 input[type=checkbox]{
+        position: unset;
+    left: unset;
+    opacity: 1;
+    }*/
+</style>
+<!-- Page -->
+<div class="page-content" ng-app="myApp" ng-controller="newsCtrl">
+    <!-- page -->
+    <div class="row">
+
+
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="col-lg-9 col-md-9">
+                <!-- Example Tabs In The Panel -->
+                <div class="panel nav-tabs-horizontal">
+                  
+                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
+
+                        <li  role="presentation">
+                            <a data-toggle="tab" href="#infotab" class="active" aria-controls="infotab"
+                               role="tab"><i class="fa fa-tag" aria-hidden="true"></i>Căn bản</a>
+                        </li>
+                        <li role="presentation">
+                            <a data-toggle="tab" href="#info2" aria-controls="info2"
+                               role="tab"><i class="fa fa-user" aria-hidden="true"></i>Hotline</a>
+                        </li>
+                        <li role="presentation">
+                            <a data-toggle="tab" href="#info5" aria-controls="info5"
+                               role="tab"><i class="fa fa-user-circle" aria-hidden="true"></i>Thông tin liên hệ</a>
+                        </li>
+                        <li role="presentation">
+                            <a data-toggle="tab" href="#info3" aria-controls="info3"
+                               role="tab"><i class="fa fa-sliders" aria-hidden="true"></i>Slider</a>
+                        </li>
+                        <li role="presentation">
+                            <a data-toggle="tab" href="#info4" aria-controls="info4"
+                               role="tab"><i class="fa fa-globe" aria-hidden="true"></i>Seo</a>
+                        </li>
+                        @*<li role="presentation">
+                            <a data-toggle="tab" href="#info6" aria-controls="info6"
+                               role="tab"><i class="fa fa-calculator" aria-hidden="true"></i>Loan</a>
+                        </li>*@
+                        <li role="presentation">
+    <a data-toggle="tab" href="#info7" aria-controls="info7"
+       role="tab"><i class="fa fa-globe" aria-hidden="true"></i>Chính sách</a>
+</li>
+                    </ul>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="infotab" role="tabpanel">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="hidden">
+                                    @Html.LabelFor(m => m.Location) :
+                                    @Html.LabelFor(m => m.Name) :
+                                    @Html.TextBoxFor(m => m.Name)
+                                    @Html.ValidationMessageFor(m => m.Name)
+                                    @Html.TextBoxFor(m => m.Location)
+                                    @Html.ValidationMessageFor(m => m.Location)
+                                </div>
+                              
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.ApiUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.ApiUrl, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.ApiUrl, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.domain, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.domain, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.domain, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Footer_Contact, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.Footer_Contact, "Editor", new { htmlAttributes = new { @class = "form-control" } })
+                                        @*@Html.EditorFor(model => meta.Footer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.ValidationMessageFor(model => meta.Footer_Contact, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Footer, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.Footer, "Editor1", new { htmlAttributes = new { @class = "form-control", id = "meta_Footer" } })
+                                        @*@Html.EditorFor(model => meta.Footer, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.ValidationMessageFor(model => meta.Footer, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Footer_Mobile, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.Footer_Mobile, "Editor2", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.Footer_Mobile, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Contact, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.Contact, "Editor3", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.Contact, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Example Tabs In The Panel -->
+                            <div class="tab-pane" id="info2" role="tabpanel">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Hotline, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.Hotline, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.Hotline, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Header_Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.Header_Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.Header_Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.facebook, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.facebook, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.facebook, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.youtube, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.youtube, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.youtube, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.zalo, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.zalo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.zalo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.linkedin, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.linkedin, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.linkedin, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.twitter, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => meta.twitter, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.twitter, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="info3" role="tabpanel">
+
+                                <div class="form-group">
+                                    <input name="files_list" id="files_list" class="hidden" />
+                                    <table class="table">
+                                        <thead>
+                                            <tr><th>#@*<input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />*@</th><th>Tệp tin</th><th>Chi tiết</th></tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="fileDetail in files">
+                                                <td>
+                                                    <input type="text" ng-model="fileDetail.Id" ng-attr-name="meta.files[{{$index}}].Id" class="hidden" />
+                                                    <input type="text" ng-model="fileDetail.FileName" class="form-control js-file-name files_{{$index}}_FileName hidden" ng-attr-name="meta.files[{{$index}}].FileName" />
+                                                    <input type="text" ng-model="fileDetail.ContentType" ng-attr-name="meta.files[{{$index}}].ContentType" class="hidden" />
+
+                                                    @*<input type="checkbox" ng-model="fileDetail.selected" />*@
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" id="fileDetail_{{$index}}_selected" ng-model="fileDetail.selected">
+                                                        <label class="form-check-label " for="fileDetail_{{$index}}_selected">X</label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="thumbnail box-main-img">
+                                                        <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=static&field_id=files_list" class="btn js-select-path-list" type="button">
+                                                            <img style="width:50px" onerror1="this.onerror = null; this.src = '/images/mini-no_image.jpg';" src="{{fileDetail.Path}}" ng-model="fileDetail.Path" class="img-rounded img-bordered img-bordered-primary img-main img-ImageUrl" />
+                                                            <p class="caption"> Chọn tệp tin {{$index+1}}</p>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" id="fileDetail_{{$index}}_IsActive" ng-model="fileDetail.IsActive" ng-true-value="'True'" ng-false-value="'False'">
+                                                        <label class="form-check-label" for="fileDetail_{{$index}}_IsActive">Kích hoạt</label>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div role="form">
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+
+                                                                    <label>Đường dẫn</label>
+                                                                    <input type="text" class="form-control js-file-path" ng-model="fileDetail.Path" id="files_{{$index}}_Path" ng-attr-name="meta.files[{{$index}}].Path" ng-required="true" placeholder=".../img.png" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <!-- text input -->
+                                                                <div class="form-group">
+
+                                                                    <label>Tiêu đề</label>
+                                                                    <input type="text" ng-model="fileDetail.Title" class="form-control files_{{$index}}_Title" ng-attr-name="meta.files[{{$index}}].Title" placeholder="Tiêu đề ..." />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="form-group">
+                                                                    <label>Vị trí</label>
+
+                                                                    <input type="text" ng-model="fileDetail.Index" class="form-control files_{{$index}}_Index" ng-attr-name="meta.files[{{$index}}].Index" placeholder="0" />
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <!-- textarea -->
+                                                                <div class="form-group">
+                                                                    <label>Mô tả</label>
+                                                                    <textarea ng-model="fileDetail.Desc" class="form-control files_{{$index}}_Desc" ng-attr-name="meta.files[{{$index}}].Desc" rows="2" placeholder="Mô tả ..."></textarea>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- input states -->
+                                                        <div class="form-group">
+
+                                                            <label class="col-form-label" for="fileDetail_Url">
+                                                                <i class="fa fa-globe"></i> Điều hướng đến
+                                                            </label>
+
+                                                            <input type="text" ng-model="fileDetail.Url" class="form-control is-warning files_{{$index}}_Url" ng-attr-name="meta.files[{{$index}}].Url" placeholder="http://google..." />
+
+                                                        </div>
+
+
+
+
+
+                                                    </div>
+
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="form-group">
+                                    <input ng-hide="!files.length" type="button" class="btn btn-danger pull-right" ng-click="fileRemove()" value="Xóa">
+                                    <input type="button" class="btn btn-primary addnew pull-right" ng-click="fileNew()" value="Thêm">
+                                </div>
+                                @*<div class="form-group">
+                                            @Html.Partial("_ListAttach", HelpersConvertObject.ConvertToFileAttachs(Model.Files.ToArray()), new ViewDataDictionary() { { "action", "FileDelete" } })
+                                    </div>*@
+                            </div>
+                            <div class="tab-pane" id="info4" role="tabpanel">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Seo.SiteUri, htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.EditorFor(model => meta.Seo.SiteUri, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.Seo.SiteUri, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    @Html.LabelFor(model => meta.Seo.SiteTitle, htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.EditorFor(model => meta.Seo.SiteTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.Seo.SiteTitle, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Seo.SiteKeyWord, htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @Html.EditorFor(model => meta.Seo.SiteKeyWord, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.Seo.SiteKeyWord, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => meta.Seo.SiteDesc, htmlAttributes: new { @class = "control-label col-md-3" })
+                                    <div class="col-md-9">
+                                        @*@Html.TextAreaFor(model => meta.Seo.SiteDesc, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.TextAreaFor(model => meta.Seo.SiteDesc, new  { @class = "form-control"  })
+                                        @Html.ValidationMessageFor(model => meta.Seo.SiteDesc, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                 
+                                    <div class="col-md-12">
+                                        <div class="thumbnail box-main-img">
+                                            <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=static&field_id=meta_Seo_SiteLogo" class="btn js-select-path" type="button">
+                                                <img id="meta_Seo_SiteLogo_display" src="@(string.IsNullOrEmpty(meta.Seo.SiteLogo)?"/Content/img/no_image.png":meta.Seo.SiteLogo)" class="img-rounded img-bordered img-bordered-primary img-main" />
+                                                <p class="caption"> Chọn hình chia sẻ</p>
+                                            </a>
+                                        </div>
+                                        @Html.EditorFor(model => meta.Seo.SiteLogo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => meta.Seo.SiteLogo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="info5" role="tabpanel">
+                              
+                                <div class="box box-default collapsed-box box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Giám đốc</h3>
+
+                                        <div class="box-tools pull-right">
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => meta.Agent.FullName, htmlAttributes: new { @class = "control-label col-md-3" })
+                                            <div class="col-md-9">
+                                                @Html.EditorFor(model => meta.Agent.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => meta.Agent.FullName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => meta.Agent.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                                            <div class="col-md-9">
+                                                @Html.EditorFor(model => meta.Agent.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => meta.Agent.Email, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => meta.Agent.Phone, htmlAttributes: new { @class = "control-label col-md-3" })
+                                            <div class="col-md-9">
+                                                @Html.EditorFor(model => meta.Agent.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => meta.Agent.Phone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => meta.Agent.User, htmlAttributes: new { @class = "control-label col-md-3" })
+                                            <div class="col-md-9">
+                                                @Html.EditorFor(model => meta.Agent.User, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => meta.Agent.User, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => meta.Agent.Add, htmlAttributes: new { @class = "control-label col-md-3" })
+                                            <div class="col-md-9">
+                                                @Html.EditorFor(model => meta.Agent.Add, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => meta.Agent.Add, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group hidden">
+
+                                            <div class="col-md-12">
+                                                <div class="thumbnail box-main-img">
+                                                    <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=static&field_id=meta_Agent_Avatar" class="btn js-select-path" type="button">
+                                                        <img style="width:100px" id="meta_Agent_Avatar_display" src="@(string.IsNullOrEmpty(meta.Agent.Avatar)?"/Content/img/no_image.png":meta.Agent.Avatar)" class="img-rounded img-bordered img-bordered-primary img-main" />
+                                                        <p class="caption"> Chọn hình nhân vật</p>
+                                                    </a>
+                                                </div>
+                                                @Html.EditorFor(model => meta.Agent.Avatar, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => meta.Agent.Avatar, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <div class="box box-default collapsed-box box-solid hidden">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Công ty</h3>
+
+                                        <div class="box-tools pull-right">
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="form-group">
+
+                                            <input name="locations_list" id="locations_list" class="hidden" placeholder="Only Trick to avoid errors" />
+                                            <table class="table">
+                                                <thead>
+                                                    <tr><th>#@*<input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />*@</th><th>Tệp tin</th><th>Chi tiết</th></tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="locationDetail in locations">
+                                                        <td>
+                                                            <input type="text" ng-model="locationDetail.Zoom" ng-attr-name="meta.locations[{{$index}}].Zoom" class="hidden" />
+
+                                                            @*<img src="http://maps.googleapis.com/maps/api/staticmap?center={{locationDetail.Lat}},{{locationDetail.Lng}}&zoom={{locationDetail.Zoom}}&size=200x200&sensor=false">*@
+
+                                                            @*<input type="checkbox" ng-model="locationDetail.selected" />*@
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input" id="locationDetail_{{$index}}_selected" ng-model="locationDetail.selected">
+                                                                <label class="form-check-label " for="locationDetail_{{$index}}_selected">X</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="thumbnail box-main-img">
+                                                                <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=static&field_id=locations_list" class="btn js-select-path-list" type="button">
+                                                                    <img style="width:50px" onerror1="this.onerror = null; this.src = '/images/mini-no_image.jpg';" src="{{locationDetail.Icon}}" ng-model="locationDetail.Icon" class="img-rounded img-bordered img-bordered-primary img-main img-ImageUrl" />
+                                                                    <p class="caption"> Chọn tệp tin {{$index+1}}</p>
+                                                                </a>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input" id="locationDetail_{{$index}}_IsActive" ng-model="locationDetail.IsActive" ng-true-value="'True'" ng-false-value="'False'">
+                                                                <label class="form-check-label" for="locationDetail_{{$index}}_IsActive">Kích hoạt</label>
+                                                            </div>
+                                                          
+                                                        </td>
+
+                                                        <td>
+                                                            <div role="form">
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+
+                                                                            <label>Đường dẫn</label>
+                                                                            <input type="text" class="form-control js-file-path" ng-model="locationDetail.Icon" id="locations_{{$index}}_Icon" ng-attr-name="meta.locations[{{$index}}].Icon" ng-required="true" placeholder=".../img.png" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <!-- text input -->
+                                                                        <div class="form-group">
+
+                                                                            <label>Tiêu đề</label>
+                                                                            <input type="text" ng-model="locationDetail.Title" class="form-control locations_{{$index}}_Title" ng-attr-name="meta.locations[{{$index}}].Title" placeholder="Tiêu đề ..." />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <div class="form-group">
+                                                                            <label>Vị trí</label>
+
+                                                                            <input type="text" ng-model="locationDetail.Index" class="form-control locations_{{$index}}_Index" ng-attr-name="meta.locations[{{$index}}].Index" placeholder="0" />
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <!-- textarea -->
+                                                                        <div class="form-group">
+                                                                            <label>Mô tả</label>
+                                                                            <textarea ng-model="locationDetail.Desc" class="form-control locations_{{$index}}_Desc" ng-attr-name="meta.locations[{{$index}}].Desc" rows="2" placeholder="Mô tả ..."></textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <!-- input map -->
+                                                                <div class="form-group">
+
+                                                                    @*<label class="col-form-label" for="locationDetail_Location">
+                                                                        <i class="fa fa-map-marker"></i> bản đồ : Location
+                                                                    </label>*@
+                                                                    <button class="btn btn-dashed js-map-location-edit" type="button" style="width:100%"><i class="fa fa-map-marker"></i> Chọn vị trí</button>
+                                                                    <input type="text" ng-model="locationDetail.Address" class="js-map-location form-control is-warning locations_{{$index}}_Address" ng-attr-name="meta.locations[{{$index}}].Address" placeholder="123 VN...." />
+
+                                                                </div>
+                                                                <div class="row">
+                                                               
+                                                                    <div class="form-group col-md-5">
+
+                                                                        <label class="col-form-label" for="locationDetail_Lng">
+                                                                            <i class="fa fa-globe"></i> Lat
+                                                                        </label>
+
+                                                                        <input type="text" ng-model="locationDetail.Lat" class="js-map-lat form-control is-warning locations_{{$index}}_Lat" ng-attr-name="meta.locations[{{$index}}].Lat" placeholder="12.3456..." />
+
+                                                                    </div>
+                                                                    <div class="form-group  col-md-5">
+
+                                                                        <label class="col-form-label" for="locationDetail_Lng">
+                                                                            <i class="fa fa-globe"></i> Lng
+                                                                        </label>
+
+                                                                        <input type="text" ng-model="locationDetail.Lng" class="js-map-lng form-control is-warning locations_{{$index}}_Lng" ng-attr-name="meta.locations[{{$index}}].Lng" placeholder="12.3456..." />
+
+                                                                    </div>
+                                                                    <div class="form-group col-md-2">
+
+    <label class="col-form-label" for="locationDetail_Zoom">
+        <i class="fa fa-search-plus"></i> Zoom
+    </label>
+
+    <input type="text" ng-model="locationDetail.Zoom" class="form-control is-warning locations_{{$index}}_Zoom" ng-attr-name="meta.locations[{{$index}}].Zoom" placeholder="14" />
+
+</div>
+                                                                </div>
+                                                               
+                                                           
+
+
+
+                                                            </div>
+
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <input ng-hide="!locations.length" type="button" class="btn btn-danger pull-right" ng-click="locationRemove()" value="Xóa">
+                                            <input type="button" class="btn btn-primary addnew pull-right" ng-click="locationNew()" value="Thêm">
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+            
+                              
+                               
+                            </div>
+                            <div class="tab-pane" id="info6" role="tabpanel">
+
+                                <div class="box box-default box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Mặc định</h3>
+
+                                        <div class="box-tools pull-right">
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => meta.Loan.Duration, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => meta.Loan.Duration, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => meta.Loan.Duration, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => meta.Loan.PaymentFrequency, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                <div class="col-md-6">
+                                                    @*@Html.EditorFor(model => meta.Loan.PaymentFrequency, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                    @Html.EnumDropDownListFor(model => meta.Loan.PaymentFrequency, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => meta.Loan.PaymentFrequency, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => meta.Loan.AddedTax, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => meta.Loan.AddedTax, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => meta.Loan.AddedTax, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                          
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => meta.Loan.ServiceFee, htmlAttributes: new { @class = "control-label col-md-6" })
+                                                <div class="col-md-6">
+                                                    @Html.EditorFor(model => meta.Loan.ServiceFee, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => meta.Loan.ServiceFee, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                       
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <div class="box box-default collapsed-box box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Ngân hàng</h3>
+
+                                        <div class="box-tools pull-right">
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <input name="banks_list" id="banks_list" class="hidden" />
+                                            <table class="table">
+                                                <thead>
+                                                    <tr><th>#@*<input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />*@</th><th>Tệp tin</th><th>Chi tiết</th></tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="bankDetail in banks">
+                                                        <td>
+                                                            <input type="text" ng-model="bankDetail.Id" ng-attr-name="meta.Loan.banks[{{$index}}].Id" class="hidden" />
+                                                          
+                                                          
+                                                            @*<input type="checkbox" ng-model="bankDetail.selected" />*@
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input" id="bankDetail_{{$index}}_selected" ng-model="bankDetail.selected">
+                                                                <label class="form-check-label " for="bankDetail_{{$index}}_selected">X</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="thumbnail box-main-img">
+                                                                <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=static&field_id=banks_list" class="btn js-select-path-list" type="button">
+                                                                    <img style="width:50px" onerror1="this.onerror = null; this.src = '/images/mini-no_image.jpg';" src="{{bankDetail.Path}}" ng-model="bankDetail.Path" class="img-rounded img-bordered img-bordered-primary img-main img-ImageUrl" />
+                                                                    <p class="caption"> Chọn tệp tin {{$index+1}}</p>
+                                                                </a>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input" id="bankDetail_{{$index}}_IsActive" ng-model="bankDetail.IsActive" ng-true-value="'True'" ng-false-value="'False'">
+                                                                <label class="form-check-label" for="bankDetail_{{$index}}_IsActive">Kích hoạt</label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div role="form">
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+
+                                                                            <label>Đường dẫn</label>
+                                                                            <input type="text" class="form-control js-file-path" ng-model="bankDetail.Path" id="banks_{{$index}}_Path" ng-attr-name="meta.Loan.banks[{{$index}}].Path" ng-required="true" placeholder=".../img.png" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+
+                                                                            <label>Tên Ngân Hàng</label>
+                                                                            <input type="text" class="form-control " ng-model="bankDetail.Title" id="banks_{{$index}}_Title" ng-attr-name="meta.Loan.banks[{{$index}}].Title" ng-required="true" placeholder="Ngân Hàng ..." />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <!-- text input -->
+                                                                        <div class="form-group">
+
+                                                                            <label>Điểm tín dụng</label>
+                                                                            <input type="text" ng-model="bankDetail.CreditScore" class="form-control banks_{{$index}}_CreditScore" ng-attr-name="meta.Loan.banks[{{$index}}].CreditScore" ng-required="true" placeholder="7.6..." />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+    <div class="form-group">
+        <label>Mã</label>
+
+        <input type="text" ng-model="bankDetail.Ma" class="form-control banks_{{$index}}_Ma" ng-attr-name="meta.Loan.banks[{{$index}}].Ma" placeholder="MD..." />
+
+    </div>
+</div>
+                                                                    <div class="col-sm-3">
+                                                                        <div class="form-group">
+                                                                            <label>Vị trí</label>
+
+                                                                            <input type="text" ng-model="bankDetail.Index" class="form-control banks_{{$index}}_Index" ng-attr-name="meta.Loan.banks[{{$index}}].Index" placeholder="0" />
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <!-- textarea -->
+                                                                        <div class="form-group">
+                                                                            <label>Mô tả</label>
+                                                                            <textarea ng-model="bankDetail.Desc" class="form-control banks_{{$index}}_Desc" ng-attr-name="meta.Loan.banks[{{$index}}].Desc" rows="2" placeholder="Mô tả ..."></textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <!-- input states -->
+                                                                <div class="form-group">
+
+                                                                    <label class="col-form-label" for="bankDetail_Url">
+                                                                        <i class="fa fa-globe"></i> Điều hướng đến
+                                                                    </label>
+
+                                                                    <input type="text" ng-model="bankDetail.Url" class="form-control is-warning banks_{{$index}}_Url" ng-attr-name="meta.Loan.banks[{{$index}}].Url" placeholder="http://google..." />
+
+                                                                </div>
+
+
+
+
+
+                                                            </div>
+
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <input ng-hide="!banks.length" type="button" class="btn btn-danger pull-right" ng-click="bankRemove()" value="Xóa">
+                                            <input type="button" class="btn btn-primary addnew pull-right" ng-click="bankNew()" value="Thêm">
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+
+
+
+                            </div>
+
+                            <div class="tab-pane" id="info7" role="tabpanel">
+                                <div class="box box-default collapsed-box box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Chính sách</h3>
+
+                                        <div class="box-tools pull-right">
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="form-group">
+
+                                            <input name="policies_list" id="policies_list" class="hidden" placeholder="Only Trick to avoid errors" />
+                                            <table class="table">
+                                                <thead>
+                                                    <tr><th>#@*<input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" />*@</th><th>Tệp tin</th><th>Chi tiết</th></tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="policyDetail in policies">
+                                                        <td>
+                                                           
+
+                                                         
+                                                            @*<input type="checkbox" ng-model="policyDetail.selected" />*@
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input" id="policyDetail_{{$index}}_selected" ng-model="policyDetail.selected">
+                                                                <label class="form-check-label " for="policyDetail_{{$index}}_selected">X</label>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="thumbnail box-main-img">
+                                                                <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=static&field_id=policies_list" class="btn js-select-path-list" type="button">
+                                                                    <img style="width:50px" onerror1="this.onerror = null; this.src = '/images/mini-no_image.jpg';" src="{{policyDetail.Icon}}" ng-model="policyDetail.Icon" class="img-rounded img-bordered img-bordered-primary img-main img-ImageUrl" />
+                                                                    <p class="caption"> Chọn tệp tin {{$index+1}}</p>
+                                                                </a>
+                                                            </div>
+
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input" id="policyDetail_{{$index}}_IsActive" ng-model="policyDetail.IsActive" ng-true-value="'True'" ng-false-value="'False'">
+                                                                <label class="form-check-label" for="policyDetail_{{$index}}_IsActive">Kích hoạt</label>
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <div role="form">
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+
+                                                                            <label>Đường dẫn</label>
+                                                                            <input type="text" class="form-control js-file-path" ng-model="policyDetail.Icon" id="policies_{{$index}}_Icon" ng-attr-name="meta.policies[{{$index}}].Icon" ng-required="true" placeholder=".../img.png" />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <!-- text input -->
+                                                                        <div class="form-group">
+
+                                                                            <label>Tiêu đề</label>
+                                                                            <input type="text" ng-model="policyDetail.Title" class="form-control policies_{{$index}}_Title" ng-attr-name="meta.policies[{{$index}}].Title" placeholder="Tiêu đề ..." />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <div class="form-group">
+                                                                            <label>Vị trí</label>
+
+                                                                            <input type="text" ng-model="policyDetail.Index" class="form-control policies_{{$index}}_Index" ng-attr-name="meta.policies[{{$index}}].Index" placeholder="0" />
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <!-- textarea -->
+                                                                        <div class="form-group">
+                                                                            <label>Mô tả</label>
+                                                                            <textarea ng-model="policyDetail.Desc" class="form-control policies_{{$index}}_Desc" ng-attr-name="meta.policies[{{$index}}].Desc" rows="2" placeholder="Mô tả ..."></textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+
+                                                            </div>
+
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <input ng-hide="!policies.length" type="button" class="btn btn-danger pull-right" ng-click="policyRemove()" value="Xóa">
+                                            <input type="button" class="btn btn-primary addnew pull-right" ng-click="policyNew()" value="Thêm">
+                                        </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                            </div>
+                            </div>
+
+                    </div>
+                   
+                </div>
+            </div>
+                <div class="col-lg-3 col-md-3">
+                    <!-- Example Panel With List Group Inner -->
+                    <div class="panel">
+                        @*<div class="panel-heading">
+                            <h3 class="panel-title">Chung</h3>
+                        </div>*@
+                        <div class="panel-body">
+                            <div class="form-group">
+                                @*@Html.LabelFor(model => meta.Header_Logo, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-12">
+                                    <div class="thumbnail box-main-img">
+                                        <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=static&field_id=meta_Header_Logo" class="btn js-select-path" type="button">
+                                            <img id="meta_Header_Logo_display" src="@(string.IsNullOrEmpty(meta.Header_Logo)?"/Content/img/no_image.png":meta.Header_Logo)" class="img-rounded img-bordered img-bordered-primary img-main img-ImageUrl" />
+                                            <p class="caption"> Chọn logo chính</p>
+                                        </a>
+                                    </div>
+                                    @Html.EditorFor(model => meta.Header_Logo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Header_Logo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group hidden">
+                                @*@Html.LabelFor(model => meta.Header_Logo1, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-12">
+                                    <div class="thumbnail box-main-img">
+                                        <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=static&field_id=meta_Header_Logo1" class="btn js-select-path" type="button">
+                                            <img id="meta_Header_Logo1_display" src="@(string.IsNullOrEmpty(meta.Header_Logo1)?"/Content/img/no_image.png":meta.Header_Logo1)" class="img-rounded img-bordered img-bordered-primary img-main img-ImageUrl" />
+                                            <p class="caption"> Chọn logo trang giới thiệu</p>
+                                        </a>
+                                    </div>
+                                    @Html.EditorFor(model => meta.Header_Logo1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Header_Logo1, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group hidden">
+                              
+                                <div class="col-md-12">
+                                    <div class="thumbnail box-main-img">
+                                        <a title="Hình đại diện" href="/public/static/MediaEditorMCE?type=image&syntax=static&field_id=meta_Map_Path" class="btn js-select-path" type="button">
+                                            <img id="meta_Map_Path_display" src="@(string.IsNullOrEmpty(meta.Map.Path)?"/images/icon_marker.png":meta.Map.Path)" class="img-rounded img-bordered img-bordered-primary img-main img-ImageUrl" />
+                                            <p class="caption"> Chọn icon bản đồ</p>
+                                        </a>
+                                    </div>
+                                    @Html.EditorFor(model => meta.Map.Path, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => meta.Map.Path, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        }
+
+    </div>
+
+
+    <div>
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    <!-- End page -->
+
+</div>
+
+
+
+@section Scripts {
+
+
+}
+
+

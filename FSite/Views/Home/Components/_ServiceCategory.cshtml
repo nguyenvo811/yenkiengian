@@ -1,0 +1,22 @@
+﻿@{
+    var data = (IEnumerable<FSite.Models.Data.ServiceCategory>)ViewBag.Category;
+}
+
+
+<div class="widget archieve">
+    <h3>@FSite.Resources.Resource.PostCategoryTitle</h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="blog_archieve">
+                @foreach (var item in data)
+                {
+                    <li><a title="@item.Title" href="/dich-vu/@item.Key"><i class="fa fa-angle-double-right"></i> @item.Title
+                        @*<span class="pull-right">(97)</span>*@
+                        </a></li>
+                    
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>

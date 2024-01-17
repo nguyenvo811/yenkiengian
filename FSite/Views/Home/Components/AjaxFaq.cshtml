@@ -1,0 +1,102 @@
+﻿@model FSite.Models.FaqSearchViewModel
+@using FSite.Models.Enum
+@using MvcPaging
+@{
+    var data = (IEnumerable<FSite.Models.Data.Faq>)ViewBag.Data;
+}
+
+    <div class="panel filter-panel">
+        <div class="panel-body">
+            <h4 class="filter-title pull-left">@Html.Raw(string.Format(FSite.Resources.Resource.ViewMore,$"<span id='item-count' class='badge badge-secondary'>{@ViewBag.TotalItemCount}</span>"))</h4>
+            @*<form action="#" class="form-inline pull-right">
+                    <div class="form-group">
+                        <label>Sắp xếp:</label>
+                        <select class="form-control js-sort">
+                            <option value="lastest">Ngày đăng mới nhất</option>
+                            <option value="popupar">Tin Xem nhiều nhất</option>
+                            <option value="highest">Giá cao nhất</option>
+                            <option value="lowest">Giá thấp nhất</option>
+                        </select>
+                    </div>
+                </form>*@
+            <div class="pull-right">
+                @if (ViewData["category"] != null)
+                {
+                    var Ca = (FSite.Models.Data.FaqCategory)ViewData["category"];
+                    <a href="#Category" data-target="#Category" class="js-filter-remove"><i class="fa fa-remove"></i>@Ca.Title</a>
+                }
+            </div>
+        </div>
+    </div>
+@{
+
+    var ar = data.ToArray();
+}
+<div id="accordion-list" class="panel-group acc-v1">
+    @for (int i = 0; i < ar.Count(); i++)
+    {
+        var item = ar[i];
+        var link = $"/{item.Key}/hoi-dap";
+
+        <div class="panel">
+            <div class="panel-heading blue-border">
+                <h4 class="panel-title">
+                @*@if (item.Category != null)
+                    {
+<span class="post-category"><a href="/hoi-dap/@item.Category.Key">@item.Category.Title</a></span>
+                    }*@
+                    @item.Title
+                    <a href="#lst-collapse-@item.Id" data-parent="#accordion-list" data-toggle="collapse" class="accordion-toggle">
+                       
+                        <span class="glyphicon glyphicon-plus"></span>
+                        @*@if (item.CategoryId.HasValue)
+                            {
+                                <span class="post-category pull-right"><a href="/dich-vu/@item.Category.Key">@item.Category.Title</a></span>
+                            }*@
+                    </a>
+                </h4>
+            </div>
+            <div class="panel-collapse collapse @(i==0?"in":"")" id="lst-collapse-@item.Id">
+                <div class="panel-body">
+                    @item.Description
+                    <a class="bt-viewmore js-page-modal" href="@($"/{item.Key}/hoi-dap")" data-title="@item.Title" data-type="iframe1">@FSite.Resources.Resource.ViewMore</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+<hr class="hr-small" />
+<div class="pagination pagination-lg">
+
+    @if (ViewBag.TotalItemCount > 9)
+    {
+        <div class="pager text-center">
+            @Html.Raw(Ajax.Pager(
+       new Options
+       {
+           PageSize = ViewBag.PageSize,
+
+           TotalItemCount = ViewBag.TotalItemCount,
+           CurrentPage = ViewBag.Page,
+           ItemTexts = new ItemTexts() { Next = ">", Previous = "<", Page = "", First = "<<", Last = ">>" },
+           // ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-left", Next = "icon-chevron-right", Last = "icon-forward" },
+           TooltipTitles = new TooltipTitles() { Next = "Trang kế tiếp", Previous = "Trang lùi về", Page = "Tới trang {0}.", First = "Tới trang đầu", Last = "Tới cuối trang" },
+           Size = Size.small,
+           Alignment = Alignment.centered,
+           IsShowControls = true,
+           IsShowFirstLast = true,
+           CssClass = "js-box-pagination metro-theme"
+
+
+       },
+
+       new AjaxOptions
+       {
+           UpdateTargetId = "content",
+           LoadingElementId = "progress",
+           OnSuccess = "pagingOnSuccess"
+       }, new { controller = "Home", action = "AjaxFaq", SortColumn = ViewBag.SortColumn, SortColumnDir = ViewBag.SortColumnDir, Category = Model.Category, Key = Model.Key }))
+        </div>
+    }
+</div><!-- .pagination end -->

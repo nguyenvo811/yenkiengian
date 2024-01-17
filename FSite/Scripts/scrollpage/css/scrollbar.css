@@ -1,0 +1,5 @@
+.news-list::-webkit-scrollbar{width:0 !important; height:0 !important; display:none}
+.content-table::-webkit-scrollbar{width:0 !important; height:0 !important; display:none}
+.sub-news::-webkit-scrollbar{width:0 !important; height:0 !important; display:none}
+.sub-menu::-webkit-scrollbar{width:0 !important; height:0 !important; display:none}
+.sub-nav-typical::-webkit-scrollbar{width:0 !important; height:0 !important; display:none}

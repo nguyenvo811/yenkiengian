@@ -1,0 +1,92 @@
+﻿@model FSite.Models.Data.Content
+@using FSite.Resources
+@{
+    var syntax = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.AntiForgeryToken()
+@if (Model != null)//Edit
+{
+    @Html.HiddenFor(model => model.Id)
+}
+@Html.HiddenFor(model => model.CreatedById)
+<div class="form-group row hidden ">
+    @Html.LabelFor(m => m.CreatedDate, htmlAttributes: new { @class = "control-label" })
+    @Html.EditorFor(m => m.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(m => m.CreatedDate, "", new { @class = "text-danger" })
+</div>
+<div class="col-lg-9 col-md-9">
+    <!-- Example Tabs In The Panel -->
+    <div class="panel nav-tabs-horizontal">
+        <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
+            <li role="presentation">
+                <a class="active" data-toggle="tab" href="#infotab" aria-controls="infotab"
+                   role="tab"><i class="fa fa-info" aria-hidden="true"></i>@R_Admin.Tab_Info</a>
+            </li>
+         
+        </ul>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="tab-pane active" id="infotab" role="tabpanel">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @data_val = "true", @data_val_length = "không quá 250 ký tự", @data_val_length_max = "250", @data_val_required = "không được để trống" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control", @data_val = "true", @data_val_length = "không quá 250 ký tự", @data_val_length_max = "250", @data_val_required = "không được để trống" } })
+                            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.MetaType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MetaType, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MetaType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Meta, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Meta, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Meta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 Editor">
+                            @Html.EditorFor(model => model.Note, "Editor", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+   
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-3">
+    <!-- Example Panel With List Group Inner -->
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">@R_Admin.BoxSetting</h3>
+        </div>
+        <div class="panel-body">
+          
+       
+            @*<div class="form-group col-md-12">
+                @Html.LabelFor(m => m.IsActive, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(m => m.IsActive)
+                @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+            </div>*@
+        </div>
+    </div>
+</div>

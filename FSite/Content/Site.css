@@ -1,0 +1,323 @@
+﻿.navSiteMain ul.nav-navbar > li > a .navIcon{
+    -webkit-filter: unset;
+    filter: unset;
+}
+ .btnCompare, .Addcart,.linkToCompare,.cartFixed,#compareProduct{
+     display:none !important;
+ }
+.subWrap ul.listSub li {
+    height: 50px !important;
+}
+ .frmSearch .insButton{
+     background: -webkit-linear-gradient(bottom,#048491 0%,#048491 100%);
+ }
+ .owlDesign:hover .owl-controls .owl-nav div:hover {
+    background: #c3a372;
+    color: #fff;
+}
+ .owlDesign.owl-carousel .owl-controls .owl-nav div{
+         border-color: #c3a372;
+         color:#c3a372;
+ }
+
+.owlDesign.owl-carousel .owl-controls .owl-nav div.disabled {
+    background: #c3a372;color: #fff;
+}
+
+.pdPrice {
+    color: #ea8228;
+}
+.colRightFTTop {
+    margin-bottom: 0;
+}
+.topFooter {
+    padding: 13px 0px;
+}
+.mainBottomFooter {
+    padding: 0;
+}
+.ftCopyright{
+    margin:0;
+}
+
+
+ .insBreadcrumb {
+	background: #efefef;
+}
+.insBreadcrumb .breadcrumb {
+	margin: 0;
+	background: transparent;
+	padding: 0;
+}
+.insBreadcrumb .breadcrumb li {
+	display: inline-block;
+	background-color: #e1e1e1;
+}
+.insBreadcrumb .breadcrumb li a,
+.insBreadcrumb .breadcrumb li span {
+	position: relative;
+	background: #efefef;
+	height: 40px;
+	line-height: 40px;
+	display: block;
+	padding-right: 10px;
+	color: #999;
+	margin-right: 23px;
+	font-size: 13px;
+	font-weight: 300;
+}
+.insBreadcrumb .breadcrumb li span {
+	margin-right: 0;
+}
+.insBreadcrumb .breadcrumb li a:before,
+.insBreadcrumb .breadcrumb li a:after,
+.insBreadcrumb .breadcrumb li span:before,
+.insBreadcrumb .breadcrumb li span:after{
+	content: "";
+	position: absolute;
+	top: 0;
+	border: 0 solid #efefef;
+	border-width: 20px 7px 20px 17px;
+	width: 0;
+	height: 0;
+}
+.irs-hidden-input input{
+    display:none;
+}
+.breadcrumb-wrap .breadcrumb li:first-child a:before, .breadcrumb-wrap .breadcrumb li:first-child span:before, .breadcrumb-wrap .breadcrumb li:last-child a:after, .breadcrumb-wrap .breadcrumb li:last-child span:after {
+	border: none;
+}
+.breadcrumb-wrap .breadcrumb li:nth-child(even) a:before, .breadcrumb-wrap .breadcrumb li:nth-child(even) span:before {
+	border-color: #efefef #efefef #efefef transparent;
+}
+.breadcrumb-wrap .breadcrumb li:nth-child(even) a:after, .breadcrumb-wrap .breadcrumb li:nth-child(even) span:after {
+	border-left-color: #efefef;
+}
+.insBreadcrumb .breadcrumb li a:before,
+.insBreadcrumb .breadcrumb li span:before{
+	left: -26px;
+	border-left-color: transparent;
+}
+.insBreadcrumb .breadcrumb li span:before {
+	/*left: -27px;*/
+}
+.insBreadcrumb .breadcrumb li a:after,
+.insBreadcrumb .breadcrumb li span:after{
+	right: -23px;
+	border-color: transparent transparent transparent #efefef;
+}
+.insBreadcrumb .breadcrumb >li+li:before{
+	display: none;
+}
+/* ----------------------- END BREADCRUMB ------------------------ */
+
+.btn-search {
+    background: none;
+    border: none;
+}
+ #insBlogSidebar .all_right_widgets {
+                            /*margin-top: 30px;*/
+                        }
+
+                            #insBlogSidebar .all_right_widgets .sing_right_widget {
+                                background: #fff;
+                                padding: 0px 10px;
+                            }
+
+                        .sing_right_widget ul {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                        }
+
+                        #insBlogSidebar .sing_right_widget > h2 {
+                            padding: 10px 5px;
+                            border-bottom: 1px solid transparent;
+                            border-top-left-radius: 3px;
+                            border-top-right-radius: 3px;
+                            font-size: 15px;
+                            text-transform: uppercase;
+                        }
+
+                        .lat_news_right .newItem {
+                            margin-bottom: 15px;
+                            border-bottom: 1px dashed #eaeaea;
+                        }
+
+                            .lat_news_right .newItem:last-child {
+                                margin-bottom: 15px;
+                                border-bottom: 0;
+                            }
+
+                            .lat_news_right .newItem .lat_news_right_con {
+                                padding: 10px 0;
+                            }
+
+                            .lat_news_right .newItem h3 {
+                                font-size: 15px;
+                                display: block;
+                                margin: 0;
+                                line-height: 1.3;
+                                margin-bottom: 5px;
+                            }
+
+                            .lat_news_right .newItem time {
+                                font-size: 13px;
+                                font-style: italic;
+                                color: #999;
+                            }
+
+                        ul.category_right.blogTags li {
+                            display: inline-block;
+                            margin: 0px 5px 10px 0px;
+                        }
+
+                            ul.category_right.blogTags li a {
+                                display: inline-block;
+                                background: #e2e2e2;
+                                color: #333;
+                                padding: 4px 9px;
+                                position: relative;
+                                margin: 5px;
+                                font-size: 12px;
+                                border-left: 3px solid #d21212;
+                            }
+
+                                ul.category_right.blogTags li a:before {
+                                    left: 0;
+                                    top: 8px;
+                                    border: solid transparent;
+                                    content: " ";
+                                    height: 0;
+                                    width: 0;
+                                    position: absolute;
+                                    pointer-events: none;
+                                    border-color: rgba(136, 183, 213, 0);
+                                    border-left-color: #d21212;
+                                    border-width: 4px;
+                                }
+
+                                .display-block  li,.display-block  li a {
+                                display: block !important;
+                                }
+
+
+
+
+
+                                .pdMoreItem .detail .pdPrice span {
+                                    display:unset !important;
+                                }
+.blockTitle h2{
+  
+    background: #048491;
+}
+.blockTitle h2::after {
+  
+      border-left-color: #048491;
+}
+
+.insArticleLoop .postDetail p {
+    font-style: italic;
+    display: -webkit-box;
+    max-height: 140px!important;
+    line-height: 1.7;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.openMenuTabs {
+    background: #048491 !important;
+}
+.subWrap ul.listSub li.active {
+    background: #048491 !important;
+}.subWrap ul.listSub li.active::before {
+       border-bottom: 8px solid #048491 !important;
+}
+  .pdMoreItem .detail .pdPrice span, .pdMoreItem .detail .pdPrice del{
+      display:unset !important;
+  }
+
+
+
+
+   .countdown-wrapper {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .defaultCountdown {
+            background-color: transparent;
+            border-color: transparent;
+            border: none;
+            width: 100%;
+        }
+
+        .countdown-row {
+            overflow: hidden;
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .countdown-section {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .countdown-show4 .countdown-section {
+            padding-top: 8px;
+            padding-bottom: 9px;
+            width: 25% !important;
+        }
+
+        .countdown-amount {
+            margin: 0 0 0 0;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: .5;
+            text-transform: uppercase;
+            color: #d21212;
+        }
+
+        .countdown-period {
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.3;
+            color: #d3d3d3;
+            clear: both;
+            margin: 0 0 0 0;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .po-unset{
+           position: unset;
+        }
+       
+        .bg-unset .countdown-section {
+            background: unset;
+        }
+        .fo-small .countdown-amount{
+        
+            font-size: 13px;
+            font-weight: 500;
+            line-height: .5;
+        }
+       .fo-small .countdown-period {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+      
+        .pad-small .countdown-section {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+            

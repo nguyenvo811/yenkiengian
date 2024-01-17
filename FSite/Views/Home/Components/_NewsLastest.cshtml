@@ -1,0 +1,33 @@
+﻿@model IEnumerable<FSite.Models.Data.Blog>
+<div class="sing_right_widget">
+    <h2>@FSite.Resources.Resource.NewsLastest</h2>
+    <div class="sing_right_widg_content">
+        <ul class="lat_news_right">
+           @foreach (var item in Model)
+            {
+                var link = $"/{item.Key}/tin-tuc";
+                <li class="newItem">
+                    <div class="wrap clearfix">
+                        <a  href="@link"><img src="@item.ImageUrl" alt="@item.Title" /></a>
+                        <div class="lat_news_right_con">
+                            <a href="@link"><h3>@item.Title</h3></a>
+                          
+                            <div class="entry-meta small muted">
+                                <span class="post-date"><i class="fa fa-calendar"></i> @Html.DisplayFor(m => item.CreatedDate)</span>
+                                @if (item.CategoryId.HasValue)
+                                {
+                                    <span class="post-category pull-right"><a href="/tin-tuc/@item.Category.Key">@item.Category.Title</a></span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            }
+
+
+
+        </ul>
+    </div>
+</div>
+

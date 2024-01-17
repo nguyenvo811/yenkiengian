@@ -1,0 +1,122 @@
+﻿.nav-tabs-line > li > a.active {
+    color: #62a8ea;
+    background-color: transparent;
+    border-bottom: 2px solid #62a8ea;
+}
+.nav-tabs-line > li > a .fa {
+    margin-right: .5em;
+    line-height: 1;
+}
+
+
+.jq-toast-single {
+    background-color: #ef5350 !important;
+}
+
+.notify_item {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 5px;
+    border-bottom: solid 1px #398bf7;
+}
+
+.lstnotify {
+    height: 500px !important;
+    margin-left: 5px;
+}
+
+.notify_item .fa.fa-snowflake-o {
+    color: #ff6a00;
+    font-size: 11px;
+}
+
+.head-title {
+    background-color: #438EB9;
+    height: 40px;
+    color: #fff;
+}
+
+    .head-title h4 {
+        padding-top: 10px;
+    }
+
+.mutil-input {
+    height: 80px !important;
+}
+
+.required label:after {
+    content: " *";
+    color: #ff0000;
+}
+
+#mapCanvas {
+    height: 350px;
+}
+
+.c-col-50 {
+    width: 50%;
+}
+
+.c-float-left {
+    width: 50%;
+    float: left;
+}
+
+.select2-container--bootstrap .select2-selection--single {
+    line-height: 1.9;
+}
+
+.select2-container--bootstrap .select2-results__group {
+    color: #fff;
+    background: #777777;
+}
+
+.custom-file {
+    width: 230px;
+}
+
+.form-group label.custom-file-label {
+    margin-top: -5px;
+}
+
+.row-control-setting {
+    list-style: none;
+}
+
+    .row-control-setting li a {
+    }
+
+    .row-control-setting li a {
+        padding: 5px;
+    }
+
+.img-default {
+    width: 50px;
+}
+
+.general-cut-title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+
+.col-title {
+    width: 400px;
+}
+
+.form-manage .control-label {
+    padding-top: 0;
+}
+
+.head-title h4 {
+    color: #fff
+}
+
+.custom-file {
+    width: unset;
+}
+
+.tab-invalid {
+    border: 1px dotted red !important;
+}

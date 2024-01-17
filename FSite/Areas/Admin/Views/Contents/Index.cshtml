@@ -1,0 +1,155 @@
+﻿@using FSite.Resources;
+@{
+    string title = "Nội dung";
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var br = new FSite.Areas.Admin.Models.BreadcrumbViewModels() { Title = title };
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.Breadcrumb_Home, Link = "/" });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = title, Link = Url.Action("Index") });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.TitleList });
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="content-header">
+    @Html.Partial("_AdminBreadcrumb", br)
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <span class="box-setting pull-right"><a class="btn btn-success" href="@Url.Action("Create")"><i class="fa fa-plus"></i>@FSite.Resources.R_Admin.CreatNew</a></span>
+                    <h6 class="box-subtitle">@FSite.Resources.R_Admin.title_Export</h6>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 table-responsive" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                @*<th>
+                                    Mã
+                                </th>*@
+
+                                <th>
+                                    Tiêu đề
+                                </th><th>
+    Tình trạng
+</th>
+                                <th>
+                                    Ngày gửi
+                                </th>
+                                <th>
+                                    Cập nhật
+                                </th>
+                               
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
+@section Scripts {
+    <style>
+        .Content_Status_0{
+            color:green;font-weight: bold;
+        }
+        .Content_Status_1{
+              color:red;font-weight: bold;
+        }
+        .Content_Status_5{
+             color:silver;
+        }
+    </style>
+    <div class="hidden"><div id="table-detail">@Html.Partial("_AdminDatatableRowDetail", new ViewDataDictionary { { "DeleteUrl", Url.Action("Delete") }, { "EditUrl", Url.Action("Edit") } })</div></div>
+
+    @*@if (!string.IsNullOrEmpty(Request.QueryString["Status"]))
+    {
+        <script>
+        naviActive("SysContents_Status_@Request.QueryString["Status"]");
+        </script>
+    }
+    else
+    {
+        @Html.Partial("_NaviActive")
+        <script>
+        naviActive("@Request.Path.Split('/')[1]");
+        </script>
+    }*@
+    <script>
+        var trdetail= $("#table-detail").html();
+        var dtColumns = [{
+            "render": function (data, type, row, meta) {
+
+                return "<div class='btn-group row-control-setting' data-id='" + row.Id + "'><button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'><i class='fa fa-cog' aria-hidden='true'></i> <span class='caret'></span></button><ul class='row-control-setting dropdown-menu' role='menu' ><li><a class='item-detail' data-id='" + row.Id + "'  title='Sửa' href='javascript:void(0)'  ><i class='fa fa-edit' aria-hidden='true'></i>Sửa</a></li></ul></div>";
+              //  return String.format(trdetail, row.Id, row.Id, row.Id);
+            }, "orderable": false
+        },
+        //{ data: 'Code' },
+            { data: 'Title' },
+          {
+              data: "Status",
+              "render": function (data, type, row, meta) {
+                  // var checked = row.Status === true ? "checked" : "";
+                  return '<p class="text-center Content_Status_'+row._Status.Id+'" id="Status_' + row.Id + '" >' + row._Status.Title + '</p>';
+              }
+          },
+             {
+                 data: "CreatedDate",
+                 "render": function (data, type, row, meta) {
+
+                     return getJsonDate(row.CreatedDate);
+                 }
+             },
+             {
+                 data: "ModifiedDate",
+                 "render": function (data, type, row, meta) {
+
+                     return getJsonDate(row.ModifiedDate);
+                 }
+             }
+
+
+        ];
+
+        $('body').on('click', '.item-detail', function () {
+
+            var id = $(this).data('id');
+
+           // alertify.apiUrlDialog({ url:  }).set({ frameless: true });
+
+            $.get("@Url.Action("AjaxDetail")/" + id, function (res) {
+                alertify.alert("<div id='boxGeneral_Book_Modal'>" + res + "</div>").set(
+                    {
+                        'basic': true
+                      , 'padding': false
+                        //'modal': false
+                    })})
+              
+                //.set('resizable', true).resizeTo('90%');
+             
+            return false;
+            // alertify.alert("aa")
+        })
+
+
+        function fn_ContentOnSuccess() {
+ 
+                alertify.notify("@FSite.Resources.Resource.ContactSendOk", 'success', 2, function () { });
+                alertify.closeAll();
+				   $('#example').DataTable().draw();
+        } function fn_ContentOnFailure() {
+            alertify.notify("@FSite.Resources.Resource.ContactSendOk", 'success', 2, function () { });
+            alertify.closeAll();
+			   $('#example').DataTable().draw();
+        }
+    </script>
+    @Html.Partial("_AdminDatatable", new ViewDataDictionary { { "GetUrl", Url.Action("Get")} })
+
+
+}

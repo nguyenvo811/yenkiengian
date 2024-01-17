@@ -1,0 +1,38 @@
+﻿@{
+    FSite.Models.StaticFrontEndMetaData meta = (FSite.Models.StaticFrontEndMetaData)ViewData["meta"];
+}
+<link href="/Content/hotline.css?v=25" rel="stylesheet" />
+<div class="contact-group">
+    @*<div class="icon active1"><span></span><span></span><span></span></div>*@
+    <div class="icon active1">
+        <img src="~/images/phone.png" />
+    </div>
+    @*<div class="button-action-group active1">
+        <a href="https://zalo.me/@meta.zalo">
+            <i class="fa fa-zalo"><img src="/images/zalo.png" /></i><strong>@meta.zalo</strong>
+        </a>
+        <a href="//fb.me/@meta.facebook">
+            <i class="fa fa-facebook"></i><strong>@meta.facebook</strong>
+        </a>
+        <a href="mailto:@meta.Header_Email">
+            <i class="fa fa-envelope"></i><strong>@meta.Header_Email</strong>
+        </a>
+        <a class="js-deposit-reuqest js-contact-to-user1 js-modal-basicrequest1">
+            <i class="fa fa-calendar"></i><strong>Liên Hệ</strong>
+        </a>
+        <a href="tel:@meta.Hotline" >
+            <i class="fa fa-phone"></i><strong>@meta.Hotline</strong>
+        </a>
+    </div>*@
+    <div class="button-action-group active1">
+        <a href="https://zalo.me/@meta.zalo">
+            <i class="fa fa-zalo"><img src="/images/zalo.png" /></i><strong>Zalo :0967898779</strong>
+        </a>
+        <a href="//fb.me/@meta.facebook">
+            <i class="fa fa-facebook"></i><strong>Nhà Yến Thân Thi</strong>
+        </a>
+        <a href="tel:@meta.Hotline">
+            <i class="fa fa-phone"></i><strong>Gọi : 09 6789 8779</strong>
+        </a>
+    </div>
+</div>

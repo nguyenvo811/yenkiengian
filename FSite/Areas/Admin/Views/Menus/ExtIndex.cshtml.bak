@@ -1,0 +1,99 @@
+﻿@model IEnumerable<FSite.Models.Data.Menu>
+@using FSite.Resources
+@{
+    string title = "Thanh điều hướng";
+    //ViewBag.Desc = desc;
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var br = new FSite.Areas.Admin.Models.BreadcrumbViewModels() { Title = title };
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.Breadcrumb_Home, Link = "/" });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = title, Link = Url.Action("Index") });
+    br.Items.Add(new FSite.Areas.Admin.Models.BreadcrumbItemModel() { Title = R_Admin.TitleList });
+}
+<section class="content-header">
+    @Html.Partial("_AdminBreadcrumb", br)
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <span class="box-setting pull-right"><a class="btn btn-warning js-menu-submit" href="javascript:void(0)"><i class="fa fa-plus"></i>Lưu</a></span>    
+                    
+                    <span class="box-setting pull-right"><a class="btn btn-success" href="@Url.Action("Create")"><i class="fa fa-plus"></i>@FSite.Resources.R_Admin.CreatNew</a></span>
+                    <menu id="nestable-menu">
+                        <button type="button" data-action="expand-all">Mở tất cả</button>
+                        <button type="button" data-action="collapse-all">Đóng tất cả</button>
+                    </menu>
+                    <textarea id="nestable-output"></textarea>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    @*https://github.com/dbushell/Nestable*@
+                    <div class="dd" id="nestable">
+                        @Html.Action("ExtList", "Menus")
+                    </div>
+                </div>
+                    <!-- /.box-body -->
+                </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</section>
+
+@section Scripts {
+@Html.Partial("_NaviActive")
+<link href="~/Content/nestable.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.nestable.js"></script>
+    <script>
+$(document).ready(function()
+{
+    var updateOutput = function(e)
+    {
+        var list = e.length ? e : $(e.target),
+            output = list.data('output');
+        if (window.JSON) {
+           // output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+            output.val(window.JSON.stringify(list.nestable('serialiseSiblings')));//, null, 2));
+        } else {
+            output.val('JSON browser support required for this demo.');
+        }
+    };
+
+    // activate Nestable for list 1
+    $('#nestable').nestable({
+        group: 1
+    }).on('change', updateOutput);
+
+    // output initial serialised data
+    updateOutput($('#nestable').data('output', $('#nestable-output')));
+
+    $('#nestable-menu').on('click', function(e)
+    {
+        var target = $(e.target),
+            action = target.data('action');
+        if (action === 'expand-all') {
+            $('.dd').nestable('expandAll');
+        }
+        if (action === 'collapse-all') {
+            $('.dd').nestable('collapseAll');
+        }
+    });
+
+            $('.js-menu-submit').on('click', function (e) 
+            {
+                 $.ajax({
+                     type:"POST",
+                     url: '@Url.Action("SaveExt")',
+                     contentType: 'application/json; charset=utf-8',
+                     data:JSON.stringify({ menu: $('#nestable-output').val()}),
+                     success: function(data) { /* Whatever */ }
+                    });
+
+            })
+            
+
+});
+    </script>
+}

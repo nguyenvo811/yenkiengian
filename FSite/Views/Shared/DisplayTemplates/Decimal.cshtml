@@ -1,0 +1,9 @@
+﻿@model decimal?
+@{ 
+    decimal? v =(decimal?)null;
+    if (Model.HasValue)
+    {
+         v = Decimal.Parse(string.Format("{0}", string.Format("{0:0,0}", Model)));
+    } 
+}
+@v

@@ -1,0 +1,60 @@
+﻿@{
+    var p = ViewBag.Post as FSite.Models.Data.Post;
+}
+
+<style>
+    .wrapperPage {
+        padding: 10px;
+        background: #fff;
+        margin-top: 30px;
+        border-radius: 3px;
+    }
+
+    .headingPage {
+        margin-bottom: 15px;
+    }
+
+        .headingPage .title {
+            font-size: 22px;
+            text-transform: uppercase;
+        }
+
+    .content-page * {
+        line-height: 1.3;
+    }
+</style>
+<section id="insPages">
+    <div class="insBreadcrumb ">
+        <div class="container">
+            <div class="breadcrumb-wrap">
+                <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
+
+                    <li><a href="/" target="_self">@FSite.Resources.Resource.Breadcrumb_Home</a></li>
+
+
+
+                    <li class="active"><span>@p.Title</span></li>
+
+
+
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="wrapperPage">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 information-entry">
+                    <div class="information-blocks main_article bg_w">
+                        <div class="headingPage">
+                            <h1 class="title">@p.Title</h1>
+                        </div>
+                        <div class="content-page js-detail">
+                           @Html.Raw(p.Detail)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

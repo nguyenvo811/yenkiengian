@@ -1,0 +1,203 @@
+﻿@model FSite.Areas.Admin.Models.MapPointModel
+<style>
+    .pac-container {z-index: 99999}
+    #BoxMap{display:none;}
+     .alertify #BoxMap {display: unset}
+</style>
+<div id="BoxMap">
+    <div class="form-group row">
+        <div class="col-md-10">
+            <input class="form-control" id="autocomplete" name="autocomplete" type="text" placeholder="Vị trí hiển thị trên bản đồ" />
+        </div>
+        <div class="col-md-2"><button class="btn btn-primary js-map-location-update">Đồng ý</button></div>
+    </div>
+    <div class="box-map-info">
+        <div class="box-body" id="mapCanvas">
+            <!--Google Map-->
+        </div>
+        <div id="pinfoPanel" class="hidden">
+            <b>Marker status:</b>
+            <div id="pmarkerStatus"><i>Click and drag the marker.</i></div>
+            <b>Current position:</b>
+            <div id="pinfo"></div>
+            <b>Closest matching address:</b>
+            <div id="paddress"></div>
+            <input id="pLat" value="" />
+            <input id="pLng" value="" />
+        </div>
+    </div>
+</div>
+
+<script>
+       var currentlocation = {
+           lat: '@Model._Lat',
+           lng: '@Model._Lng'
+       };
+    var geocoder = new google.maps.Geocoder();
+    var placeSearch, autocomplete;
+    var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        // locality: 'long_name',//city code
+        sublocality_level_1: 'long_name',
+        administrative_area_level_1: 'short_name',
+        administrative_area_level_2: 'short_name',
+        //sublocality_level_1: 'short_name',
+        // country: 'long_name',
+        // postal_code: 'short_name'
+    };
+    function geocodePosition(pos) {
+        geocoder.geocode({
+            latLng: pos
+        }, function (responses) {
+            if (responses && responses.length > 0) {
+
+                updateMarkerAddress(responses[0].formatted_address);
+                //  updateMarkerAddress(responses[0].autocomplete);
+                fillInAddress(responses[0].autocomplete, responses[0].address_components);
+            } else {
+                updateMarkerAddress('Không thể tìm được vị trí này');
+            }
+        });
+    }
+
+    function updateMarkerStatus(str) {
+        document.getElementById('pmarkerStatus').innerHTML = str;
+    }
+
+    function updateMarkerPosition(latLng) {
+        document.getElementById('pinfo').innerHTML = [
+            latLng.lat(),
+            latLng.lng()
+        ].join(', ');
+        document.getElementById("pLat").value = latLng.lat();
+        document.getElementById("pLng").value = latLng.lng();
+        map.panTo(marker.getPosition());
+    }
+
+    function updateMarkerAddress(str) {
+        document.getElementById('paddress').innerHTML = str;
+        document.getElementById("autocomplete").value = str;
+    }
+    var latLng;
+    var marker;
+    var map;
+    function placeMarker(location) {
+        if (marker) {
+            marker.setPosition(location);
+        } else {
+            marker = new google.maps.Marker({
+                position: latLng,
+                title: 'Point A',
+                map: map,
+                draggable: true
+            });
+        }
+        map.setCenter(location)
+    }
+
+    function initialize() {
+        var zoom = 15;
+        // latLng = new google.maps.LatLng(-34.397, 150.644);
+        latLng = new google.maps.LatLng(currentlocation.lat, currentlocation.lng);
+        map = new google.maps.Map(document.getElementById('mapCanvas'), {
+            zoom: zoom,
+            center: latLng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        placeMarker(latLng);
+        updateMarkerPosition(latLng);//input lat lng
+
+        // Add dragging event listeners.
+        google.maps.event.addListener(marker, 'dragstart', function () {
+            updateMarkerAddress('Đang tìm vị trí...');
+        });
+
+        google.maps.event.addListener(marker, 'drag', function () {
+            updateMarkerStatus('Đang tìm vị trí...');
+
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function () {
+            updateMarkerStatus('Kết thúc tìm vị trí...');
+            geocodePosition(marker.getPosition());
+            updateMarkerPosition(marker.position);
+        });
+        //google.maps.event.addListener(map, 'zoom_changed', function () {
+        //    document.getElementById("Zoom").value = map.getZoom();
+        //});
+        // to geographical location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('autocomplete')), {
+            componentRestrictions: { country: "vn" },
+            types: ['geocode', 'establishment']
+        });
+        // When the user selects an address from the dropdown,
+        // populate the address fields in the form.
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            var clatlng = place.geometry.location;
+            geocodePosition(clatlng);
+            placeMarker(clatlng);
+            updateMarkerPosition(clatlng);
+            fillInAddress(place.autocomplete, place.address_components);
+        });
+    }
+    function fillInAddress(autocomplete, address_components)//data
+    {
+        var ifield = 0;
+        for (var component in componentForm) {
+
+            if (document.getElementById(component)) {
+                document.getElementById(component).value = '';
+                // document.getElementById(component).disabled = false;
+                ifield++;
+            }
+        }
+        //// Get each component of the address from the place details
+        //// and fill the corresponding field on the form.
+        for (var i = 0; i < address_components.length; i++) {
+
+            var addressType = address_components[i].types[0];
+            //  console.log("addressType:[" + addressType + "] componentForm[addressType]: [" + componentForm[addressType])
+            if (addressType === "political")//trick ward
+            {
+                if (address_components[i].types.length == 3) {
+                    if (address_components[i].types[2] === "sublocality_level_1") {
+                        addressType = "sublocality_level_1";
+                    }
+                }
+            }
+            if (componentForm[addressType]) {
+                if (document.getElementById(addressType)) {
+                    var val = address_components[i][componentForm[addressType]];
+                    //console.log(val)
+                    //setValue('#' + addressType, val);
+                    document.getElementById(addressType).value = val;
+                    //if ($("#" + addressType).attr('name') !== "Title")
+                    //{
+                    //    setValueSelect2("#" + addressType, { id: val, text: val });
+                    //}
+                }
+            }
+        }
+    }
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var geolocation = new google.maps.LatLng(
+                    position.coords.latitude, position.coords.longitude);
+
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                document.getElementById("pLat").value = latitude;
+                document.getElementById("pLng").value = longitude;
+                autocomplete.setBounds(new google.maps.LatLngBounds(geolocation, geolocation));
+            });
+        }
+    }
+    // Onload handler to fire off the app.
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>

@@ -1,0 +1,44 @@
+﻿@{
+        string _get = ViewBag.GetUrl;  
+}
+
+<!-- This is data table -->
+<script src="/templates/admin/assets/vendor_plugins/DataTables-1.10.15/media/js/jquery.dataTables.min.js"></script>
+<!-- start - This is for export functionality only -->
+<script src="/templates/admin/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+<script src="/templates/admin/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/buttons.flash.min.js"></script>
+<script src="/templates/admin/assets/vendor_plugins/DataTables-1.10.15/ex-js/jszip.min.js"></script>
+<script src="/templates/admin/assets/vendor_plugins/DataTables-1.10.15/ex-js/pdfmake.min.js"></script>
+<script src="/templates/admin/assets/vendor_plugins/DataTables-1.10.15/ex-js/vfs_fonts.js"></script>
+<script src="/templates/admin/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/buttons.html5.min.js"></script>
+<script src="/templates/admin/assets/vendor_plugins/DataTables-1.10.15/extensions/Buttons/js/buttons.print.min.js"></script>
+<!-- end - This is for export functionality only -->
+<script>
+      $(document).ready(function () {
+        
+            var table = $('#example').DataTable({
+                "language": {
+                    "url": "/templates/admin/assets/vendor_plugins/DataTables-1.10.15/Vietnamese.json"
+                }, "dom": 'Bfrtip',
+                "buttons": [
+                   'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                //  "filter": false, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "pageLength": 100,
+                "order": [[1, 'desc']],
+                "columns": dtColumns,
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    type: "POST",
+                    "url": "@_get",
+                    "data": function (d) {
+                        // d.myKey = "myValue";
+                        // d.custom = $('#myInput').val();
+                        // etc
+                    }
+                }
+            });
+        });
+</script>

@@ -1,0 +1,323 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.top-header {
+	padding: 10px;
+	background-color: #4c5ea7;
+	color: white;
+}
+
+.press-header {
+	font-size: 20px;
+	text-align: center;
+}
+
+.floor-navigation {
+	width: 180px;
+	box-shadow: 2px 0px 6px rgba(0, 0, 0, 0.16);
+	z-index: 10;
+	height: 100%;
+	overflow: auto;
+}
+
+.floor-header {
+	font-weight: bold;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+#main-view {
+	position: relative;
+	user-select: none;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#floor_plan_background {
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	
+	
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.wrapper-flex {
+	display: flex;
+	flex: 1;
+}
+
+.wrapper {
+	position: relative;
+}
+
+.product-item {
+	position: absolute;
+	transition: opacity .2s ease-in;
+	opacity: 0;
+	font-size: 16px;
+	color:  white;
+	cursor: pointer;
+}
+
+.product-item:hover {
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 1;
+	border: 2px solid red;
+}
+
+.product-hold {
+	opacity: 1;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+#floor-select {
+	white-space: nowrap;
+	overflow-x: hidden;
+}
+
+.floor-menu-item {
+	padding: 20px;
+	cursor: pointer;
+	user-select: none;
+	height: 100%;
+}
+
+.floor-menu-item:hover {
+	transition: all .2s ease-in;
+	background-color: #ddd;
+}
+
+.floor-menu-item.selected {
+	color: white;
+	background-color: #4c5ea7;
+}
+
+.guide-text {
+	padding: 15px;
+	text-transform: uppercase;	
+	font-weight: bold;
+}
+
+#product-view-area {
+	width: 100%; height: 100%;
+	overflow: hidden;
+	position: relative;
+	user-select: none;
+	background-repeat: no-repeat;
+	background-size: contain;
+	flex: 1;
+}
+
+.text-large {
+	font-size: 16px;
+}
+
+.tooltip > .tooltip-inner {
+    padding: 10px;
+    font-size: 14px;
+}
+
+#product_notice_loading {
+	font-size: 17px;
+	padding: 10px;
+	background-color: rgba(0,0,0,0.7);
+	color: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	text-align: center;;
+	z-index: 100;
+}
+
+#product_info_modal_content {
+	overflow: auto;
+}
+
+.if_badge {
+	border-radius: 15px;
+	min-width: 50px;
+	padding: 5px 10px;
+	background-color: #F44336;
+	color: white;
+	margin-left: 5px;
+	font-size: 12px;
+}
+
+.circle_status {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: white;
+	border: 2px solid white;
+	position: absolute;
+}
+.product_status-open {
+	background-color: #4CAF50;
+}
+.product_status-await {
+	background-color: #FF4F41;
+}
+.product_status-locked {
+	background-color: grey;
+}
+
+.bot-legend {
+	padding: 10px;
+	justify-content: center;
+	background-color: #f5f5f5;
+}
+
+.circle-small {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.legend-item {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: 0px 15px;
+}
+
+.pulse {
+	border: 6px solid #4FFF41;
+	background: transparent;
+	border-radius: 50%;
+	height: 25px;
+	width: 25px;
+	animation: pulse 2s ease-out;
+	animation-iteration-count: infinite;
+	position: absolute;
+	top: -7px;
+	left: -7px;
+	z-index: 1;
+	opacity: 0;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.5);
+		opacity: 0.75;
+	}
+	/*25% {
+		-moz-transform: scale(1);
+		opacity: 0.75;
+	}
+	50% {
+		-moz-transform: scale(1.5);
+		opacity: 0.5;
+	}
+	75% {
+		-moz-transform: scale(2);
+		opacity: 0.25;
+	}*/
+	100% {
+		transform: scale(2);
+		opacity: 0.0;
+	}
+}
+
+#modal_product_info {
+	font-size: 17px;
+}
+
+.info-hilight {
+	color: #b40f23;
+	font-weight: bold;
+}
+
+/* normal matrix style */
+
+.mdl-head {
+	border-bottom: 1px solid #eee;
+	margin-bottom: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 20px;
+}
+
+.mdl-bottom {
+	text-align: center;
+	padding: 15px 0px;
+	border-top: 1px solid #eee;
+}
+
+.info-press {
+	font-size: 18px;
+	margin: 10px 0px;
+	font-weight: bold;
+}
+
+/******* SPECIAL BUTTON JUST FOR THIS *********/
+
+.btnspecial {
+	padding: 8px 24px;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: background 0.2s ease-in-out;
+	border-radius: 3px;
+	border: none;
+	color: white;
+	background-color: #b40f23;
+}
+
+.btnspecial span.fa {
+	margin-right: 10px;
+}
+
+.btnspecial:hover {
+	background-color: #e5142d;
+}
+
+.btnspecial:active {
+	background-color: #8c0919;
+}
+
+/******** BLOCKER **********/
+
+.block-menu-container {
+	list-style: none;
+	font-size: 16px;
+}
+
+.block-menu-container li a {
+	padding: 10px 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-decoration: none;
+	color: #3F51B5;
+	transition: background 0.3s ease-in-out;
+	margin-bottom: 5px;
+}
+
+.block-menu-container li a:hover {
+	background-color: #ddd;
+}
+
+.block-menu-container li a:active {
+	background-color: #3F51B5;
+	color: white;
+}
+
+a span.fa {
+	margin-right: 20px;
+}
+
+.blk-icon {
+	font-size: 25px;
+}

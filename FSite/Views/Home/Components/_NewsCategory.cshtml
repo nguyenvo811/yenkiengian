@@ -1,0 +1,22 @@
+﻿@{
+    var data = (IEnumerable<FSite.Models.Data.BlogCategory>)ViewBag.Category;
+}
+
+<div class="sing_right_widget">
+    <h2>@FSite.Resources.Resource.PostCategoryTitle</h2>
+    <div class="sing_right_widg_content">
+        <ul class="category_right blogTags display-block">
+            @foreach (var item in data)
+            {
+                <li>
+                    <a title="@item.Title" href="/tin-tuc/@item.Key">
+                        <i class="fa fa-angle-double-right"></i> @item.Title
+                        @*<span class="pull-right">(97)</span>*@
+                    </a>
+                </li>
+
+            }
+           
+        </ul>
+    </div>
+</div>

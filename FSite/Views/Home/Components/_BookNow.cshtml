@@ -1,0 +1,21 @@
+﻿<div class="page-content parallax parallax01 dark @(Request.Browser.IsMobileDevice?"mb-30":"mb-70")">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="call-to-action clearfix">
+                    <div class="text">
+                        <h2>XE NHÀ THOẢI MÁI ĐI XA</h2>
+                        <p>
+                            Xe Nhà ra đời từ những mong muốn chân tình của hành khách về những chuyến đi đường dài thoải mái và thân thiện.
+                            <br />Đến với Xe Nhà, bạn sẽ được tận hưởng cảm giác như ngồi trên chính chiếc xe riêng của mình.
+                        </p>
+                    </div><!-- .text end -->
+
+                    <a href="tel:@System.Configuration.ConfigurationManager.AppSettings.Get("ContactPhone")" title="@string.Format(FSite.Resources.Resource.QuickCall,System.Configuration.ConfigurationManager.AppSettings.Get("ContactPhone"))" class="btn btn-big">
+                        <span>Đặt vé ngay</span>
+                    </a>
+                </div><!-- .call-to-action end -->
+            </div><!-- .col-md-12 end -->
+        </div><!-- .row end -->
+    </div><!-- .container end -->
+</div><!-- .page-content.parallax end -->

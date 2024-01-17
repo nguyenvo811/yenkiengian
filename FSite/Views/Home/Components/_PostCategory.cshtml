@@ -1,0 +1,20 @@
+﻿@{
+var data = (IEnumerable<FSite.Models.Data.Post>)ViewBag.Category;
+//var data = (IEnumerable<FSite.Models.Data.SpecialistCategory>)ViewBag.Category;
+}
+
+<div class="block clearfix row">
+    <nav>
+        <ul class="nav nav-pills nav-stacked">
+            @*<li class="active">
+                    <a href="#">Department details</a>
+                </li>*@
+            @foreach (var item in data)
+            {
+                <li>
+                    <a title="@item.Title" href="/@(item.Key).html">@item.Title</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

@@ -1,0 +1,172 @@
+﻿@model FSite.Models.ServiceSearchViewModel
+@{
+    /**/
+
+    ViewBag.BodyClass = "page-service";
+    ViewBag.MenuKey = "Static-3";
+    ViewBag.Title = "Dịch vụ";
+    ViewBag.Desc = "Dịch vụ nổi bật";
+    ViewBag.MenuKey = $"{FSite.Models.Enum.EnumTypeMenu.Static}-7";//
+    FSite.Models.Data.ServiceCategory category = new FSite.Models.Data.ServiceCategory();
+    if (ViewData["category"] != null)
+    {
+        category = (FSite.Models.Data.ServiceCategory)ViewData["category"];
+        ViewBag.Title = category.Title;
+        ViewBag.MenuKey = string.Format("{0}-{1}", FSite.Models.Enum.EnumTypeMenu.CategoryNews, category.Id);//
+    }
+    //else
+    //{
+    //    category.CategoryName = Resources.Resource.NBlogDesc;
+    //}
+
+}
+
+@section headers{
+    @if (!string.IsNullOrEmpty(category.Title))
+    {
+        @*<meta name="description" content="@(!string.IsNullOrEmpty(category.MetaDescription)?category.MetaDescription: category.Description)" />
+            <meta name="keywords" content="@category.MetaKeyword" />
+            <meta property="og:title" content="@(!string.IsNullOrEmpty(category.MetaTitle)?category.MetaTitle:category.CategoryName)" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="@string.Format("{0}/tin-tuc/{1}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"),category.Key)" />
+            <meta property="og:image" content="@string.Format("{0}/Uploads/newscategory/{1}", System.Configuration.ConfigurationManager.AppSettings.Get("BaseUrl"), category)" />*@
+
+    }
+    else
+    {
+        <meta name="description" content="@string.Format("Dịch vụ {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteDesc"))" />
+        <meta name="keywords" content="@string.Format("Dịch vụ {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteKeyWord"))" />
+        <meta property="og:title" content="@string.Format("Dịch vụ {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteTitle"))" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="@string.Format("{0}/tin-tuc",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"))" />
+        <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
+        <meta property="og:description" content="@string.Format("Dịch vụ {0}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteDesc"))" />
+    }
+}
+@Html.Action("Widget_Slider", new { type = FSite.Models.Enum.EnumSliderModules.Service, Id = category.Id })
+
+<div id="masthead" class="bg-image" data-image-src="http://placehold.it/1680x600">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <ol class="breadcrumb">
+                    <li><a href="/">@FSite.Resources.Resource.Breadcrumb_Home</a></li>
+                    @if (!string.IsNullOrEmpty(category.Key))
+                    {
+                        <li><a href="/tin-tuc">Dịch vụ</a></li>
+                        <li class="active">@category.Title</li>
+                    }
+                    else
+                    {
+                        <li class="active">Dịch vụ</li>
+                    }
+                </ol>
+            </div>
+            <div class="col-md-4">
+                <div class="widget1 search">
+                    @using (Ajax.BeginForm("AjaxService", null, new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        UpdateTargetId = "content",
+                        LoadingElementId = "progress",
+                        OnSuccess = "searchOnSuccess"
+                    },
+                                new { @class = "search-form" }))
+                    {
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group date">
+                                    <input class="form-control" value="@Model.Key" id="Key" name="Key" type="text" placeholder="@FSite.Resources.Resource.InputAnyKey" />
+                                    <span class="input-group-addon"> <button class="btn-search" id="btnsearch" type="submit"><span class="glyphicon glyphicon-search"></span></button></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" value="@Model.Category" id="Category" name="Category">
+
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--/container-->
+</div>
+<div id="blog" class="container">
+    <div class="blog">
+        <div class="row">
+            <div class="col-md-8 blog-main" id="content">
+              
+                <!--/.pagination-->
+            </div>
+            <!--/.col-md-8-->
+            <aside class="col-md-4">
+                
+                <!--/.search-->
+                <!--/.recent comments-->
+                @Html.Action("SServiceCategory")
+
+                @Html.Action("SNewsLastest")
+                <!--/.archieve-->
+
+            </aside>
+        </div>
+        <!--/.row-->
+    </div>
+</div>
+@section scripts
+    {
+    <script>
+        function searchClick() {
+            document.getElementById('btnsearch').click();
+        }
+        function searchOnSuccess(res) {
+            trickStyleforpager();
+            //   pushState(res, document.title, "/tin-tuc" + genUrl());
+        }
+        function pagingOnSuccess(res) {
+            trickStyleforpager();
+            //   pushState(res, document.title, "/tin-tuc" + genUrl());
+        }
+        //trick css for pager
+        function trickStyleforpager() {
+            setTimeout(function () {
+                scrolltopview($("#content").offset().top - 100);
+            }, 500)
+
+            //$('.js-box-pagination ul').addClass('pagination');
+            //$('.js-box-pagination li').addClass('page-item');
+            //$('.js-box-pagination a').addClass('page-link');
+            //$('.js-box-pagination span').addClass('page-link');
+        }
+        function genUrl() {
+            var url = "";
+            var params = new Array();
+            if ($('#Key').val()) {
+                params.push("key=" + $('#Key').val())
+            }
+            if (params.length != 0) {
+                url = "?" + params.join('&');
+            }
+            var Category = $('#Category').val();
+            if (Category) {
+                url = "/" + Category + url;
+            }
+
+            return url;
+        }
+        searchClick();
+
+
+    </script>
+    @*@if (!string.IsNullOrEmpty(category.CategoryName))
+        {
+            <script>
+                $('.widget_categories li a[href*="@category.Key"]').parent().addClass('active');
+            </script>
+        }*@
+
+}

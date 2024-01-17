@@ -1,0 +1,28 @@
+﻿@model DateTime?
+@{ //string.Empty
+    //ar v = Model.HasValue ? Model.Value : DateTime.Now;
+    string cl= Model.HasValue ?"cdate" : "";
+}
+
+@*@Html.TextBox(string.Empty, v, "{0:MM/dd/yyyy hh:mm}", new
+{
+    @class = "datepicker form-control",
+    @data_plugin = "datepicker"
+})*@
+
+@Html.TextBox(string.Empty, Model, "{0:dd/MM/yyyy h:mm tt}", new
+{
+    @class = "form-control cdate" 
+})
+
+@*@Html.TextBox("", v, "{0:dd/MM/yyyy hh:mm}", new
+{
+    //@data_locale_format = "MM/DD/YYYY",
+    //  @data_locale_format = "DD/MM/YYYY",
+    @class = "js-datetimerange",
+    //  @readonly = "readonly",
+    //@data_start_date = v,
+    //@data_end_date = Model.HasValue ? Model : DateTime.Now.AddDays(5),
+    @data_time_picker = "false",
+    @data_single_picker = "true"
+})*@

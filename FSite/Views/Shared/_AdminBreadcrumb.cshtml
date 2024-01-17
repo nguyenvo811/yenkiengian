@@ -1,0 +1,38 @@
+﻿@model FSite.Areas.Admin.Models.BreadcrumbViewModels
+@*<div class="page-header">
+    <h1 class="page-title">@Model.Title</h1>
+    <div class="page-header-actions">
+        <ol class="breadcrumb">
+            @foreach (var item in Model.Items)
+            {
+                if (!string.IsNullOrEmpty(item.Link))
+                {
+                    <li><a href="@item.Link">@item.Title</a></li>
+                }
+                else
+                {
+                    <li class="active">@item.Title</li>
+                }
+            }
+        </ol>
+    </div>
+</div>*@
+
+
+<h1>@Model.Title</h1>
+<ol class="breadcrumb">
+    @foreach (var item in Model.Items)
+    {
+        if (!string.IsNullOrEmpty(item.Link))
+        {
+            <li  class="breadcrumb-item"><a href="@item.Link">@item.Title</a></li>
+        }
+        else
+        {
+            <li  class="breadcrumb-item active">@item.Title</li>
+        }
+    }
+    @*<li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Tables</a></li>
+        <li class="breadcrumb-item active">Table Color</li>*@
+</ol>

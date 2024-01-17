@@ -1,0 +1,120 @@
+﻿@model FSite.Models.BlogSearchViewModel
+@using FSite.Models.Enum
+@using MvcPaging
+@{
+    var data = (IEnumerable<FSite.Models.Data.Blog>)ViewBag.Data;
+}
+
+<div class="row">
+    <div class="panel filter-panel">
+        <div class="panel-body">
+            <h4 class="filter-title pull-left">@Html.Raw(string.Format(FSite.Resources.Resource.BlogFound, $"<span id='item-count' class='badge badge-secondary'>{@ViewBag.TotalItemCount}</span>"))</h4>
+            @*<form action="#" class="form-inline pull-right">
+                    <div class="form-group">
+                        <label>Sắp xếp:</label>
+                        <select class="form-control js-sort">
+                            <option value="lastest">Ngày đăng mới nhất</option>
+                            <option value="popupar">Tin Xem nhiều nhất</option>
+                            <option value="highest">Giá cao nhất</option>
+                            <option value="lowest">Giá thấp nhất</option>
+                        </select>
+                    </div>
+                </form>*@
+            <div class="pull-right">
+                @if (ViewData["category"] != null)
+                {
+                    var Ca = (FSite.Models.Data.BlogCategory)ViewData["category"];
+                    <a href="#Category" data-target="#Category" class="js-filter-remove"><i class="fa fa-remove"></i>@Ca.Title</a>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+    @foreach (var item in data)
+    {
+        var link = $"/{item.Key}/tin-tuc";
+        <div class="articleItem col-md-6 col-sm-12 col-xs-12">
+
+            <div class="insArticleLoop">
+                <div class="articlePostBody bg_w">
+                    <div class="postThumbIMG relative imageHover">
+                        <a href="@link">
+                            <img class="insImageload" data-load="true" src="@item.ImageUrl" alt="@item.Title">
+                        </a>
+                        <div class="createdInfo">
+                            <ul class="notStyle">
+                                @if (item.CreatedDate.HasValue)
+                                {
+                                    <li class="time"><i class="fa fa-calendar" aria-hidden="true"></i> <time>@Html.DisplayFor(m=>item.CreatedDate)</time></li>
+                                }
+                                @if (item.Category != null)
+                                {
+                                    <li class="post-category">
+                                    
+                                          <span class="post-category"><a href="/tin-tuc/@item.Category.Key">@item.Category.Title</a></span>
+                                    </li>
+                                }
+                                @*<li class="comment"><i class="fa fa-comments-o" aria-hidden="true"></i> <span>0</span></li>
+                                <li class="post"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Anh Quân</span></li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="postDetail">
+                        <div class="detail clearfix">
+                            <h3><a href="@link" title="@item.Title">@item.Title</a></h3>
+                            <p>@item.Description</p>
+                            <a href="@link" class="view" title="@FSite.Resources.Resource.MoreView">@FSite.Resources.Resource.MoreView <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <!--/.blog-item-->
+    <!-- end:post -->
+    }
+
+  
+
+ 
+
+</div>
+
+<div class="content_sortPagiBar pagi">
+    <div id="pagination" class="clearfix">
+        @if (ViewBag.TotalItemCount > 6)
+            {
+            <div class="pager text-center">
+                @Html.Raw(Ajax.Pager(
+       new Options
+       {
+           PageSize = ViewBag.PageSize,
+
+           TotalItemCount = ViewBag.TotalItemCount,
+           CurrentPage = ViewBag.Page,
+           ItemTexts = new ItemTexts() { Next = ">", Previous = "<", Page = "", First = "<<", Last = ">>" },
+           // ItemIcon = new ItemIcon() { First = "icon-backward", Previous = "icon-chevron-left", Next = "icon-chevron-right", Last = "icon-forward" },
+           TooltipTitles = new TooltipTitles() { Next = "Trang kế tiếp", Previous = "Trang lùi về", Page = "Tới trang {0}.", First = "Tới trang đầu", Last = "Tới cuối trang" },
+           Size = Size.small,
+           Alignment = Alignment.centered,
+           IsShowControls = true,
+           IsShowFirstLast = true,
+           CssClass = "js-box-pagination metro-theme"
+
+
+       },
+
+       new AjaxOptions
+       {
+           UpdateTargetId = "content",
+           LoadingElementId = "progress",
+           OnSuccess = "pagingOnSuccess"
+       }, new { controller = "Home", action = "AjaxBlogs", SortColumn = ViewBag.SortColumn, SortColumnDir = ViewBag.SortColumnDir, Category = Model.Category, Key = Model.Key }))
+            </div>
+        }
+    </div>
+</div>
+
+   
