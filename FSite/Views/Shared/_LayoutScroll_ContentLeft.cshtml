@@ -48,12 +48,8 @@
     <link href="~/templates/front/css/style.css?v=@version" rel="stylesheet" />
     <link href="~/Content/daterangepicker.css" rel="stylesheet" />
     <!-- Goole fonts -->
-    @*<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,600,700,800" rel="stylesheet" type="text/css">*@
-
     <link href="https://fonts.googleapis.com/css?family=Kodchasan:300,400,600,700" rel="stylesheet">
-
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,800,700,600' rel='stylesheet' type='text/css'>
-
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,800,700,600' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -66,7 +62,7 @@
     <link href="~/Content/alerttify/alertify.cus.css" rel="stylesheet" />
     <link href="~/Content/paging.css" rel="stylesheet" />
     <link href="~/Content/hotline.css?v=@version" rel="stylesheet" />
-   
+
     <link href="~/Content/Site.css?v=@version" rel="stylesheet" />
     <script data-pace-options='{ "ajax": true }' src='/Scripts/pace/pace.min.js'></script>
     <script>
@@ -89,7 +85,7 @@
     </script>
 
 </head>
-<body id="services-page"  class="scroll-page1 @ViewBag.BodyClass @(ViewBag.isMobile?"mobile-":"")" data-page="@ViewBag.MenuKey">
+<body id="services-page" class="scroll-page1 @ViewBag.BodyClass @(ViewBag.isMobile?"mobile-":"")" data-page="@ViewBag.MenuKey">
     <div class="animsition">
         <div class="wrapper">
             <header id="header">
@@ -97,10 +93,6 @@
                 <div class="top-bar bg-green-dark hidden-xs">
                     <div class="container">
                         <div class="row">
-                            @*<div class="col-sm-4 list-inline list-unstyled no-margin">
-                                    <p class="no-margin"><span class="icon-i-volume-control cus-color-red" aria-hidden="true"></span> @FSite.Resources.Resource._Hotline <strong>+080 124 880</strong></p>
-                                </div>*@
-
                             <div class="col-sm-12">
                                 <ul class="list-inline list-unstyled no-margin">
                                     <li class="list-inline-item float-right ">
@@ -109,22 +101,12 @@
                                     </li>
                                     @if (User.IsInRole(FSite.Models.Enum.EnumUserRole.Admin.ToString()) || User.IsInRole(FSite.Models.Enum.EnumUserRole.Operator.ToString()))
                                     {
-                                        @*<li class="list-inline-item float-right   pull-right">
-                                                <i class="glyphicon glyphicon-globe"></i>
-                                                <a href="http://bmt.edu.vn:8000/">@User.Identity.Name</a>
-                                            </li>*@
                                         <li class="list-inline-item float-right  pull-right ac-manage cus-color-blue">
                                             <div class="btn-group pull-right ">
                                                 <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                                     @User.Identity.Name <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu no-border-radius no-shadow">
-                                                    @*<li>
-                                                            <a href="@Url.Action("Profile", "Manage")"><i class="ion ion-person"></i> Thông tin cá nhân</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="@Url.Action("ChangePass", "Manage")"><i class="fa fa-unlock-alt"></i> Đổi mật khẩu</a>
-                                                        </li>*@
                                                     <li><a href="/Admin"><i class="fa fa-unlock-alt"></i> Quản trị</a></li>
                                                     <li>
                                                         @using (Html.BeginForm("LogOff", "Account", null, FormMethod.Post, new { id = "logoutForm", @class = "" }))
@@ -149,36 +131,6 @@
                                         <i class="glyphicon glyphicon-globe"></i>
                                         <a href="http://bmt.edu.vn:8000/">Bệnh Án Điện tử</a>
                                     </li>
-
-                                    @*<li class="list-inline-item float-right  cus-color-blue">
-                                                                        <div class="btn-group pull-right ">
-                                            <button class="dropdown-toggle language" type="button" data-toggle="dropdown" aria-expanded="false">
-                                                <img src="/images/us.png" width="16" height="11" alt="EN Language">English <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu no-border-radius no-shadow">
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="/images/us.png" width="16" height="11" alt="EN Language">[US] English
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="/images/de.png" width="16" height="11" alt="DE Language">[DE] German
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="/images/fr.png" width="16" height="11" alt="FR Language">[FR] French
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="/images/ru.png" width="16" height="11" alt="RU Language">[RU] Russian
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                                                    </li>*@
                                 </ul>
 
                             </div>
@@ -188,20 +140,6 @@
                 </div>
                 <!-- /.top bar -->
                 <!-- begin Logo and info -->
-                @*<div class="container middle-bar hidden-xs">
-                        <div class="row">
-                            <a href="index.html" class="logo col-sm-3">
-                                <img src="/images/logo-md.png" class="img-responsive" alt="" />
-                            </a>
-                            <div class="col-sm-8 col-sm-offset-1 contact-info">
-                                <p>
-                                    @FSite.Resources.Resource._Emergency <span>+114 554 888</span>
-                                </p>
-
-                            </div>
-
-                        </div>
-                    </div>*@
                 <!-- /.middle -->
                 <!-- begin MegaNavbar-->
                 <div class="nav-wrap-holder">
@@ -217,42 +155,11 @@
                                     <a href="/" class="navbar-brand logo">
                                         <img src="/images/logo-md.png" class="img-responsive" alt="" />
                                     </a>
-                                    @*<a href="/" class="navbar-brand logo hidden-xs">
-                                        <img src="/images/logo-md.png" class="img-responsive" alt="" />
-                                    </a>
-                                    <a href="/" class="navbar-brand logo col-sm-3 visible-xs-block">
-                                        <img src="/images/logo-sm.png" class="img-responsive" alt="" />
-                                    </a>*@
                                 </div>
                                 <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse" id="MegaNavbarID">
                                     <!-- regular link -->
-                                    @Html.Action("MenuTop", "Home",new {isfirst=true})
-                                    @*<ul class="nav navbar-nav navbar-left">
-                                        <li>
-                                            <a href="index.html"><span class="hidden-sm">Trang chủ</span></a>
-                                        </li>
-                                        <li class="divider"></li>
-
-
-                                        <li class="dropdown-short">
-                                            <a data-toggle="dropdown" href="javascript:void(0);" class="dropdown-toggle"><span class="hidden-sm hidden-md reverse">Giới thiệu</span><span class="caret"></span></a>
-                                            <ul class="dropdown-menu no-border-radius no-shadow">
-                                                <li class="divider no-margin"></li>
-
-
-                                                <li> <a href="service-details.html"></a></li>
-
-                                                <li class="active">
-                                                    <a href="service-details.html">Lịch sử hình thành</a>
-                                                </li>
-                                                <li>
-                                                    <a href="service.html">Về chúng tôi</a>
-                                                </li>
-                                                <li class="divider"></li>
-                                            </ul>
-                                        </li>
-                                    </ul>*@
+                                    @Html.Action("MenuTop", "Home", new { isfirst = true })
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="box-search">
                                             <!-- search form -->
@@ -286,7 +193,7 @@
                                             <ul class="dropdown-menu no-shadow no-border-radius space-xs">
                                                 <li class="col-sm-4">
                                                     <address>
-                                                       
+
                                                         <strong>Địa điểm.</strong><br>
                                                         298 Hà Huy Tập P. Tân An TP. <br>
                                                         Buôn Ma Thuột Tỉnh Đắk Lắk<br>
@@ -294,10 +201,10 @@
                                                         <abbr title="Di động">Di động:</abbr> (098) 765-4321
                                                     </address>
 
-                                                   
+
                                                 </li>
                                                 <li class="col-sm-4">
-                                                   
+
                                                     <address>
                                                         <strong>Hộp thư</strong><br>
                                                         <a href="mailto:daihocbmt@bmtu.edu.vn">daihocbmt@bmtu.edu.vn</a>
@@ -305,7 +212,7 @@
                                                     <div class="open-hours">
                                                         <p>
                                                             Khám bệnh ngoại trú <span> từ 7h00-17h00</span>
-															(Tất cả các ngày kể cả ngày lễ, T7 và CN)
+                                                            (Tất cả các ngày kể cả ngày lễ, T7 và CN)
                                                         </p>
                                                         <p>
                                                             Tiếp nhận cấp cứu: 24/24h <span>Tiếp nhận cấp cứu: 24/24h</span>
@@ -316,8 +223,8 @@
                                                     </div>
                                                 </li>
                                                 @*<li class="col-sm-7 col-sm-offset-1" id="boxGeneral_Contact">
-            @Html.Action("CustomerRequest", new { Content = "", TypeRequest = FSite.Models.Enum.EnumTypeRequest.General_Contact })
-        </li>*@
+                                                        @Html.Action("CustomerRequest", new { Content = "", TypeRequest = FSite.Models.Enum.EnumTypeRequest.General_Contact })
+                                                    </li>*@
                                             </ul>
                                         </li>
                                     </ul>
@@ -334,7 +241,7 @@
         <!-- end: animatsion -->
     </div>
 
-   
+
     @Html.Partial("_BottomContact")
 
     @Scripts.Render("~/bundles/jquery")
@@ -345,7 +252,7 @@
     <script src="~/templates/front/js/plugins.js"></script>
     <!-- jQuery REVOLUTION Slider  -->
     @*<script src="~/templates/front/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-    <script src="~/templates/front/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>*@
+        <script src="~/templates/front/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>*@
     <script src="~/templates/front/js/custom.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="~/templates/front/js/ie10-viewport-bug-workaround.js"></script>
@@ -359,18 +266,12 @@
     <script src="~/Scripts/js.cookie.min.js"></script>
     <script src="~/Scripts/Site.js?v=@version"></script>
     <script src="~/Scripts/SiteFrontEnd.js?v=@version"></script>
- 
+
     @RenderSection("scripts", required: false)
     <script>
-        $(document).ready(function ()
-        {
-
-
-
-
+        $(document).ready(function () {
         })
     </script>
     <!-- Load Facebook SDK for JavaScript -->
-    
 </body>
 </html>

@@ -31,7 +31,6 @@
             <meta property="og:type" content="website" />
             <meta property="og:url" content="@string.Format("{0}/tin-tuc/{1}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"),category.Key)" />
             <meta property="og:image" content="@string.Format("{0}/Uploads/newscategory/{1}", System.Configuration.ConfigurationManager.AppSettings.Get("BaseUrl"), category)" />*@
-
     }
     else
     {
@@ -50,15 +49,15 @@ window.shop = {
 	moneyFomat: '{{amount}}₫'
 }
 </script>
-@Html.Action("Widget_Slider", new { type = FSite.Models.Enum.EnumSliderModules.Blog,Id=category.Id })
+@Html.Action("Widget_Slider", new { type = FSite.Models.Enum.EnumSliderModules.Blog, Id = category.Id })
 
 <section id="insBlogPage">
     <div class="insBreadcrumb ">
         <div class="container">
             <div class="breadcrumb-wrap">
                 <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
-                 
-                      
+
+
                     <li><a href="/" target="_self">@FSite.Resources.Resource.Breadcrumb_Home</a></li>
 
 
@@ -81,7 +80,7 @@ window.shop = {
         <div class="wrapperBlogPage">
             <div class="row">
                 <div class="col-md-9 col-sm-8 col-xs-12" id="content">
-@FSite.Resources.Resource.GetDataFromServer
+                    @FSite.Resources.Resource.GetDataFromServer
                 </div>
                 <div class="col-md-3 col-sm-4 hidden-xs ba_sidebar">
                     <aside id="insBlogSidebar">
@@ -110,12 +109,12 @@ new { @class = "search-form" }))
 
                                             </div>
 
-                                                <input type="hidden" value="@Model.Category" id="Category" name="Category">
+                                            <input type="hidden" value="@Model.Category" id="Category" name="Category">
 
                                         }
                                     </div>
                                 </div>
-                                
+
 
                                 @Html.Action("SNewsCategory")
                                 @Html.Action("SNewsLastest")
@@ -124,7 +123,7 @@ new { @class = "search-form" }))
                             </div>
                         </div>
                     </aside>
-                   
+
                 </div>
             </div>
         </div>
@@ -136,10 +135,10 @@ new { @class = "search-form" }))
     {
     <style>
         .wrapperBlogPage .articleItem:nth-of-type(2n+1) {
-    clear: unset;
-}
+            clear: unset;
+        }
     </style>
-  
+
 
     <script>
         function searchClick() {

@@ -29,7 +29,7 @@
     <link href="~/Content/alerttify/themes/semantic.min.css" rel="stylesheet" />
     @*<link rel="stylesheet" href="~/templates/admin/css/tibi-style.css">*@
     <link href="~/Content/daterangepicker.css" rel="stylesheet" />
-     <!--toast-->
+    <!--toast-->
     <link href="~/templates/admin/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.css" rel="stylesheet" />
     <link href="/Content/select2.css" rel="stylesheet" />
     <link href="/Content/select2-bootstrap.css" rel="stylesheet" />
@@ -60,9 +60,9 @@
             <a href="/" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 @*<b class="logo-mini">
-                    <span class="light-logo"><img src="~/templates/admin/images/logo-light.png" alt="logo"></span>
-                    <span class="dark-logo"><img src="~/templates/admin/images/logo-dark.png" alt="logo"></span>
-                </b>*@
+                        <span class="light-logo"><img src="~/templates/admin/images/logo-light.png" alt="logo"></span>
+                        <span class="dark-logo"><img src="~/templates/admin/images/logo-dark.png" alt="logo"></span>
+                    </b>*@
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">
                     <img src="~/templates/admin/images/logo-light-text.png" alt="logo" class="light-logo">
@@ -77,29 +77,6 @@
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <!-- Notifications: style can be found in dropdown.less -->
-                        @*<li class="dropdown notifications-menu">
-                                <a href="#" class="bt_notify dropdown-toggle" onclick="getNotify()" data-toggle="dropdown">
-                                    <i class="mdi mdi-bell"></i>
-                                    <span class="badge bg-red count_notify">0</span>
-                                </a>
-                                <ul class="dropdown-menu scale-up">
-                                    <li class="header">Thông báo</li>
-                                    <li>
-
-                                        <ul class="lstnotify menu inner-content-div">
-                                            <li>
-                                                <span>
-                                                    <i></i>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
-                                </ul>
-                            </li>*@
-
-                        <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="/templates/admin/images/noavatar.jpg" class="user-image rounded-circle" alt="">
@@ -116,8 +93,6 @@
                                 <!-- Menu Body -->
                                 <li class="user-body">
                                     <div class="row no-gutters">
-
-
                                         <div class="col-12 text-left">
                                             <a href="@Url.Action("Profile", "Manage")"><i class="ion ion-person"></i> Thông tin cá nhân</a>
                                         </div>
@@ -147,32 +122,8 @@
                 <ul class="sidebar-menu" data-widget="tree">
 
                     <li class="nav-devider"></li>
-                    @*<li class="active">
-            <a href="/">
-                <i class="fa fa-dashboard"></i> <span>Trang chính</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-right pull-right"></i>
-                </span>
-            </a>
-        </li>*@
-
                     @if (User.IsInRole(FSite.Models.Enum.EnumUserRole.Admin.ToString()) || User.IsInRole(FSite.Models.Enum.EnumUserRole.Operator.ToString()))
                     {
-
-
-                        @*<li class="treeview">
-                <a href="@Url.Action("Index","Blogs")">
-                    <i class="fa fa-newspaper-o"></i>
-                    <span>Tin tức</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li id="mBlogs"><a href="@Url.Action("Index","Blogs")">Tin tức</a></li>
-                    <li id="mBlogCategories"><a href="@Url.Action("Index","BlogCategories")">Danh mục tin</a></li>
-                </ul>
-            </li>*@
                         <li class="treeview ">
                             <a href="@Url.Action("Index","Contents")">
                                 <i class="fa fa-user-plus"></i> <span>Liên hệ</span>
@@ -184,10 +135,8 @@
                                 <li class="nav-item" id="mContents"><a class="nav-link" href="@Url.Action("Index","Contents",new  { area = "Admin" })">Tất Cả</a></li>
                                 <li class="nav-item" id="mContents_Status_0"><a class="nav-link" href="@Url.Action("Index","Contents",new  { area = "Admin", Status=0})">Chờ xử lý</a></li>
                                 <li class="nav-item" id="mContents_Status_1"><a class="nav-link" href="@Url.Action("Index","Contents",new  { area = "Admin", Status=1})">Kết thúc</a></li>
-                                
                             </ul>
                         </li>
-
                         <li class="treeview">
                             <a href="@Url.Action("Index","Blogs")">
                                 <i class="fa fa-newspaper-o"></i>
@@ -214,7 +163,7 @@
                                 <li id="mProductBrands"><a href="@Url.Action("Index","ProductBrands")">Thương hiệu</a></li>
                             </ul>
                         </li>
-                       
+
                         <li class="treeview">
                             <a href="@Url.Action("Index","Services")">
                                 <i class="fa fa-user-plus"></i> <span>Dịch vụ</span>
@@ -254,9 +203,9 @@
                                 <li id="mPosts"><a href="@Url.Action("Index","Posts")">Danh sách trang</a></li>
                                 <li id="mSliders"><a href="@Url.Action("Index","Sliders")">Slider</a></li>
                                 @*@if (User.IsInRole(FSite.Models.Enum.EnumUserRole.Admin.ToString()))
-                    {
-                        <li id="mUsers"><a href="@Url.Action("Index","Users")">Tài khoản</a></li>
-                    }*@
+                                    {
+                                        <li id="mUsers"><a href="@Url.Action("Index","Users")">Tài khoản</a></li>
+                                    }*@
                             </ul>
                         </li>
                     }
@@ -278,8 +227,6 @@
         </div>
         &copy; 2019 by <a href="mailto:tponguyen86@gmail.com">TPO Group</a>.
     </footer>
-
-    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
     <script src="~/templates/admin/custom/js/jquery-3.3.1.min.js"></script>
     <script>
         //$.widget.bridge('uibutton', $.ui.button);
@@ -302,11 +249,9 @@
     <script src="/Scripts/daterangepicker.js"></script>
     <script src="~/Scripts/Site.js?v=2"></script>
     <script>
-     
-        var count = 0;//biến toàn cục
+        var count = 0;
         $(document).ready(function () {
-            // countnotify();
-            //trick for checkbox
+            //cheat for checkbox
             $('[type="checkbox"]').each(function () {
                 var lb = $(this).parent().find('label');
                 $(lb).insertAfter($(this))
@@ -407,9 +352,6 @@
                 });
             }
         }
-
-
-
         //Loading khi click menu
         function loading() {
             $('#waitingLoad').modal('show');
@@ -438,5 +380,4 @@
     </script>
     @RenderSection("scripts", required: false)
 </body>
-
 </html>

@@ -17,7 +17,6 @@
     //}
     ViewBag.Title = Model.Title;
     string domain = System.Configuration.ConfigurationManager.AppSettings.Get("domain");
-
 }
 
 @section headers{
@@ -36,68 +35,79 @@ window.shop = {
 }
 </script>
 <style>
-          #insArtCommentFRM .input-group {
-          width: 50% !important;
-          float: left;
-          margin-bottom: 15px;
-          padding-right: 10px;
-          }
-          #insArtCommentFRM .input-group.bd {
-          width: 100% !important;
-          }
-          #insArtCommentFRM .input-group .form-control {
-          width: 100% !important;
-          border: 1px solid #eaeaea;
-          padding-left: 15px;
-          box-shadow: none;
-          -webkit-transition: all .25s ease-in-out;
-          -moz-transition: all .25s ease-in-out;
-          -o-transition: all .25s ease-in-out;
-          transition: all .25s ease-in-out;
-          border-radius: 0;
-          }
-          #insArtCommentFRM .input-group .form-control:focus{
-          border-color: #d21212;
-          }
-          #insArtCommentFRM .input-group textarea#comment_body {
-          margin-bottom: 20px;
-          }
-          div#insArtCommentList {
-          padding: 0px 15px;
-          }
-          #insArtCommentList h2 {
-          display: inline-block;
-          font-size: 17px;
-          text-transform: uppercase;
-          margin: 5px 0px;
-          }
-          #binhluan .comment {
-          margin: 0px 0px 10px;
-          padding: 10px 0px;
-          border-bottom: 1px dashed #00a651;
-          }
-          #binhluan .comment h3.author {
-          background: #f1f1f1;
-          padding: 5px;
-          margin-bottom: 5px;
-          font-size: 15px;
-          }
-          #binhluan .comment div {
-          padding: 0px 10px;
-          }
-          .subtext, .notice {
-          color: #d21212;
-          font-size: 15px;
-          display: block;
-          margin-bottom: 10px;
-          font-style: italic;
-          }
-          @@media screen and (max-width: 479px){
-          #insArtCommentFRM .input-group {
-          width: 100% !important;
-          padding-right: 0px;
-          }
-          }
+    #insArtCommentFRM .input-group {
+        width: 50% !important;
+        float: left;
+        margin-bottom: 15px;
+        padding-right: 10px;
+    }
+
+        #insArtCommentFRM .input-group.bd {
+            width: 100% !important;
+        }
+
+        #insArtCommentFRM .input-group .form-control {
+            width: 100% !important;
+            border: 1px solid #eaeaea;
+            padding-left: 15px;
+            box-shadow: none;
+            -webkit-transition: all .25s ease-in-out;
+            -moz-transition: all .25s ease-in-out;
+            -o-transition: all .25s ease-in-out;
+            transition: all .25s ease-in-out;
+            border-radius: 0;
+        }
+
+            #insArtCommentFRM .input-group .form-control:focus {
+                border-color: #d21212;
+            }
+
+        #insArtCommentFRM .input-group textarea#comment_body {
+            margin-bottom: 20px;
+        }
+
+    div#insArtCommentList {
+        padding: 0px 15px;
+    }
+
+    #insArtCommentList h2 {
+        display: inline-block;
+        font-size: 17px;
+        text-transform: uppercase;
+        margin: 5px 0px;
+    }
+
+    #binhluan .comment {
+        margin: 0px 0px 10px;
+        padding: 10px 0px;
+        border-bottom: 1px dashed #00a651;
+    }
+
+        #binhluan .comment h3.author {
+            background: #f1f1f1;
+            padding: 5px;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        #binhluan .comment div {
+            padding: 0px 10px;
+        }
+
+    .subtext, .notice {
+        color: #d21212;
+        font-size: 15px;
+        display: block;
+        margin-bottom: 10px;
+        font-style: italic;
+    }
+
+    @@media screen and (max-width: 479px) {
+        #insArtCommentFRM .input-group {
+            width: 100% !important;
+            padding-right: 0px;
+        }
+    }
 </style>
 <section id="insArticlePage">
     <div class="insBreadcrumb blog-breadcrumb">
@@ -135,40 +145,40 @@ window.shop = {
                                         }
                                         @if (Model.Category != null)
                                         {
-                                        <li>
-                                            <i class="fa fa-tags" aria-hidden="true"></i>
-                                            <a href="/tin-tuc/@Model.Category.Key">@Model.Category.Title</a>
-                                        </li>
+                                            <li>
+                                                <i class="fa fa-tags" aria-hidden="true"></i>
+                                                <a href="/tin-tuc/@Model.Category.Key">@Model.Category.Title</a>
+                                            </li>
                                         }
-                                       
+
                                     </ul>
                                 </div>
                             </div>
                             <div class="body-content js-detail">
-                              @Html.Raw(Model.Detail)
+                                @Html.Raw(Model.Detail)
                             </div>
                             <div class="clearfix"></div>
 
                         </div>
-                     
+
                     </div>
                     <div class="pdBlockDetail pdRelatedInfo">
                         <div class="relatedPD">
                             <div class="pdRelated">
                                 <div class="blockTitle">
                                     <h2>
-                                       @FSite.Resources.Resource.NewsSimilar
+                                        @FSite.Resources.Resource.NewsSimilar
                                     </h2>
                                 </div>
                                 <div class="relatedListting">
                                     <div id="blog-simmilar-slider" class="contentRelatedPd owlDesign ">
 
-                                        @{ 
+                                        @{
                                             var sim = (IEnumerable<FSite.Models.Data.Blog>)ViewBag.Similars;
                                         }
                                         @foreach (var item in sim)
-            {
-                var link = $"/{item.Key}/tin-tuc";
+                                        {
+                                            var link = $"/{item.Key}/tin-tuc";
                                             <div class="newItem">
                                                 <div class="wrap clearfix">
                                                     <a href="@link"><img src="@item.ImageUrl" alt="@item.Title" /></a>
@@ -187,12 +197,7 @@ window.shop = {
                                             </div>
 
                                         }
-                                      
-
-
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -217,31 +222,23 @@ window.shop = {
                                                 </div>
 
                                             </div>
-
-                                          
-
                                         </form>
                                     </div>
                                 </div>
-
-
                                 @Html.Action("SNewsCategory")
                                 @Html.Action("SNewsLastest")
                             </div>
                         </div>
                     </aside>
-                  
+
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-
 @section scripts
     {
-@*<link href="/templates/front/css/pages.css" rel="stylesheet" />*@
-
     <script>
         $('#blog-simmilar-slider').owlCarousel({
             items: 3,

@@ -5,36 +5,25 @@
     var data = (IEnumerable<FSite.Models.Data.Service>)ViewBag.Data;
 }
 
-    <div class="panel filter-panel">
-        <div class="panel-body">
-            <h4 class="filter-title pull-left">@Html.Raw(string.Format(FSite.Resources.Resource.ServiceFound,$"<span id='item-count' class='badge badge-secondary'>{@ViewBag.TotalItemCount}</span>"))</h4>
-            @*<form action="#" class="form-inline pull-right">
-                    <div class="form-group">
-                        <label>Sắp xếp:</label>
-                        <select class="form-control js-sort">
-                            <option value="lastest">Ngày đăng mới nhất</option>
-                            <option value="popupar">Tin Xem nhiều nhất</option>
-                            <option value="highest">Giá cao nhất</option>
-                            <option value="lowest">Giá thấp nhất</option>
-                        </select>
-                    </div>
-                </form>*@
-            <div class="pull-right">
-                @if (ViewData["category"] != null)
-                {
-                    var Ca = (FSite.Models.Data.ServiceCategory)ViewData["category"];
-                    <a href="#Category" data-target="#Category" class="js-filter-remove"><i class="fa fa-remove"></i>@Ca.Title</a>
-                }
-            </div>
+<div class="panel filter-panel">
+    <div class="panel-body">
+        <h4 class="filter-title pull-left">@Html.Raw(string.Format(FSite.Resources.Resource.ServiceFound, $"<span id='item-count' class='badge badge-secondary'>{@ViewBag.TotalItemCount}</span>"))</h4>
+        <div class="pull-right">
+            @if (ViewData["category"] != null)
+            {
+                var Ca = (FSite.Models.Data.ServiceCategory)ViewData["category"];
+                <a href="#Category" data-target="#Category" class="js-filter-remove"><i class="fa fa-remove"></i>@Ca.Title</a>
+            }
         </div>
     </div>
+</div>
 @foreach (var item in data)
 {
-    var link = $"/{item.Key}/dich-vu"; 
+    var link = $"/{item.Key}/dich-vu";
     <article class="blog-item">
         <div class="post-media">
             <a href="@link">
-                <img src="@item.ImageUrl" alt="@item.Title" class="img-responsive"/>
+                <img src="@item.ImageUrl" alt="@item.Title" class="img-responsive" />
             </a>
         </div>
         <div class="item-content">
@@ -44,23 +33,18 @@
                     @*@Html.DisplayFor(m => item.CreatedDate)*@
                     @if (item.CreatedDate.HasValue)
                     {
-                    <li class="date">
-                        <span class="day">@item.CreatedDate.Value.Day</span>
-                        <span class="month">@item.CreatedDate.Value.Month</span>
-                        <span class="year">@item.CreatedDate.Value.Year</span>
-                    </li>
+                        <li class="date">
+                            <span class="day">@item.CreatedDate.Value.Day</span>
+                            <span class="month">@item.CreatedDate.Value.Month</span>
+                            <span class="year">@item.CreatedDate.Value.Year</span>
+                        </li>
                     }
-@if (item.Category != null)
-{
-    <li>
-        <span class="post-category"><a href="/dich-vu/@item.Category.Key">@item.Category.Title</a></span>
-    </li>
-}
-                    @*<li class="comments">
-            <a href="#">
-                <span>9</span>comments
-            </a>
-        </li>*@
+                    @if (item.Category != null)
+                    {
+                        <li>
+                            <span class="post-category"><a href="/dich-vu/@item.Category.Key">@item.Category.Title</a></span>
+                        </li>
+                    }
                 </ul>
             </div>
             <!-- end:Post date -->

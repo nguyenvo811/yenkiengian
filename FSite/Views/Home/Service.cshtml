@@ -30,7 +30,6 @@
             <meta property="og:type" content="website" />
             <meta property="og:url" content="@string.Format("{0}/tin-tuc/{1}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"),category.Key)" />
             <meta property="og:image" content="@string.Format("{0}/Uploads/newscategory/{1}", System.Configuration.ConfigurationManager.AppSettings.Get("BaseUrl"), category)" />*@
-
     }
     else
     {
@@ -99,12 +98,12 @@
     <div class="blog">
         <div class="row">
             <div class="col-md-8 blog-main" id="content">
-              
+
                 <!--/.pagination-->
             </div>
             <!--/.col-md-8-->
             <aside class="col-md-4">
-                
+
                 <!--/.search-->
                 <!--/.recent comments-->
                 @Html.Action("SServiceCategory")
@@ -136,11 +135,6 @@
             setTimeout(function () {
                 scrolltopview($("#content").offset().top - 100);
             }, 500)
-
-            //$('.js-box-pagination ul').addClass('pagination');
-            //$('.js-box-pagination li').addClass('page-item');
-            //$('.js-box-pagination a').addClass('page-link');
-            //$('.js-box-pagination span').addClass('page-link');
         }
         function genUrl() {
             var url = "";
@@ -159,14 +153,5 @@
             return url;
         }
         searchClick();
-
-
     </script>
-    @*@if (!string.IsNullOrEmpty(category.CategoryName))
-        {
-            <script>
-                $('.widget_categories li a[href*="@category.Key"]').parent().addClass('active');
-            </script>
-        }*@
-
 }

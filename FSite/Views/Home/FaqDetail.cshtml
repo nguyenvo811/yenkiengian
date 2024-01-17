@@ -27,7 +27,7 @@
     <meta property="og:title" content="@Html.Raw(Model.MetaTitle)" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="@string.Format("{0}/{1}.htm",System.Configuration.ConfigurationManager.AppSettings.Get("domain"),Model.Key)" />
-   <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
+    <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
     <meta property="og:description" content="@Html.Raw(Model.MetaDescription)" />
 }
 
@@ -59,7 +59,6 @@
             <div class="col-md-8 Faq-main">
                 <div class="Faq-item">
                     <div class="post-content">
-                        
                         <!--END POST-MEDIA-->
                         <div class="post-date">
                             <ul>
@@ -73,9 +72,6 @@
                                     }
 
                                 </li>
-                                @*<li class="comments">
-                    <a href="#"><span>4</span> comments</a>
-                </li>*@
                                 @if (Model.CategoryId.HasValue)
                                 {
                                     <li class="comments">
@@ -83,36 +79,22 @@
                                     </li>
 
                                 }
-
                             </ul>
                         </div>
-                        <!--END POST-DATE-->
                         <div class="post-title">
                             <h2 class="title"><a href="#">@Model.Title</a></h2>
                         </div>
-                        <!--END POST-TITLE-->
-                        @*<div class="post-meta">
-                            <ul>
-                                <li>
-                                    <span>Posted by <a href="#">codenpixel</a></span>
-                                </li>
-                                <li>
-                                    <span>in <a href="#">template</a>, <a href="#">css</a>, <a href="#">html</a></span>
-                                </li>
-                            </ul>
-                        </div>*@
-                        <!--END POST-META-->
                         <blockquote class="light">
                             @Html.Raw(Model.Description)
                         </blockquote>
-                     
+
                         <hr />
                         <div class="js-detail">@Html.Raw(Model.Detail)</div>
                     </div>
                     <!--END POST-CONTENT -->
                     <hr>
                 </div>
-             
+
                 <hr>
 
             </div>
@@ -138,7 +120,7 @@
                 </div>
                 <!--/.search-->
 
-                 @Html.Action("SServiceCategory")
+                @Html.Action("SServiceCategory")
                 @Html.Action("SNewsLastest")
 
             </aside>

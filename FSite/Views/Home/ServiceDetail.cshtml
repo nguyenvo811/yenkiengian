@@ -19,7 +19,6 @@
     //}
     ViewBag.Title = Model.Title;
     string domain = System.Configuration.ConfigurationManager.AppSettings.Get("domain");
-
 }
 
 @section headers{
@@ -62,7 +61,6 @@
                     <div class="post-content">
                         <div class="post-media">
                             <a href="#">
-                                @*<img src="http://placehold.it/800x400" alt="">*@
                                 <img src="@Model.ImageUrl" alt="@Model.Title" />
                             </a>
                         </div>
@@ -79,55 +77,33 @@
                                     }
 
                                 </li>
-                                @*<li class="comments">
-                    <a href="#"><span>4</span> comments</a>
-                </li>*@
+
                                 @if (Model.CategoryId.HasValue)
                                 {
                                     <li class="comments">
                                         <a href="/dich-vu/@Model.Category.Key">@Model.Category.Title</a>
                                     </li>
-
                                 }
-
                             </ul>
                         </div>
-                        <!--END POST-DATE-->
                         <div class="post-title">
                             <h2 class="title"><a href="#">@Model.Title</a></h2>
                         </div>
-                        <!--END POST-TITLE-->
-                        @*<div class="post-meta">
-                            <ul>
-                                <li>
-                                    <span>Posted by <a href="#">codenpixel</a></span>
-                                </li>
-                                <li>
-                                    <span>in <a href="#">template</a>, <a href="#">css</a>, <a href="#">html</a></span>
-                                </li>
-                            </ul>
-                        </div>*@
-                        <!--END POST-META-->
                         <blockquote class="light">
                             @Html.Raw(Model.Description)
                         </blockquote>
-                     
+
                         <hr />
                         <div class="js-detail">@Html.Raw(Model.Detail)</div>
                     </div>
-                    <!--END POST-CONTENT -->
                     <hr>
                 </div>
-             
                 <hr>
-
             </div>
             <!--/.col-md-8-->
             <aside class="col-md-4">
                 <div class="widget search">
-
                     <form class="search-form" method="get" action="/dich-vu">
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="input-group date">
@@ -143,10 +119,8 @@
                     </form>
                 </div>
                 <!--/.search-->
-
-                 @Html.Action("SServiceCategory")
+                @Html.Action("SServiceCategory")
                 @Html.Action("SNewsLastest")
-
             </aside>
         </div>
         <!--/.row-->
@@ -198,5 +172,3 @@
         });
     </script>
 }
-
-

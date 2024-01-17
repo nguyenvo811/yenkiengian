@@ -29,37 +29,6 @@ window.shop = {
                 <h1 class="title">@ViewBag.Title</h1>
             </div>
             @Html.Raw(meta.Contact)
-            @*<div class="row">
-                <div class="col-md-8 col-sm-12 col-xs-12">
-                    <div class="ggMap">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3919.124049264035!2d106.6585903!3d10.80181!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529309b4f2dbd%3A0x1f7b3ba34d630248!2zMjQgVGjEg25nIExvbmcsIFBoxrDhu51uZyA0LCBUw6JuIELDrG5oLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1543898514856" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12 pull-right infoText">
-                    <div class="wrap">
-                        <h3 class="name-head">	Cổ và độc</h3>
-                        
-                        <ul class="info-address">
-                            <li>
-                                <i class="glyphicon glyphicon-map-marker">&nbsp;</i>
-                                <span>172/21 Đặng Văn Ngữ, Phường 14, Phú Nhuận , Hồ Chí Minh</span>
-                            </li>
-                            <li>
-                                <i class="glyphicon glyphicon-envelope">&nbsp;</i>
-                                <span>wanmap2407@gmail.com</span>
-                            </li>
-
-                            <li>
-                                <i class="glyphicon glyphicon-phone-alt">&nbsp;</i>
-                                <span>0988477479</span>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>*@
-            
-
             <div class="contactList">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 infoForm">
@@ -72,19 +41,15 @@ window.shop = {
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
     </div>
 </section>
-@*<link href="/templates/front/css/pages.css" rel="stylesheet" />*@
-
 @section scripts{
     <!-- Google Maps js -->
     @*@Html.Partial("_GoogleMapApi")*@
-    
-
     <script>
         function fn_General_Contact_PageOnEnd() {
             var _frmId = "#_FormGeneral_Contact_Page";

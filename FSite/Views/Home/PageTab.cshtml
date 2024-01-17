@@ -30,12 +30,6 @@
     <meta property="og:url" content="@string.Format("{0}/{1}.html",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"),Model.Key)" />
     <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
     <meta property="og:description" content="@(!string.IsNullOrEmpty(Model.MetaDescription)?Model.MetaDescription: Model.Description)" />
-    @*@if (!string.IsNullOrEmpty(Model.SHeader))
-        {
-            <script type="application/ld+json">
-                @Html.Raw(Model.SHeader)
-            </script>
-        }*@
 }
 @if (!ismobile)
 {
@@ -82,57 +76,8 @@
                                     <a href="@(item.Key).html">@item.Title</a>
                                 </li>
                             }
-                            @*<li class="menu-item">
-                                    <a href="about01.html">About simple</a>
-                                </li>*@
-
-
                         </ul><!-- .menu end -->
                     </li><!-- .widget.widget_nav_menu end -->
-                    @*<li class="widget widget-text">
-                            <div class="title">
-                                <h3>brochure download</h3>
-                            </div>
-
-                            <img src="img/pics/brochure02.jpg" alt="Trucking brochure" />
-                            <br />
-
-                            <a href="trucking_brochure.pdf" target="_blank" class="download-link">
-                                <span>
-                                    <i class="fa fa-file-pdf-o"></i>
-                                    Annual brochure_EN.pdf
-                                </span>
-                            </a>
-
-                            <a href="trucking_brochure.pdf" target="_blank" class="download-link">
-                                <span>
-                                    <i class="fa fa-file-pdf-o"></i>
-                                    Annual brochure_FR.pdf
-                                </span>
-                            </a>
-                        </li>
-
-                        <li class="widget widget-text">
-                            <div class="title">
-                                <h3>contact us</h3>
-                            </div>
-
-                            <img src="img/pics/locations.jpg" alt="contact us" />
-
-                            <br />
-
-                            <p>
-                                Let us know what can we do for you. Contact
-                                us today!
-                            </p>
-
-                            <a href="contact-simple.html" class="read-more">
-                                <span>
-                                    Contact us
-                                    <i class="fa fa-chevron-right"></i>
-                                </span>
-                            </a>
-                        </li>*@
                 </ul><!-- .aside-widgets end -->
             </aside><!-- .aside.aside-left end -->
 
@@ -140,14 +85,10 @@
                 <div class="custom-heading">
                     <h2>@Model.Title</h2>
                 </div>
-
                 @*<img class="float-right" src="img/pics/img25.jpg" alt="" width="360" />*@
-
                 <div class="js-detail">
                     @Html.Raw(Model.Detail)
                 </div>
-
-
             </div><!-- .col-md-9 end -->
         </div><!-- .row end -->
     </div><!-- .container end -->
@@ -184,36 +125,33 @@
                 .footer-navi ul li a {
                     color: #bcc0c4;
                 }
-
-
-            
     </style>
     @if (ismobile)
     {
         <style>
-            .menu, .footer-navi .navbar-nav{
-                display:inline-flex;
+            .menu, .footer-navi .navbar-nav {
+                display: inline-flex;
             }
-            .widget{
-                    margin-bottom: 5px;
+
+            .widget {
+                margin-bottom: 5px;
             }
-            .footer-navi .navbar-nav{
+
+            .footer-navi .navbar-nav {
                 margin: 0 -15px;
             }
-           .contact-group{
-               display:none;
-           }
-  .scroll-up {
-            right: unset;
+
+            .contact-group {
+                display: none;
+            }
+
+            .scroll-up {
+                right: unset;
                 left: 10px;
-        }
+            }
         </style>
     }
     <nav class="footer navbar-fixed-bottom footer-navi">
-        @*<a class="navbar-brand" href="#">Bottom navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>*@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 @foreach (var item in (List<Post>)ViewBag.Groups)
@@ -222,22 +160,6 @@
                         <a href="@(item.Key).html">@item.Title</a>
                     </li>
                 }
-                @*<li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropup">
-                        <a class="nav-link dropdown-toggle" href="https://getbootstrap.com/" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropup</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown10">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                                <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
-                            </li>*@
-
-
             </ul>
         </div>
     </nav>
@@ -267,6 +189,5 @@
                 $('.js-category-post').text(res.CategoryName);
             })
 }
-
     </script>
 }

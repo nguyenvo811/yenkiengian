@@ -29,7 +29,6 @@
             <meta property="og:type" content="website" />
             <meta property="og:url" content="@string.Format("{0}/tin-tuc/{1}",System.Configuration.ConfigurationManager.AppSettings.Get("SiteUri"),category.Key)" />
             <meta property="og:image" content="@string.Format("{0}/Uploads/newscategory/{1}", System.Configuration.ConfigurationManager.AppSettings.Get("BaseUrl"), category)" />*@
-
     }
     else
     {
@@ -55,7 +54,7 @@
                         LoadingElementId = "progress",
                         OnSuccess = "searchOnSuccess"
                     },
-        new { @class = "search-form" }))
+new { @class = "search-form" }))
                     {
 
                         <div class="row">
@@ -63,8 +62,7 @@
                             <div class="input-group">
                                 @Html.EditorFor(model => model.Key, new { htmlAttributes = new { @placeholder = FSite.Resources.Resource.InputAnyKeyFaq, @class = "form-control" } })
                                 <span class="input-group-btn">
-                                @*<button class="btn btn-default" id="btnsearch" type="submit">&nbsp;<i class="fa fa-search"></i></button>*@
-                                    <button class="btn btn-info btn-fill"  id="btnsearch" type="submit">@FSite.Resources.Resource.btSearch</button>
+                                    <button class="btn btn-info btn-fill" id="btnsearch" type="submit">@FSite.Resources.Resource.btSearch</button>
                                 </span>
                             </div>
                             <div class="col-md-4 col-sm-6 hidden">
@@ -73,96 +71,36 @@
                                 @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                             </div>
                             @*<div class="col-md-4 col-sm-6">
-                    @Html.LabelFor(model => model.Key, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Key, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Specialist, "", new { @class = "text-danger" })
-                </div>*@
-
+                                    @Html.LabelFor(model => model.Key, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Key, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Specialist, "", new { @class = "text-danger" })
+                                </div>*@
                         </div>
-
-
-
                     }
-                    
-                    <!-- /input-group -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- FAQ Blocks -->
-    @*<div class="row space-sm">
-        <div class="col-sm-4">
-            <div class="med-iconBox med-iconBox--left">
-                <div class="med-iconBox-icon icon-big color-blue">
-                    <span class="icon-i-oncology" aria-hidden="true"></span>
-                </div>
-                <div class="med-iconBox-content">
-                    <h4 class="med-iconBox-title hr-after">
-                        Alternative Medicine
-                    </h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consecte adipiscing elit.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- /.col 4 -->
-        <div class="col-sm-4">
-            <div class="med-iconBox med-iconBox--left">
-                <div class="med-iconBox-icon icon-big color-red">
-                    <span class="icon-i-genetics" aria-hidden="true"></span>
-                </div>
-                <div class="med-iconBox-content">
-                    <h4 class="med-iconBox-title hr-after">
-                        Heart Disease
-                    </h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consecte adipiscing elit.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- /.col 4 -->
-        <div class="col-sm-4">
-            <div class="med-iconBox med-iconBox--left">
-                <div class="med-iconBox-icon icon-big color-green">
-                    <span class="icon-i-surgery" aria-hidden="true"></span>
-                </div>
-                <div class="med-iconBox-content">
-                    <h4 class="med-iconBox-title hr-after">
-                        Infectious Diseases
-                    </h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consecte adipiscing elit.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- /.col 4 -->
-    </div>*@
-    <!-- End FAQ Blocks -->
-    @*<hr />*@
-    <!-- FAQ Content -->
     <div class="row">
         <!-- Begin Tab v1 -->
-        <div class="col-md-8" >
+        <div class="col-md-8">
             <div class="list-tab">
                 <div class="the-tab">
                     <div class="tab-nav tabbable-line">
                         <ul class="bxslider-tab list-inline nav nav-tabs margin-bottom-20">
-                        @foreach (var sp in Categories)
-                        {
-                            <li class="item-inline active1"><a href="#@sp.Value" data-key="@sp.Value">@sp.Text</a></li>
-                        }
-                    </ul>
+                            @foreach (var sp in Categories)
+                            {
+                                <li class="item-inline active1"><a href="#@sp.Value" data-key="@sp.Value">@sp.Text</a></li>
+                            }
+                        </ul>
                     </div>
                     <div class="tab-content no-border">
-                    <div class="tab-pane-page active" id="content">
+                        <div class="tab-pane-page active" id="content">
+                        </div>
                     </div>
                 </div>
-                </div>
             </div>
-           
+
         </div>
         <!--/col-md-6-->
         <!--End Tab v1-->
@@ -187,7 +125,7 @@
                     <!-- Tab Content 2 -->
                     <div id="FaqFeature" class="tab-pane fade">
                         @Html.Action("SFaqFeature")
-                      
+
                     </div>
                     <!-- Tab Content 2 -->
 
@@ -200,14 +138,12 @@
     <!-- End FAQ Content -->
 </div>
 
-
 @section scripts
     {
     <link href="~/Scripts/slick/slick.css" rel="stylesheet" />
     <link href="~/Scripts/slick/slick-theme.css" rel="stylesheet" />
     <script src="~/Scripts/slick/slick.min.js"></script>
     <script>
-        
         /* Tab */
         $('.tab-nav ul li a').on('click', function () {
             var href = $(this).attr('href');
@@ -216,9 +152,7 @@
             $('.tab-content .tab-pane-page').removeClass('active');
             $(href).addClass('active');
             //  config.slick('setPosition');
-
             $('#Category').val($(this).data('key'));
-
             searchClick();
             return false;
         });
@@ -289,8 +223,6 @@
             return url;
         }
         searchClick();
-
-
     </script>
     @*@if (!string.IsNullOrEmpty(category.CategoryName))
         {
@@ -298,5 +230,4 @@
                 $('.widget_categories li a[href*="@category.Key"]').parent().addClass('active');
             </script>
         }*@
-
 }

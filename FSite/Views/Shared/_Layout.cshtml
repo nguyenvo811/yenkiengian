@@ -5,19 +5,19 @@
         var isMobile = Request.Browser.IsMobileDevice;
         ViewBag.isMobile = isMobile;
         int version = 13;
-        FSite.Models.StaticFrontEndMetaData meta =FSite.Helpers.StaticHelpers.GetMeta(Server.MapPath("~/App_Data/Sys/1.Static.xml"));
+        FSite.Models.StaticFrontEndMetaData meta = FSite.Helpers.StaticHelpers.GetMeta(Server.MapPath("~/App_Data/Sys/1.Static.xml"));
     }
     @*@helper GetMeta(IEnumerable<FSite.Models.Data.ProductCategory> data, int? parentId = null)
-    {
-FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta(Server.MapPath("~/App_Data/Sys/1.Static.xml"));
-        <span>@meta.Footer</span>
-     }*@
+            {
+        FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta(Server.MapPath("~/App_Data/Sys/1.Static.xml"));
+                <span>@meta.Footer</span>
+             }*@
     <title>@ViewBag.Title</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <meta charset="utf-8" />
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport' />
-  
+
     @if (IsSectionDefined("headers"))
     {
         @RenderSection("headers")
@@ -32,7 +32,7 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
         <meta property="og:image" content="@System.Configuration.ConfigurationManager.AppSettings.Get("SiteLogo")" />
         <meta property="og:description" content="@Html.Raw(System.Configuration.ConfigurationManager.AppSettings.Get("SiteDesc"))" />
     }
-   
+
     @*<script src='//theme.hstatic.net/1000341717/1000434021/14/jquery.min.js?v=104' type='text/javascript'></script>*@
     <!--------------CSS----------->
     @Styles.Render("~/Content/css")
@@ -42,12 +42,12 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
     <link href="/templates/front/css/plugins.css" rel="stylesheet" />
     <link href="/templates/front/css/styles.css" rel="stylesheet" />
     <link href="/templates/front/css/responsive.css" rel="stylesheet" />
-	    <link href="/templates/front/css/pages.css" rel="stylesheet" />
-	   <link href="/Scripts/countdown/jquery.countdown.css" rel="stylesheet" />
+    <link href="/templates/front/css/pages.css" rel="stylesheet" />
+    <link href="/Scripts/countdown/jquery.countdown.css" rel="stylesheet" />
     @*<link href='//theme.hstatic.net/1000341717/1000434021/14/plugins.css?v=104' rel='stylesheet' type='text/css' media='all' />
         <link href='//theme.hstatic.net/1000341717/1000434021/14/styles.css?v=104' rel='stylesheet' type='text/css' media='all' />
-            <link href='//theme.hstatic.net/1000341717/1000434021/14/home.css?v=104' rel='stylesheet' type='text/css' media='all' />    
-			<link href='//theme.hstatic.net/1000341717/1000434021/14/responsive.css?v=104' rel='stylesheet' type='text/css' media='all' />
+            <link href='//theme.hstatic.net/1000341717/1000434021/14/home.css?v=104' rel='stylesheet' type='text/css' media='all' />
+            <link href='//theme.hstatic.net/1000341717/1000434021/14/responsive.css?v=104' rel='stylesheet' type='text/css' media='all' />
     *@
     <link href="/Scripts/ion.rangeSlider-2.2.0/css/normalize.css" rel="stylesheet" />
     <link href="/Scripts/ion.rangeSlider-2.2.0/css/ion.rangeSlider.css" rel="stylesheet" />
@@ -80,7 +80,7 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
         }
     </script>
 </head>
-<body class="@ViewBag.BodyClass @(ViewBag.isMobile?"mobile-":"")" data-page="@ViewBag.MenuKey" >
+<body class="@ViewBag.BodyClass @(ViewBag.isMobile?"mobile-":"")" data-page="@ViewBag.MenuKey">
 
 
     <div class="preloader">
@@ -137,36 +137,11 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
                                 <nav id="navWrap" class="nav navSiteMain">
                                     <div class="loginMB visible-xs">
                                         <div class="wrapLogin clearfix">
-                                             @*<div class="icon">
-                                                <img src="/templates/front/images/icon_avatar.webp" />
-                                            </div>
-                                            <div class="user">
-
-                                                <a class="log-only" href="/account/login" title="Đăng nhập">Đăng nhập</a>
-                                                <h3>
-                                                    Thông tin tài khoản
-                                                </h3>
-
-                                            </div>*@
                                         </div>
                                     </div>
                                     @Html.Action("MenuTop", "Home", new { isfirst = true })
                                     <div class="collapse navbar-collapse hidden" id="MegaNavbarID">
-                                         <ul class="nav-navbar clearfix">
-                                            @*<li class="li_child ">
-                                                <a href="/collections/phu-kien-apple" title="Apple" class="">
-                                                    <img src="//theme.hstatic.net/1000341717/1000434021/14/icon_nav_1.png?v=104" alt="Apple" class="navIcon" />
-                                                    <span>Apple</span>
-                                                </a>
-                                                <ul class="mainChild levlup_2" role="menu">
-
-
-                                                    <li class="">
-                                                        <a href="/collections/apple-iphone" title="Iphone"><span>Iphone</span></a>
-                                                    </li>
-                                                </ul>
-                                            </li>*@
-
+                                        <ul class="nav-navbar clearfix">
                                             <li class="account">
                                                 <a href="javascript:void(0)"><i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
                                                 <div class="wrap mainChild">
@@ -183,13 +158,13 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
                                                 </div>
                                             </li>
                                         </ul>
-                                      
+
                                         <div class="visible-xs closeMenuMB text-center">
                                             <a href="javascript:void(0)" class="closeNav viewAll">Đóng</a>
                                         </div>
-                                       
+
                                     </div>
-                                   
+
                                 </nav>
                             </div>
                             <div class="overlayMenu"></div>
@@ -199,29 +174,29 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
             </div>
         </header>
         <div class="insMain">
-		@if (isMobile)
-{
-		<section id="childNavCatelog" style="display:none">
-                <div class="ctMain">
-                    <div class="menu-list-child category-list">
-                        <div class="menu-item head">
-                            <a href="javascript:void(0)">Xem</a>
+            @if (isMobile)
+            {
+                <section id="childNavCatelog" style="display:none">
+                    <div class="ctMain">
+                        <div class="menu-list-child category-list">
+                            <div class="menu-item head">
+                                <a href="javascript:void(0)">Xem</a>
+                            </div>
+
+
+                            <div class="menu-item">
+                                <a href="/collections/xiaomi" title="Xiaomi">Xiaomi <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
+
                         </div>
-
-
-                        <div class="menu-item">
-                            <a href="/collections/xiaomi" title="Xiaomi">Xiaomi <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                        </div>
-
                     </div>
-                </div>
-            </section>}
+                </section>}
             @RenderBody()
         </div>
         <footer id="insFooter" class="insFooter styleNew">
             <div class="topFooter">
                 <div class="container">
-                     @if (isMobile)
+                    @if (isMobile)
                     {
                         <div class="mainFooter">
                             @Html.Raw(meta.Footer_Mobile)
@@ -239,23 +214,6 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
                 <div class="container">
                     <div class="mainBottomFooter">
                         <div class="bot-ft clearfix insScroll">
-
-                            @*<div class="logo-ft-1 pull-left">
-                                <a href="/"><img class="insImageload" data-load="true" alt="SGTECH SHOP" src="//theme.hstatic.net/1000341717/1000434021/14/dtb.png?v=104"></a>
-                            </div>*@
-
-                            @*<div class="copy pull-left">
-                                <p>
-                                    172/21 Đặng Văn Ngữ, Phường 14, Phú Nhuận , Hồ Chí Minh
-                                    <br>
-                                    ĐT:  0988477479 - Email: covadoc.vn@gmail.com
-                                </p>
-                            </div>
-
-                            <div class="ftLogo pull-right">
-                                <div class="fi-title1 insScroll"><a href="https://sgtech.vn" title="SGTECH SHOP"><img class="insImageload" data-load="true" src="//theme.hstatic.net/1000341717/1000434021/14/logo_ft.png?v=104" alt="SGTECH SHOP" itemprop="logo"></a></div>
-                            </div>*@
-
                             <div class="clearfix"></div>
                             <p class="ftCopyright">
                                 &copy; Bản quyền thuộc về <a href="/" ref="nofollow" style="color: #9a9b9e" target="_blank">yenkiengiang.com</a> | <a target="_blank" href="#" class="ref5" style="color: #9a9b9e">Powered by DPV</a>.
@@ -274,15 +232,6 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
         <div class="itemFixed backTop">
             <a href="javascript:void(0)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAcCAYAAAB75n/uAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjk3M0I3OUY2NTQzODExRTc5MTQwRDdCNzlFOTI0NEFDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjk3M0I3OUY3NTQzODExRTc5MTQwRDdCNzlFOTI0NEFDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTczQjc5RjQ1NDM4MTFFNzkxNDBEN0I3OUU5MjQ0QUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTczQjc5RjU1NDM4MTFFNzkxNDBEN0I3OUU5MjQ0QUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7an7NSAAABBUlEQVR42mK8JCjYwEBDwAi04D8tLWBioDFgAeJGmgbR//+oIXRZSIgiA3XfvaMoiDigmCZxADJ4AxRzUNsCmOHuUEy0JUwkGg4DRFvCRIbhJFnCRKbhRFvCRILh95DY94m1hIlIw2uAeDESfxEQ1xJjCRNaJsNmeDUQt2JxSAs2S6BmYFqAx/A2PHFA0BImPIZXETCcKEuY8BjeTkIux2kJqDRdgWZ4JRB3kFHOtUDpZiRLloOCaAYQ/6TQcGw++QHE05mAxesOICMAiMuAbEoMhxXXLVCH+gHZu1iggiBLdlCrkkF2KM2rTLrUyXirPFxVKS51dPfBMIwDPOAADjZeABBgAB+LVRNJ0/DYAAAAAElFTkSuQmCC" alt="covadoc.vn" /></a>
         </div>
-        @*<div class="itemFixed hotLine">
-            <label>
-                <a href="tel:0909776688" title="Hotline">
-                    <span></span>
-                    <p>Tư vấn miễn phí (24/7)<br> <span>0909 77 66 88</span></p>
-                </a>
-                <i></i>
-            </label>
-        </div>*@
     </div>
 
     <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="false">
@@ -357,7 +306,7 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Html.Partial("Widgets/Social_Control_Script")
-	 <script src="/Scripts/countdown/jquery.plugin.min.js"></script>
+    <script src="/Scripts/countdown/jquery.plugin.min.js"></script>
     <script src="/Scripts/countdown/jquery.countdown.min.js"></script>
     <script src="/Scripts/countdown/jquery.countdown-vi.js"></script>
     <script src="/Scripts/ion.rangeSlider-2.2.0/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
@@ -370,9 +319,7 @@ FSite.Models.StaticFrontEndMetaData meta =   FSite.Helpers.StaticHelpers.GetMeta
     <script src="/Scripts/js.cookie.min.js"></script>
     <script src="/Scripts/Site.js?v=@version"></script>
     <script src="/Scripts/SiteFrontEnd.js?v=@version"></script>
-
     <script>
-
 var callBack = function (variant, selector) {
 	if (variant) {
 		modal = $('#quick-view-modal');
@@ -457,121 +404,6 @@ var quickViewProduct = function (purl) {
 			 }, 100)
 	    }
 	})
-	//$.ajax({
-	//	url: purl + '.js',
-	//	async: false,
-	//	success: function (product) {
-	//		$.each(product.options, function (i, v) {
-	//			product.options[i] = v.name;
-	//		})
-	//		modal.find('.p-title').html('<h1>' + product.title + '</h1>');
-	//		modal.find('.p-option-wrapper').html(p_select_data);
-	//		modal.find('.m-vendor').html('<span>Nhà cung cấp: </span>'+ product.vendor);
-	//		var productdes = product.description;
-	//		if(productdes != '' && productdes != null){
-	//			var re_productdes = productdes.replace(/(<([^>]+)>)/ig,"")
-	//			var des = re_productdes.split("&nbsp;").splice(0, 50).join(" ") + "...";
-	//			modal.find('.form-des').html(des);
-	//			modal.find('.form-des').show();
-	//		}else{
-	//			modal.find('.form-des').html('Chưa có mô tả cho sản phẩm này!');
-	//		}
-	//		$('.image-zoom').html(p_zoom);
-	//		modal.find('.p-url').attr('href', product.url);
-	//		if (product.images.length == 0) {
-	//			modal.find('.p-product-image-feature').attr('src', '//hstatic.net/0/0/global/noDefaultImage6_large.gif');
-	//		}
-	//		else {
-	//			$('#p-sliderproduct').remove();
-	//			$('.image-zoom').append("<div id='p-sliderproduct' class='owl_pages '>");
-	//			$('#p-sliderproduct').append("<ul class='slides owlDesign '>");
-	//			$('#p-sliderproduct .slides').hide();
-	//			$.each(product.images, function (i, v) {
-	//				elem = $('<li class="product-thumb">').append('<a href="#" data-image="" data-zoom-image=""><img /></a>');
-	//				elem.find('a').attr('data-image', Haravan.resizeImage(v, 'medium'));
-	//				elem.find('a').attr('data-zoom-image', v);
-	//				elem.find('img').attr('data-image', Haravan.resizeImage(v, 'medium'));
-	//				elem.find('img').attr('data-zoom-image',v);
-	//				elem.find('img').attr('src', Haravan.resizeImage(v, 'small'));
-	//				modal.find('.slides').append(elem);
-	//			})
-
-	//			modal.find('.p-product-image-feature').attr('src', product.featured_image);
-	//			$(".modal-footer .btn-readmore").attr('href', purl);
-	//			var iflag = 0;
-	//			$('#p-sliderproduct img').load(function () {
-	//				iflag++;
-	//				if (iflag == $('#p-sliderproduct img').length) {
-	//					setTimeout(function(){
-	//						var owl = $('#p-sliderproduct .slides');
-	//						owl.on('initialize.owl.carousel initialized.owl.carousel ' +
-	//									 'initialize.owl.carousel initialize.owl.carousel ' +
-	//									 'resize.owl.carousel resized.owl.carousel ' +
-	//									 'refresh.owl.carousel refreshed.owl.carousel ' +
-	//									 'update.owl.carousel updated.owl.carousel ' +
-	//									 'drag.owl.carousel dragged.owl.carousel ' +
-	//									 'translate.owl.carousel translated.owl.carousel ' +
-	//									 'to.owl.carousel changed.owl.carousel', function(e) {
-	//										 $('#p-sliderproduct .slides').show();
-	//									 })
-	//						owl.owlCarousel({
-	//							items : 4,
-	//							loop: false,
-	//							autoplay: false,
-	//							margin: 5,
-	//							responsiveClass: true,
-	//							nav : true,
-	//							navText: ['‹' , '›'],
-	//							responsive: {
-	//								0: {
-	//									items: 1
-	//								},
-	//								370: {
-	//									items: 2
-	//								},
-	//								480: {
-	//									items: 3
-	//								},
-	//								768: {
-	//									items: 4
-	//								},
-	//								992: {
-	//									items: 4
-	//								}
-	//							}
-	//						});
-	//						modal.find('.owl-item:first-child .product-thumb').addClass('active');
-	//					},500)
-	//				}
-	//			})
-	//		}
-	//		$.each(product.variants, function (i, v) {
-	//			modal.find('select#p-select').append("<option value='" + v.id + "'>" + v.title + ' - ' + v.price + "</option>");
-	//		})
-	//		if (product.variants.length == 1 && product.variants[0].title.indexOf('Default') != -1)
-	//			$('.p-option-wrapper').hide();
-	//		else
-	//			$('.p-option-wrapper').show();
-	//		if (product.variants.length == 1 && product.variants[0].title.indexOf('Default') != -1) {
-	//			callBack(product.variants[0], null);
-	//		}
-	//		else {
-	//			new Haravan.OptionSelectors("p-select", { product: product, onVariantSelected: callBack });
-	//			debugger
-	//			if (product.options.length == 1 && product.options[0].indexOf('Tiêu đề')==-1)
-
-	//				modal.find('.selector-wrapper:eq(0)').prepend('<label>' + product.options[0] + '</label>');
-
-	//			$('.p-option-wrapper select:not(#p-select)').each(function () {
-	//				$(this).wrap('<span class="custom-dropdown custom-dropdown--white"></span>');
-	//				$(this).addClass("custom-dropdown__select custom-dropdown__select--white");
-	//			});
-	//			callBack(product.variants[0], null);
-	//		}
-
-	//	}
-	//});
-	//$('.modal-backdrop').css('opacity', '0');
 	return false;
 }
 $('#quick-view-modal ').on('click', '.product-thumb img', function (event) {
@@ -682,62 +514,49 @@ $(document).on('click', 'a.btn-quickview-1', function (event) {
             }
             priceUpdate();
         }
-
-
-        //---------------------------------------
     </script>
-	@if (isMobile)
-{
-    <style>
-         #childNavCatelog .js-nav-back {
-           position: absolute;
-    right: 21px;
-    top: 15px;
-        }
-       
-    </style>
-   <script>
-       $('.li_child a').click(function (e) {
-           e.preventDefault();
-           $('#childNavCatelog .menu-item:not(.head)').remove();
-        //   var lis = $(this).next().clone();
-           var _as = $(this).parent().find('a').clone();
-           console.log("as", _as);
-           var _sub = "";
-           $.each(_as, function (i, o) {
-               var _item=$("<span>").append(o);
-               if (i==0) {
-                   _item.find('img').remove();
-                   $('#childNavCatelog .menu-item.head').html("<span onclick='_navback()' class='glyphicon glyphicon-backward js-nav-back' aria-hidden='true'></span>" + $(_item).html());
-               } else {
-                   _sub += "<div class='menu-item'>" + $(_item).html() + "</div>";
-               }
-             
-           })
-         //  $(lis).find('li').addClass('menu-item');
-         $("#childNavCatelog .menu-list-child").append(_sub);
-           $("body").removeClass('openNav');
-           $("#childNavCatelog").fadeIn();
-       
-       })
+    @if (isMobile)
+    {
+        <style>
+            #childNavCatelog .js-nav-back {
+                position: absolute;
+                right: 21px;
+                top: 15px;
+            }
+        </style>
+        <script>
+            $('.li_child a').click(function (e) {
+                e.preventDefault();
+                $('#childNavCatelog .menu-item:not(.head)').remove();
+                //   var lis = $(this).next().clone();
+                var _as = $(this).parent().find('a').clone();
+                console.log("as", _as);
+                var _sub = "";
+                $.each(_as, function (i, o) {
+                    var _item = $("<span>").append(o);
+                    if (i == 0) {
+                        _item.find('img').remove();
+                        $('#childNavCatelog .menu-item.head').html("<span onclick='_navback()' class='glyphicon glyphicon-backward js-nav-back' aria-hidden='true'></span>" + $(_item).html());
+                    } else {
+                        _sub += "<div class='menu-item'>" + $(_item).html() + "</div>";
+                    }
 
-       function _navback()
-       {
-           $("body").addClass('openNav');
-           $("#childNavCatelog").fadeOut();
-       }
-       //$('.js-nav-back').click(function (e) {
-       //    //   e.preventDefault();
-       //    alert("run")
-     //  $("body").addClass('openNav');
-     //  $("#childNavCatelog").fadeOut();
-       //   // return false;
-       //})
+                })
+                //  $(lis).find('li').addClass('menu-item');
+                $("#childNavCatelog .menu-list-child").append(_sub);
+                $("body").removeClass('openNav');
+                $("#childNavCatelog").fadeIn();
 
+            })
 
-   </script>}
+            function _navback() {
+                $("body").addClass('openNav');
+                $("#childNavCatelog").fadeOut();
+            }
+        </script>
+    }
     @RenderSection("scripts", required: false)
-	<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0" nonce="la9kYNQJ"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v7.0" nonce="la9kYNQJ"></script>
 </body>
 </html>

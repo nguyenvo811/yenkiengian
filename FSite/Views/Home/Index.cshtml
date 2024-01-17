@@ -5,7 +5,7 @@
     ViewBag.MenuKey = "Static-0";
     ViewBag.Desc = "";
     FSite.Models.StaticFrontEndMetaData meta = FSite.Helpers.StaticHelpers.GetMeta(Server.MapPath("~/App_Data/Sys/1.Static.xml"));
-    var files = meta.files.OrderBy(i=>i.Index).ToList();
+    var files = meta.files.OrderBy(i => i.Index).ToList();
 }
 <script>
         window.shop = {
@@ -20,17 +20,17 @@
             <div id="insSlider" class="col-md-12 col-sm-12 col-xs-12 bannerSlider">
                 <div class="boxSlideHome">
                     <div class="owlDesign sliderWrap">
-                       
+
                         @for (int i = 0; i < files.Count; i++)
-                                {
-                                    var item = files[i];
+                        {
+                            var item = files[i];
                             <div class="itemSlide">
                                 <a href="@item.Url" title="@item.Title" target="_blank">
                                     <img class="owl-lazy" data-src="@item.Path" alt="@item.Title" />
                                 </a>
                             </div>
                         }
-                       
+
 
 
                     </div>
@@ -39,244 +39,165 @@
                             @for (int i = 0; i < files.Count; i++)
                             {
                                 var item = files[i];
-                                 <li class="text-center@(i==0?" active":"")">
+                                <li class="text-center@(i==0?" active":"")">
                                     <a href="javascript:void(0)" title="@item.Title"><h3>@item.Title</h3></a>
                                 </li>
-                               
+
                             }
-                          
+
                         </ul>
                     </div>
                 </div>
             </div>
-
-            @*<div id="insBannerRight" class="col-md-4 col-sm-12 col-xs-12 bannerSlider">
-                <div class="wrapBannerRight">
-                    <ul>
-                        <li>
-                            <a href="/"><img src="//theme.hstatic.net/1000341717/1000434021/14/banner_right_1.jpg?v=104" alt="" /></a>
-                        </li>
-                        <li>
-                            <a href="/"><img src="//theme.hstatic.net/1000341717/1000434021/14/banner_right_2.jpg?v=104" alt="" /></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>*@
-
         </div>
     </div>
 </section>
-
-@*<section id="bannersHome" class="blockSection hidden-xs">
-    <div class="container">
-        <div class="wapperBanners">
-            <div class="row">
-                <div class="col-sm-6 col-xs-6 bannerItem first">
-                    <div class="wrapItem imageHover">
-                        <a href="/"><img src="//theme.hstatic.net/1000341717/1000434021/14/banner_home_1.jpg?v=104" alt="SGTECH SHOP" /></a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xs-6 bannerItem last">
-                    <div class="wrapItem imageHover">
-                        <a href="/"><img src="//theme.hstatic.net/1000341717/1000434021/14/banner_home_2.jpg?v=104" alt="SGTECH SHOP" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>*@
-
-
-@*<section id="relatedViewed" class="blockSection" style="display:none">
-    <div class="container">
-        <div class="wapperViewed">
-            <div class="blockTitle">
-                <h2>
-                    Gợi ý dành riêng cho bạn
-                </h2>
-            </div>
-            <div class="blockContent">
-                <div id="pdViewedLisstting" class="productList owlDesign notDots">
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>*@
-
-
-@*<section id="topProducts" class="blockSection" style="display:none" data-auto="1">
-    <div class="container">
-        <div class="wapperTop">
-            <div class="blockTitle">
-                <h2>
-                    Top bán chạy trong tuần
-                </h2>
-
-                <a href="/pages/top-san-pham-ban-chay" class="viewAll topAll hidden-xs translateY-50 transition-3">Xem thêm <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-
-            </div>
-            <div class="blockContent">
-                <div id="pdTopLisstting" class="productList owlDesign clearfix">
-
-                </div>
-
-                <div class="visible-xs mbTopAll">
-                    <a href="/pages/top-san-pham-ban-chay" class="viewAll transition-3">Xem thêm <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>*@
-@{ 
-    //var Categories=  (IEnumerable<FSite.Models.Data.ProductCategory>)ViewData["Categories"];
+@{
     var Categories = (List<FSite.Models.HomeProductGroupModel>)ViewData["Categories"];
-
 }
 @for (int i = 0; i < Categories.Count; i++)
 {
     var item = Categories[i];
-<section id="homeProductBlock-@item.Id" class="blockSection blockPD"  data-id="@item.Id">
-    <div class="container">
-        <div class="wapperPDHome">
-            <div class="blockTitle">
-                <a href="/san-pham/@item.Key">
-                    <h2>@item.Title</h2>
-                </a>
-                <ul class="notStyle navBlock">
-                   @foreach (var sub in item.Subs)
-                   {
-                    <li><a href="/san-pham/@sub.Key">@sub.Title</a></li>
-                   }
-                </ul>
-                <div class="visible-xs visible-sm openMenuTabs">
-                    <a href="javascript:void(0);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAQAAAAm93DmAAAABGdBTUEAAYagMeiWXwAAAAJiS0dEAP+Hj8y/AAAAB3RJTUUH4AseCgwR1hRKtwAAALFJREFUSMdjZMAL/vMznGeQZSAe7GMkYCAjQxSDAsM/Io1jYnhFguWjYBTAAFo6/G/IYMDwnwLzbrKgCVgzTKbIgYfQXcjGIE+Rf39Q5JxRMFIB4/81DKLUM43hDgvDFwZxijIbqoH8AxMuo2CIA0bCSv5LM3ARmVIZGd4Qoer/2v/Eg13EuNCQwZBoF76lYWiOguELiEiHmOA/L0MKAweWtMnE8IA8A8UYzjOIYZW6CwBlhUuTRG0cCAAAAABJRU5ErkJggg==" alt="Open tabs"></a>
+    <section id="homeProductBlock-@item.Id" class="blockSection blockPD" data-id="@item.Id">
+        <div class="container">
+            <div class="wapperPDHome">
+                <div class="blockTitle">
+                    <a href="/san-pham/@item.Key">
+                        <h2>@item.Title</h2>
+                    </a>
+                    <ul class="notStyle navBlock">
+                        @foreach (var sub in item.Subs)
+                        {
+                            <li><a href="/san-pham/@sub.Key">@sub.Title</a></li>
+                        }
+                    </ul>
+                    <div class="visible-xs visible-sm openMenuTabs">
+                        <a href="javascript:void(0);"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAQAAAAm93DmAAAABGdBTUEAAYagMeiWXwAAAAJiS0dEAP+Hj8y/AAAAB3RJTUUH4AseCgwR1hRKtwAAALFJREFUSMdjZMAL/vMznGeQZSAe7GMkYCAjQxSDAsM/Io1jYnhFguWjYBTAAFo6/G/IYMDwnwLzbrKgCVgzTKbIgYfQXcjGIE+Rf39Q5JxRMFIB4/81DKLUM43hDgvDFwZxijIbqoH8AxMuo2CIA0bCSv5LM3ARmVIZGd4Qoer/2v/Eg13EuNCQwZBoF76lYWiOguELiEiHmOA/L0MKAweWtMnE8IA8A8UYzjOIYZW6CwBlhUuTRG0cCAAAAABJRU5ErkJggg==" alt="Open tabs"></a>
+                    </div>
                 </div>
-            </div>
-            <div class="blockContent">
-                <div class="row">
-                    <div class="col-md-9 col-sm-12 col-xs-12 blockColumn left @(i%2==0?"pull-right":"")">
-                        <div class="wrap">
-                            <div class="bannerBlock imageHover">
-                                <a href="/san-pham/@item.Key">
-                                <img src="@item.Image" alt="@item.Title" /></a>
-                            </div>
-                            <div class="productsBlock">
-                                <div class="slidePDHome owlBlock owlDesign notDots">
-                                    @foreach (var fe in item.Lastest)
-                                    {
-                                        var _a = $"/{fe.Key}/san-pham";
-                                     
-                                        <div class="productItem">
-                                            <div class="pdLoopItem animated zoomIn">
-                                                <div class="itemLoop clearfix">
-                                                    <div class="pdLoopImg imageHovers">
-                                                        @if (fe.DiscountShow)
-                                                        {
-                                                            <div class="pdLabel sale">
-                                                                <span>@FSite.Resources.Resource.Sale_Title</span>
+                <div class="blockContent">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-12 col-xs-12 blockColumn left @(i%2==0?"pull-right":"")">
+                            <div class="wrap">
+                                <div class="bannerBlock imageHover">
+                                    <a href="/san-pham/@item.Key">
+                                        <img src="@item.Image" alt="@item.Title" />
+                                    </a>
+                                </div>
+                                <div class="productsBlock">
+                                    <div class="slidePDHome owlBlock owlDesign notDots">
+                                        @foreach (var fe in item.Lastest)
+                                        {
+                                            var _a = $"/{fe.Key}/san-pham";
+
+                                            <div class="productItem">
+                                                <div class="pdLoopItem animated zoomIn">
+                                                    <div class="itemLoop clearfix">
+                                                        <div class="pdLoopImg imageHovers">
+                                                            @if (fe.DiscountShow)
+                                                            {
+                                                                <div class="pdLabel sale">
+                                                                    <span>@FSite.Resources.Resource.Sale_Title</span>
+                                                                </div>
+                                                            }
+                                                            <a href="@_a" title="@fe.Title">
+                                                                <img src="@fe.ImageUrl" data-reg="false" class="imgLoopItem" alt="@fe.Title">
+                                                            </a>
+
+                                                            @if (fe.DiscountShow)
+                                                            {
+                                                                <div class="countdown-wrapper">
+                                                                    <div class="defaultCountdown clearfix" data-time-end="@fe.DiscountToDate"></div>
+                                                                    @*<div class="defaultCountdown clearfix" data-time-end="@(DateTime.Now.AddMonths(12))"></div>*@
+                                                                </div>
+                                                            }
+                                                            <div class="pdLoopAction">
+                                                                <div class="listAction">
+                                                                    <a href="javascript:void(0)" class="btnLoop btnCompare" data-compare="@_a" data-id="@fe.Id" title="So sánh"><i class="fa fa-compress" aria-hidden="true"></i> <span class="btn-check"></span></a>
+                                                                    <a href="javascript:void(0)" class="btnLoop btn-quickview-1" data-handle="@_a" data-toggle="tooltip" data-placement="left" title="Xem nhanh"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                                                                    <a href="@_a" class="btnLoop view_product" data-toggle="tooltip" data-placement="left" title="Xem chi tiết"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                                                    <a href="javascript:void(0)" class="add-cart btnLoop Addcart" data-variantid="@fe.Id" title="Thêm vào giỏ"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                                                </div>
                                                             </div>
-                                                        }
-                                                        <a href="@_a" title="@fe.Title">
-                                                            <img src="@fe.ImageUrl" data-reg="false" class="imgLoopItem" alt="@fe.Title">
-                                                        </a>
-                                                      
-                                                        @if (fe.DiscountShow)
-        {
-            <div class="countdown-wrapper">
-                <div class="defaultCountdown clearfix" data-time-end="@fe.DiscountToDate"></div>
-                @*<div class="defaultCountdown clearfix" data-time-end="@(DateTime.Now.AddMonths(12))"></div>*@
-            </div>
-        }
-                                                        <div class="pdLoopAction">
-                                                            <div class="listAction">
-                                                                <a href="javascript:void(0)" class="btnLoop btnCompare" data-compare="@_a" data-id="@fe.Id" title="So sánh"><i class="fa fa-compress" aria-hidden="true"></i> <span class="btn-check"></span></a>
-                                                                <a href="javascript:void(0)" class="btnLoop btn-quickview-1" data-handle="@_a" data-toggle="tooltip" data-placement="left" title="Xem nhanh"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
-                                                                <a href="@_a" class="btnLoop view_product" data-toggle="tooltip" data-placement="left" title="Xem chi tiết"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                                                <a href="javascript:void(0)" class="add-cart btnLoop Addcart" data-variantid="@fe.Id" title="Thêm vào giỏ"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                                                        </div>
+                                                        <div class="pdLoopDetail text-center clearfix">
+                                                            <h3 class="pdLoopName"><a class="productName" href="@_a" title="@fe.Title">@fe.Title</a></h3>
+                                                            <p class="pdPrice">
+                                                                <span>@Html.DisplayFor(f => fe.Price, "DecimalCurrency")</span>
+                                                                @if (fe.DiscountShow)
+                                                                {
+                                                                    <del class="pdComparePrice">@Html.DisplayFor(f => fe.PriceDiscount, "DecimalCurrency")</del>
+                                                                }
+                                                            </p>
+                                                            <div class="pdLoopListView">
+                                                                <ul>
+                                                                    @if (!string.IsNullOrEmpty(fe.Sku))
+                                                                    {
+                                                                        <li><strong>Mã sản phẩm: </strong><span>@fe.Sku</span></li>
+                                                                    }
+                                                                    @if (fe.Category != null)
+                                                                    {
+                                                                        <li><strong>Danh mục: </strong><a href="/san-pham/@fe.Category.Key"><span>@fe.Category.Title</span></a></li>
+                                                                    }
+                                                                    @if (fe.Brand != null)
+                                                                    {
+                                                                        <li><strong>Thương hiệu: </strong><span>@fe.Brand.Title</span></li>
+                                                                    }
+                                                                    <li>
+                                                                        <strong>Mô tả ngắn: </strong>
+                                                                        <span class="short-des">@fe.Description</span>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="pdLoopDetail text-center clearfix">
-                                                        <h3 class="pdLoopName"><a class="productName" href="@_a" title="@fe.Title">@fe.Title</a></h3>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 hidden-sm hidden-xs blockColumn right">
+                            <div class="wrap">
+                                <div class="panel panel-default pdMoreBlock">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Nổi bật</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        @foreach (var fe in item.Features)
+                                        {
+                                            var _a = $"/{fe.Key}/san-pham";
+                                            <div class="pdMoreItem ">
+                                                <div class="wrap clearfix">
+                                                    <div class="image">
+                                                        <a href="@_a" title="@fe.Title">
+                                                            <img src="@fe.ImageUrl" data-reg="false" class="imgLoopItem" alt="@fe.Title">
+                                                        </a>
+                                                    </div>
+                                                    <div class="detail">
+                                                        <h3 class="name"><a class="productName" href="@_a" title="@fe.Title">@fe.Title</a></h3>
+                                                        @if (fe.DiscountShow)
+                                                        {
+                                                            <div class="countdown-wrapper po-unset bg-unset fo-small pad-small">
+                                                                <div class="defaultCountdown clearfix" data-time-end="@fe.DiscountToDate"></div>
+                                                                @*<div class="defaultCountdown clearfix" data-time-end="@(DateTime.Now.AddMonths(12))"></div>*@
+                                                            </div>
+                                                        }
                                                         <p class="pdPrice">
                                                             <span>@Html.DisplayFor(f => fe.Price, "DecimalCurrency")</span>
                                                             @if (fe.DiscountShow)
                                                             {
                                                                 <del class="pdComparePrice">@Html.DisplayFor(f => fe.PriceDiscount, "DecimalCurrency")</del>
-                                                            }  
+                                                            }
                                                         </p>
-                                                        <div class="pdLoopListView">
-                                                            <ul>
-                                                                @if (!string.IsNullOrEmpty(fe.Sku))
-                                                                {
-                                                                    <li><strong>Mã sản phẩm: </strong><span>@fe.Sku</span></li>
-                                                                }
-                                                                @if (fe.Category != null)
-                                                                {
-                                                                    <li><strong>Danh mục: </strong><a href="/san-pham/@fe.Category.Key"><span>@fe.Category.Title</span></a></li>
-                                                                }
-                                                                @if (fe.Brand != null)
-                                                                {
-                                                                    <li><strong>Thương hiệu: </strong><span>@fe.Brand.Title</span></li>
-                                                                }
-                                                                <li>
-                                                                    <strong>Mô tả ngắn: </strong>
-                                                                    <span class="short-des">@fe.Description</span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    }
-                                   
-                                  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 hidden-sm hidden-xs blockColumn right">
-                        <div class="wrap">
-                            <div class="panel panel-default pdMoreBlock">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Nổi bật</h3>
-                                </div>
-                                <div class="panel-body">
-                                    @foreach (var fe in item.Features)
-                                    {
-                                        var _a = $"/{fe.Key}/san-pham";
-                                        <div class="pdMoreItem ">
-                                            <div class="wrap clearfix">
-                                                <div class="image">
-                                                    <a href="@_a" title="@fe.Title">
-                                                        <img src="@fe.ImageUrl" data-reg="false" class="imgLoopItem" alt="@fe.Title">
-                                                    </a>
-                                                </div>
-                                                <div class="detail">
-                                                    <h3 class="name"><a class="productName" href="@_a" title="@fe.Title">@fe.Title</a></h3>
-                                                    @if (fe.DiscountShow)
-                                                    {
-                                                        <div class="countdown-wrapper po-unset bg-unset fo-small pad-small">
-                                                            <div class="defaultCountdown clearfix" data-time-end="@fe.DiscountToDate"></div>
-                                                            @*<div class="defaultCountdown clearfix" data-time-end="@(DateTime.Now.AddMonths(12))"></div>*@
-                                                        </div>
-                                                    }
-                                                    <p class="pdPrice">
-                                                        <span>@Html.DisplayFor(f=>fe.Price, "DecimalCurrency")</span>
-                                                        @if (fe.DiscountShow)
-                                                        {
-                                                            <del class="pdComparePrice">@Html.DisplayFor(f => fe.PriceDiscount, "DecimalCurrency")</del>
-                                                        }   
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                   
-                                    
+                                        }
+
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -284,26 +205,18 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-    }
+    </section>
+}
 <section id="blogHome" class="blockSection blogHome">
     <div class="container">
         <div class="wapperBlogHome">
             <div class="featuredTitle">
-                <a href="/blogs/news">
-                    <h2>
-
-                        Tin tức mới
-
-                    </h2>
+                <a href="/tin-tuc">
+                    <h2> Tin tức mới </h2>
                 </a>
-
                 <p class="titleDesc">
                     Tin công nghệ, cập nhật tin tức nhanh nhất và mới nhất
                 </p>
-
             </div>
             <div class="blogsList">
 
@@ -311,16 +224,7 @@
                     @foreach (var item in Model.Featureblogs)
                     {
                         var _link = $"/{item.Key}/tin-tuc";
-                       
-
                         <li class="articleItem">
-
-
-
-
-
-
-
                             <div class="insArticleLoop">
                                 <div class="articlePostBody bg_w">
                                     <div class="postThumbIMG relative imageHover">
@@ -328,12 +232,6 @@
                                             <img class="insImageload" data-load="true" src="@item.ImageUrl" alt="@item.Title">
                                         </a>
                                         <div class="createdInfo">
-                                            @*<ul class="notStyle">
-                                              
-                                                <li class="time"><i class="fa fa-calendar" aria-hidden="true"></i> <time>04/11/2019</time></li>
-                                                <li class="comment"><i class="fa fa-comments-o" aria-hidden="true"></i> <span>0</span></li>
-                                                <li class="post"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Anh Quân</span></li>
-                                            </ul>*@
                                             <div class="entry-meta small muted">
                                                 <span class="post-date"><i class="fa fa-calendar"></i> @Html.DisplayFor(m => item.CreatedDate)</span>
                                                 @if (item.CategoryId.HasValue)
@@ -354,21 +252,11 @@
                             </div>
                         </li>
                     }
-
-
-                 
-
                 </ul>
-
             </div>
         </div>
     </div>
 </section>
-
-
 @section scripts{
-  
-<link href="/templates/front/css/home.css" rel="stylesheet" />
-
-    
+    <link href="/templates/front/css/home.css" rel="stylesheet" />
 }
