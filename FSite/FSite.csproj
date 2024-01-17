@@ -534,7 +534,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
-    <Content Include="Views\Shared\_Layout.bak.cshtml" />
     <Content Include="Views\Home\Components\_Contact_FrmContact.cshtml" />
     <Content Include="Views\Home\Components\_Brands.cshtml" />
     <Content Include="Views\Home\Components\_Hotline.cshtml" />
